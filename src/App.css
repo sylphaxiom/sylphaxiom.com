@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Custom additions */
+
+#tab0 {
+  position: absolute;
+  visibility: hidden;
+  top: -200000px;
+}
+
+div:has(> a#tab0.Mui-selected) + span {
+  display: none;
+}
