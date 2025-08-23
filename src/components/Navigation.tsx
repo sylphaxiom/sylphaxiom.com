@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Link from "@mui/material/Link";
+import Button from "@mui/material/Button";
 
 interface Props {
   current: string;
@@ -55,14 +55,19 @@ export default function Navigation({ current, onChange }: Props) {
       }}
     >
       <Grid size={1} sx={{ float: "left" }}>
-        <Link>
+        <Button
+          href="#"
+          onClick={() => {
+            onChange("home");
+          }}
+        >
           <img
             src={"/sylphaxiom_web.svg"}
             alt="curious guy in a browser"
             width={100}
             height={100}
           />
-        </Link>
+        </Button>
       </Grid>
       <Grid size={"grow"}>
         <Typography variant={"h2"} component={"h1"} noWrap color={"primary"}>
