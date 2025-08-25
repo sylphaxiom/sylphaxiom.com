@@ -8,6 +8,7 @@ import Person from "./components/Person";
 import Stuff from "./components/Stuff";
 import Things from "./components/Things";
 import Contact from "./components/Contact";
+import Placeholder from "./components/Placeholder";
 
 export default function App() {
   const [page, setPage] = React.useState("home");
@@ -17,7 +18,7 @@ export default function App() {
   let children: React.ReactNode = "";
   switch (page) {
     case "home":
-      children = <Home />;
+      children = <Placeholder />;
       break;
     case "person":
       children = <Person />;
