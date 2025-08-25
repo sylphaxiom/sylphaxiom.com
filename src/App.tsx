@@ -41,7 +41,9 @@ export default function App() {
   return (
     <Box sx={{ minWidth: 1, mx: "auto", padding: 0 }}>
       <Navigation current={page} onChange={handleSelect} />
-      <Container maxWidth="xl">{children}</Container>
+      <Container maxWidth="xl" sx={{ my: 5, minWidth: 1 }}>
+        {children}
+      </Container>
     </Box>
   );
 }

@@ -45,7 +45,6 @@ export default function Navigation({ current, onChange }: PageProps) {
         justifyContent: "space-between",
         alignItems: "center",
         height: 150,
-        position: "fixed",
         width: "100%",
         top: 0,
       }}
