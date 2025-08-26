@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import "./App.css";
-import Navigation from "./components/navigation";
+import Navigation from "./components/Navigation";
 
 export default function App() {
   const [page, setPage] = React.useState("home");
