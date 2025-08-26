@@ -1,6 +1,11 @@
 // import * as React from 'react'
+import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 
 export default function Placeholder() {
   // This is a placeholder tile for my tile design idea.
@@ -11,24 +16,104 @@ export default function Placeholder() {
     "0px 3px 3px -2px #9c27b033, 0px 3px 4px 0px #9c27b024, 0px 1px 8px 0px #9c27b01F"; // elevation 3
 
   return (
-    <Grid container spacing={2} height={750}>
-      <Grid size={8}>
-        <Card raised elevation={1} sx={{ height: "100%", boxShadow: shadow }}>
-          Card 1
+    <Grid container spacing={2} height={1}>
+      <Grid size={8} sx={{ maxHeight: 350 }}>
+        <Card
+          raised
+          sx={{
+            height: 1,
+            boxShadow: shadow,
+          }}
+        >
+          <Grid container>
+            <Grid size={4}>
+              <CardMedia
+                component="img"
+                height={350}
+                width={350}
+                alt="quill drawing a map"
+                src="/map_draw_350x.svg"
+                sx={{ maxHeight: 350, maxWidth: 350 }}
+              />
+            </Grid>
+            <Grid size={"grow"}>
+              <CardHeader title="Worldbuilding" />
+              <CardContent>
+                <Typography padding={1}>
+                  The Crafting of maps, the sorting of stories, the directing of
+                  worlds, this is the essensce of worldbuilding. No matter who
+                  starts with an idea, it takes a whole table to really sort out
+                  a world. My current world project, Kothis, has been involved
+                  in a running campaign since October of 2024 through 2
+                  campaigns. I would hope one day to take this world public and
+                  publish a campagin guide within this setting.
+                </Typography>
+                <Typography padding={1}>
+                  In the meantime, I am integrating my worldbuilding into my
+                  development. I am currently working on a centralized database
+                  and web UI for the world of Kothis. There will be public
+                  levels of information, but the majority of the data will be
+                  behind a registration. The culmination of this project will be
+                  a full application to assist myself (and other GM's playing in
+                  this world) with many aspects of the game.
+                </Typography>
+                <Link padding={1} href="#" color="primary" underline="none">
+                  To dig in deeper, click me...
+                </Link>
+              </CardContent>
+            </Grid>
+          </Grid>
         </Card>
       </Grid>
-      <Grid size={4}>
-        <Card raised elevation={3} sx={{ height: "100%", boxShadow: shadow }}>
-          Card 2
-        </Card>
+      <Grid container size={4} sx={{ maxHeight: 350 }}>
+        <Grid size={6} sx={{ maxHeight: 167 }}>
+          <Card raised sx={{ height: 1, boxShadow: shadow }}>
+            <CardMedia
+              src="/purple_splash.jpg"
+              title="purple color swatch because color is cool"
+              component="img"
+              sx={{ width: 1, height: 1 }}
+            />
+          </Card>
+        </Grid>
+        <Grid size={6} sx={{ maxHeight: 167 }}>
+          <Card raised sx={{ height: 1, boxShadow: shadow }}>
+            <CardMedia
+              src="/Maze.jpg"
+              title="map of a dungeon"
+              component="img"
+              sx={{ width: 1, height: 1 }}
+            />
+          </Card>
+        </Grid>
+        <Grid size={6} sx={{ maxHeight: 167 }}>
+          <Card raised sx={{ height: 1, boxShadow: shadow }}>
+            <CardMedia
+              src="/Vitalivus_Liquet.jpg"
+              title="a vial of magical liquid"
+              component="img"
+              sx={{ width: 1, height: 1 }}
+            />
+          </Card>
+        </Grid>
+        <Grid size={6} sx={{ maxHeight: 167 }}>
+          <Card raised sx={{ height: 1, boxShadow: shadow }}>
+            <CardMedia
+              src="/blue_purple_splash.jpg"
+              title="blue-ish purple color swatch because color is cool"
+              component="img"
+              sx={{ width: 1, height: 1 }}
+            />
+          </Card>
+        </Grid>
       </Grid>
       <Grid size={4}>
-        <Card raised elevation={1} sx={{ height: "100%", boxShadow: shadow }}>
+        <Card raised sx={{ height: 1, boxShadow: shadow }}>
           Card 3
         </Card>
       </Grid>
       <Grid size={8}>
-        <Card raised elevation={1} sx={{ height: "100%", boxShadow: shadow }}>
+        <Card raised sx={{ height: 1, boxShadow: shadow }}>
           Card 4
         </Card>
       </Grid>
