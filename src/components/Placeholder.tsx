@@ -6,6 +6,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 
 export default function Placeholder() {
   // This is a placeholder tile for my tile design idea.
@@ -37,7 +39,12 @@ export default function Placeholder() {
               />
             </Grid>
             <Grid size={"grow"}>
-              <CardHeader title="Worldbuilding" />
+              <CardHeader
+                title="Worldbuilding"
+                component="h2"
+                sx={{ p: 0, my: 1 }}
+              />
+              <Divider variant="middle" />
               <CardContent>
                 <Typography padding={1}>
                   The Crafting of maps, the sorting of stories, the directing of
@@ -107,14 +114,68 @@ export default function Placeholder() {
           </Card>
         </Grid>
       </Grid>
-      <Grid size={4}>
+      <Grid size={4} sx={{ maxHeight: 350 }}>
         <Card raised sx={{ height: 1, boxShadow: shadow }}>
-          Card 3
+          <Grid container width={1} wrap="nowrap">
+            <CardMedia
+              component="img"
+              alt="stick-figure construction workers building a web page"
+              src="/construction.svg"
+              sx={{ height: 350, width: 350, float: "left" }}
+            />
+            <Divider orientation="vertical" flexItem sx={{ px: 1 }} />
+            <Stack>
+              <CardHeader
+                component="h2"
+                title="Asset Creation"
+                sx={{ p: 0, my: 1 }}
+              />
+              <Divider flexItem sx={{ my: 1 }} />
+              <Typography sx={{ p: 1 }}>
+                Sometimes, you just need something weird. Like a construction
+                crew building a web page...
+              </Typography>
+              <Typography sx={{ p: 1 }}>
+                ...So I decided to start making the wierd things in my head when
+                I thought I needed them...
+              </Typography>
+              <Typography sx={{ p: 1 }}>
+                ...And{" "}
+                <Link
+                  href="#"
+                  color="secondary"
+                  children="here"
+                  underline="none"
+                />{" "}
+                we are!...
+              </Typography>
+            </Stack>
+          </Grid>
         </Card>
       </Grid>
       <Grid size={8}>
-        <Card raised sx={{ height: 1, boxShadow: shadow }}>
-          Card 4
+        <Card raised sx={{ height: 1, boxShadow: shadow, display: "flex" }}>
+          <Grid size={4} wrap="nowrap">
+            Talk about some shit
+          </Grid>
+          <Grid size={4} wrap="nowrap">
+            <CardMedia
+              src="/headshot.jpg"
+              component="img"
+              sx={{
+                height: 150,
+                width: 150,
+                p: 1,
+                m: 1,
+                borderRadius: 100,
+                mx: "auto",
+              }}
+            />
+            <Typography>Link a resume</Typography>
+          </Grid>
+          <Grid size={4} wrap="nowrap">
+            Put up a form or some shit, idk man, it's late.
+          </Grid>
         </Card>
       </Grid>
     </Grid>
