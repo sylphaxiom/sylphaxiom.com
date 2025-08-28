@@ -58,7 +58,7 @@ export default function Navigation({ current, onChange }: PageProps) {
           }}
         >
           <img
-            src={"/sylphaxiom_web_512x.svg"}
+            src={"./sylphaxiom_web_512x.svg"}
             alt="curious guy in a browser"
             width={100}
             height={100}
