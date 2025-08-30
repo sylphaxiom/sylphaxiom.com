@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
+import { animate, createScope, stagger, text } from "animejs";
 
 interface PageProps {
   current: string;
@@ -38,6 +39,37 @@ export default function Navigation({ current, onChange }: PageProps) {
       title = "Sylphaxiom Creative";
   }
 
+  // const { chars } = title.split('h1', { words: false, chars: true });
+  const ref: React.RefObject<HTMLHeadingElement | null> = React.useRef(null);
+
+  React.useEffect(() => {
+    if (ref) {
+      createScope({ root: ref }).add(() => {
+        const { chars } = text.split("#main_title", {
+          words: false,
+          chars: true,
+          debug: true,
+        });
+        animate(chars, {
+          // Property keyframes
+          y: [
+            { to: "-2.75rem", ease: "outExpo", duration: 600 },
+            { to: 0, ease: "outBounce", duration: 800, delay: 100 },
+          ],
+          // Property specific parameters
+          rotate: {
+            from: "-1turn",
+            delay: 0,
+          },
+          delay: stagger(50),
+          ease: "inOutCirc",
+          loopDelay: 1000,
+          loop: true,
+        });
+      });
+    }
+  }, []);
+
   return (
     <Grid
       container
@@ -66,7 +98,14 @@ export default function Navigation({ current, onChange }: PageProps) {
         </Button>
       </Grid>
       <Grid size={"grow"}>
-        <Typography variant={"h2"} component={"h1"} noWrap color={"primary"}>
+        <Typography
+          id="main_title"
+          ref={ref}
+          variant={"h2"}
+          component={"h1"}
+          noWrap
+          color={"primary"}
+        >
           {title}
         </Typography>
       </Grid>
