@@ -46,7 +46,7 @@ export default function Navigation({ current, onChange }: PageProps) {
         alignItems: "center",
         height: 150,
         width: "100%",
-        position: "sticky",
+        position: "fixed",
         top: 0,
       }}
     >
