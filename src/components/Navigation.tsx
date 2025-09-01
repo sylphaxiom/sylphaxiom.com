@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
+import { animated, useSpring } from "@react-spring/web";
 
 interface PageProps {
   current: string;
@@ -38,6 +39,20 @@ export default function Navigation({ current, onChange }: PageProps) {
       title = "Sylphaxiom Creative";
   }
 
+  // Logo slide animation
+  const [springs, api] = useSpring(() => ({
+    from: { x: 425 },
+    to: { x: 0 },
+    config: {
+      duration: 800,
+    },
+  }));
+
+  const handleClick = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    api.start();
+  };
+  // End Logo Slide Animation
   return (
     <Grid
       container
@@ -54,27 +69,32 @@ export default function Navigation({ current, onChange }: PageProps) {
         <Button
           href="#"
           onClick={() => {
+            api.start;
             onChange("home");
           }}
         >
-          <img
-            src={"./sylphaxiom_web_512x.svg"}
-            alt="curious guy in a browser"
-            width={100}
-            height={100}
-          />
+          <animated.div style={{ ...springs }}>
+            <img
+              src={"./sylphaxiom_web_512x.svg"}
+              alt="curious guy in a browser"
+              width={100}
+              height={100}
+            />
+          </animated.div>
         </Button>
       </Grid>
       <Grid size={"grow"}>
-        <Typography
-          id="main_title"
-          variant={"h2"}
-          component={"h1"}
-          noWrap
-          color={"primary"}
-        >
-          {title}
-        </Typography>
+        <animated.div>
+          <Typography
+            id="main_title"
+            variant={"h2"}
+            component={"h1"}
+            noWrap
+            color={"primary"}
+          >
+            {title}
+          </Typography>
+        </animated.div>
       </Grid>
       <Grid size={3} sx={{ float: "right" }}>
         <Tabs
