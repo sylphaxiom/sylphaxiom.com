@@ -1,10 +1,11 @@
 import * as React from "react";
+import * as motion from "motion/react-client";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
-import { animated, useSpring } from "@react-spring/web";
+import { stagger } from "motion";
 
 interface PageProps {
   current: string;
@@ -39,20 +40,13 @@ export default function Navigation({ current, onChange }: PageProps) {
       title = "Sylphaxiom Creative";
   }
 
-  // Logo slide animation
-  const [springs, api] = useSpring(() => ({
-    from: { x: 425 },
-    to: { x: 0 },
-    config: {
-      duration: 800,
-    },
-  }));
+  // Titile animation
 
-  const handleClick = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    api.start();
+  const variants = {
+    start: { y: -100, Opacity: 0 },
+    animate: { y: 0, opacity: 1 },
   };
-  // End Logo Slide Animation
+
   return (
     <Grid
       container
@@ -69,32 +63,62 @@ export default function Navigation({ current, onChange }: PageProps) {
         <Button
           href="#"
           onClick={() => {
-            api.start;
             onChange("home");
           }}
         >
-          <animated.div style={{ ...springs }}>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1, rotate: 1080 }}
+            transition={{ duration: 0.8 }}
+          >
             <img
               src={"./sylphaxiom_web_512x.svg"}
               alt="curious guy in a browser"
               width={100}
               height={100}
             />
-          </animated.div>
+          </motion.div>
         </Button>
       </Grid>
       <Grid size={"grow"}>
-        <animated.div>
-          <Typography
-            id="main_title"
-            variant={"h2"}
-            component={"h1"}
-            noWrap
-            color={"primary"}
+        <Typography
+          id="main_title"
+          variant={"h2"}
+          component={"h1"}
+          noWrap
+          color={"primary"}
+        >
+          <motion.div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              overflow: "visible",
+            }}
+            transition={{ delayChildren: stagger(0.1) }}
+            initial="start"
+            animate="animate"
+            variants={variants}
           >
-            {title}
-          </Typography>
-        </animated.div>
+            {title.split("").map((char: string, index: number) => {
+              if (char === " ") {
+                char = "\u00A0";
+              }
+              return (
+                <motion.span
+                  key={char + index}
+                  variants={variants}
+                  transition={{
+                    type: "spring",
+                    bounce: 0.5,
+                  }}
+                >
+                  {char}
+                </motion.span>
+              );
+            })}
+          </motion.div>
+        </Typography>
       </Grid>
       <Grid size={3} sx={{ float: "right" }}>
         <Tabs
