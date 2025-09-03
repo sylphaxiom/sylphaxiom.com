@@ -30,7 +30,11 @@ export default function App() {
   let children: React.ReactNode = "";
   switch (page) {
     case "home":
-      children = <Placeholder />;
+      children = isCover ? (
+        <Enter setIsCover={setIsCover} isCover={isCover} />
+      ) : (
+        <Placeholder />
+      );
       break;
     case "person":
       children = <Person />;
@@ -48,17 +52,12 @@ export default function App() {
       children = <Home />;
       break;
   }
-  // if (isCover) {
-  //   return <Enter setIsCover={setIsCover} isCover={isCover} />;
-  // } else {
   return (
     <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
-      {buildEvent()}
       <Navigation current={page} onChange={handleSelect} />
       <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
         {children}
       </Container>
     </Box>
   );
-  // }
 }
