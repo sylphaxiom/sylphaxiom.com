@@ -9,12 +9,24 @@ import Stuff from "./components/Stuff";
 import Things from "./components/Things";
 import Contact from "./components/Contact";
 import Placeholder from "./components/Placeholder";
+import Enter from "./components/enter.tsx";
 
 export default function App() {
+  const [isCover, setIsCover] = React.useState(true);
+
   const [page, setPage] = React.useState("home");
   const handleSelect = (pg: string) => {
     setPage(pg);
   };
+
+  function buildEvent() {
+    if (isCover) {
+      return <Enter setIsCover={setIsCover} isCover={isCover} />;
+    } else {
+      return null;
+    }
+  }
+
   let children: React.ReactNode = "";
   switch (page) {
     case "home":
@@ -36,13 +48,17 @@ export default function App() {
       children = <Home />;
       break;
   }
-
+  // if (isCover) {
+  //   return <Enter setIsCover={setIsCover} isCover={isCover} />;
+  // } else {
   return (
-    <Box sx={{ minWidth: 1, mx: "auto", p: 0 }}>
+    <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
+      {buildEvent()}
       <Navigation current={page} onChange={handleSelect} />
       <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
         {children}
       </Container>
     </Box>
   );
+  // }
 }
