@@ -4,12 +4,12 @@ import Box from "@mui/material/Box";
 import Navigation from "./components/Navigation";
 import Container from "@mui/material/Container";
 import Home from "./components/Home";
-import Person from "./components/Person";
 import Stuff from "./components/Stuff";
 import Things from "./components/Things";
 import Contact from "./components/Contact";
 import Placeholder from "./components/Placeholder";
 import Cover from "./components/Cover";
+import Portfolio from "./components/Portfolio";
 
 export default function App() {
   const [isCover, setIsCover] = React.useState(true);
@@ -24,8 +24,8 @@ export default function App() {
     case "home":
       children = <Placeholder />;
       break;
-    case "person":
-      children = <Person />;
+    case "portfolio":
+      children = <Portfolio />;
       break;
     case "stuff":
       children = <Stuff />;

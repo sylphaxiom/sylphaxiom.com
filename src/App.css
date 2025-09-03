@@ -62,3 +62,9 @@ div:has(> a#tab0.Mui-selected) + span {
 .coverBtn:hover {
   color: lightgrey;
 }
+
+#portfolio_img {
+  border-radius: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

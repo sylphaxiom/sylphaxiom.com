@@ -17,7 +17,7 @@ function firstUpper(str: string) {
 }
 
 export default function Navigation({ current, onChange }: PageProps) {
-  const pages = ["home", "person", "stuff", "things", "contact"];
+  const pages = ["home", "portfolio", "stuff", "things", "contact"];
   let title: string;
   switch (current) {
     case "person":
