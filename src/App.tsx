@@ -19,13 +19,13 @@ export default function App() {
     setPage(pg);
   };
 
-  function buildEvent() {
-    if (isCover) {
-      return <Enter setIsCover={setIsCover} isCover={isCover} />;
-    } else {
-      return null;
-    }
-  }
+  // function buildEvent() {
+  //   if (isCover) {
+  //     return <Enter setIsCover={setIsCover} isCover={isCover} />;
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   let children: React.ReactNode = "";
   switch (page) {
