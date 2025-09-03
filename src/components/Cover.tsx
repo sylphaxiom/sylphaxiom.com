@@ -2,13 +2,15 @@ import * as React from "react";
 import * as motion from "motion/react-client";
 import * as motions from "motion/react";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 interface Props {
   setIsCover: (value: React.SetStateAction<boolean>) => void;
+  setPage: (pg: string) => void;
   isCover: boolean;
 }
 
-export default function Cover({ setIsCover, isCover }: Props) {
+export default function Cover({ setIsCover, isCover, setPage }: Props) {
   const [control, setControl] = React.useState(isCover);
 
   const time = motions.useTime();
@@ -40,42 +42,78 @@ export default function Cover({ setIsCover, isCover }: Props) {
     }
   }, [control]);
 
-  const handleTransition = () => {
+  const handleTransition = (e: React.SyntheticEvent) => {
+    let id = e.currentTarget.getAttribute("id");
+    console.log(id);
+    id ? setPage(id) : setPage("");
     setControl(false);
   };
 
   return (
-    <Box id="entryway" sx={{ minWidth: 1, p: 0, display: "flex" }}>
+    <Box
+      id="entryway"
+      sx={{
+        minWidth: 1,
+        p: 0,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Button
+        variant="contained"
+        href="#"
+        id="home"
+        value="home"
+        sx={{ marginRight: 30 }}
+        size="large"
+        color="primary"
+        className="coverBtn"
+        onClick={handleTransition}
+      >
+        Sylphaxiom
+        <br />
+        Creative
+      </Button>
       <motions.AnimatePresence mode="wait">
-        <motion.a
+        {/* <motion.div
           layoutRoot
           key="entryway"
-          href="#"
-          onClick={handleTransition}
+          // onClick={handleTransition}
           style={{
-            minWidth: "100vw",
-            minHeight: "100vh",
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
           }}
-        >
-          <motion.img
-            layout
-            ref={scopeExit}
-            layoutId="logo"
-            style={{
-              rotateY,
-            }}
-            initial={coverOn}
-            src={"./sylphaxiom_web_512x.svg"}
-            key="logo"
-            alt="curious guy in a browser"
-            width={100}
-            height={100}
-          />
-        </motion.a>
+        > */}
+        <motion.img
+          layout
+          ref={scopeExit}
+          layoutId="logo"
+          style={{
+            rotateY,
+          }}
+          initial={coverOn}
+          src={"./sylphaxiom_web_512x.svg"}
+          key="logo"
+          alt="curious guy in a browser"
+          width={100}
+          height={100}
+        />
+        {/* </motion.div> */}
       </motions.AnimatePresence>
+      <Button
+        variant="contained"
+        href="#"
+        id="portfolio"
+        value="portfolio"
+        sx={{ marginLeft: 30 }}
+        className="coverBtn"
+        onClick={handleTransition}
+      >
+        Jacob Pell
+        <br />
+        Portfolio
+      </Button>
     </Box>
   );
 }
