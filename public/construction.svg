@@ -27,11 +27,11 @@
      inkscape:document-units="px"
      showgrid="true"
      inkscape:zoom="1.6300001"
-     inkscape:cx="244.47852"
-     inkscape:cy="258.58895"
+     inkscape:cx="245.09201"
+     inkscape:cy="258.58894"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
-     inkscape:window-x="-8"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer2">
@@ -534,11 +534,11 @@
        id="text17"
        style="font-size:48px;font-family:'Black Ops One';-inkscape-font-specification:'Black Ops One, Normal';fill:#afaf50;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linejoin:round"
        aria-label="U" />
-    <text
+    <path
+       d="m 311.65845,345.31104 v -18.67969 h -4.45313 v -2.71875 l 3.46875,-3.49219 h 5.76563 l 5.60156,5.60156 v 19.28907 z m -16.59375,0 v -24.89063 h 10.45312 v 24.89063 z"
+       id="text16"
        style="font-size:48px;font-family:'Black Ops One';-inkscape-font-specification:'Black Ops One, Normal';fill:#afaf50;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linejoin:round"
-       x="292.6272"
-       y="345.31104"
-       id="text16">n</text>
+       aria-label="n" />
     <path
        d="m 343.6272,345.31104 v -34.38282 h 10.35937 v 34.38282 z m -11.39063,0 -5.60156,-5.60157 v -13.6875 l 5.60156,-5.60156 h 9.75 v 6.21094 h -4.99219 v 12.86719 h 4.99219 v 3.35156 l -2.46094,2.46094 z"
        id="text15"

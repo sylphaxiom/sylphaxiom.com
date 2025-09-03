@@ -19,22 +19,10 @@ export default function App() {
     setPage(pg);
   };
 
-  // function buildEvent() {
-  //   if (isCover) {
-  //     return <Cover setIsCover={setIsCover} isCover={isCover} />;
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   let children: React.ReactNode = "";
   switch (page) {
     case "home":
-      children = isCover ? (
-        <Cover setIsCover={setIsCover} isCover={isCover} />
-      ) : (
-        <Placeholder />
-      );
+      children = <Placeholder />;
       break;
     case "person":
       children = <Person />;
@@ -52,12 +40,18 @@ export default function App() {
       children = <Home />;
       break;
   }
-  return (
-    <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
-      <Navigation current={page} onChange={handleSelect} />
-      <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
-        {children}
-      </Container>
-    </Box>
-  );
+  if (isCover) {
+    return (
+      <Cover setIsCover={setIsCover} isCover={isCover} setPage={setPage} />
+    );
+  } else {
+    return (
+      <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
+        <Navigation current={page} onChange={handleSelect} />
+        <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
+          {children}
+        </Container>
+      </Box>
+    );
+  }
 }

@@ -3,7 +3,7 @@ body {
   z-index: 0;
 }
 
-#root:has(#everything) {
+#root {
   width: 100%;
   margin: 0 auto;
   padding: 1rem;
@@ -59,10 +59,6 @@ div:has(> a#tab0.Mui-selected) + span {
   display: none;
 }
 
-#entryway {
-  z-index: 1;
-  position: fixed;
-  background: white;
-  top: 0;
-  left: 0;
+.coverBtn:hover {
+  color: lightgrey;
 }
