@@ -8,7 +8,7 @@ interface Props {
   isCover: boolean;
 }
 
-export default function Enter({ setIsCover, isCover }: Props) {
+export default function Cover({ setIsCover, isCover }: Props) {
   const [control, setControl] = React.useState(isCover);
 
   const time = motions.useTime();

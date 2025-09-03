@@ -9,7 +9,7 @@ import Stuff from "./components/Stuff";
 import Things from "./components/Things";
 import Contact from "./components/Contact";
 import Placeholder from "./components/Placeholder";
-import Enter from "./components/enter.tsx";
+import Cover from "./components/Cover";
 
 export default function App() {
   const [isCover, setIsCover] = React.useState(true);
@@ -21,7 +21,7 @@ export default function App() {
 
   // function buildEvent() {
   //   if (isCover) {
-  //     return <Enter setIsCover={setIsCover} isCover={isCover} />;
+  //     return <Cover setIsCover={setIsCover} isCover={isCover} />;
   //   } else {
   //     return null;
   //   }
@@ -31,7 +31,7 @@ export default function App() {
   switch (page) {
     case "home":
       children = isCover ? (
-        <Enter setIsCover={setIsCover} isCover={isCover} />
+        <Cover setIsCover={setIsCover} isCover={isCover} />
       ) : (
         <Placeholder />
       );
