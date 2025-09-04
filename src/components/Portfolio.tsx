@@ -12,6 +12,8 @@ export default function Portfolio() {
           height: 350,
           borderRadius: "100%",
           textAlign: "center",
+          paddingTop: "25px",
+          backgroundColor: "teal",
         }}
       >
         <img

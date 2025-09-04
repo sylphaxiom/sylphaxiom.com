@@ -64,7 +64,7 @@ export default function Placeholder() {
                   a full application to assist myself (and other GM's playing in
                   this world) with many aspects of the game.
                 </Typography>
-                <Link padding={1} href="#" color="primary" underline="none">
+                <Link padding={1} href="home" color="primary" underline="none">
                   To dig in deeper, click me...
                 </Link>
               </CardContent>
@@ -142,7 +142,7 @@ export default function Placeholder() {
               <Typography sx={{ p: 1 }}>
                 ...And{" "}
                 <Link
-                  href="#"
+                  href="home"
                   color="secondary"
                   children="here"
                   underline="none"

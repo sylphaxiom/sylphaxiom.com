@@ -13,8 +13,8 @@ createRoot(document.getElementById("root")!).render(
         defaultSetOptions={{
           path: "/",
           maxAge: Date.now() + 60 * 60 * 3,
-          // domain: "localhost", //set for development purposes only
-          domain: "sylphaxiom.com",
+          domain: "localhost", //set for development purposes only
+          // domain: "sylphaxiom.com",
         }}
       >
         <App />

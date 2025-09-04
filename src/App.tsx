@@ -15,8 +15,9 @@ import { useCookies } from "react-cookie";
 export default function App() {
   const [cookies, setCookie] = useCookies(["covered"]);
   // const [isCover, setIsCover] = React.useState(true);
-  const [page, setPage] = React.useState("home");
-
+  const path = window.location.pathname.slice(1);
+  const curPg = !path ? "home" : path;
+  const [page, setPage] = React.useState(curPg);
   if (!cookies.covered) {
     setCookie("covered", "havewemetbefore");
   } else {

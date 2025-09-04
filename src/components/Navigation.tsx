@@ -20,7 +20,7 @@ export default function Navigation({ current, onChange }: PageProps) {
   const pages = ["home", "portfolio", "stuff", "things", "contact"];
   let title: string;
   switch (current) {
-    case "person":
+    case "portfolio":
       title = "This is the Guy...";
       break;
 
@@ -61,7 +61,7 @@ export default function Navigation({ current, onChange }: PageProps) {
     >
       <Grid size={1} sx={{ float: "left" }}>
         <Button
-          href="#"
+          href="home"
           onClick={() => {
             onChange("home");
           }}
@@ -141,7 +141,7 @@ export default function Navigation({ current, onChange }: PageProps) {
               aria-controls={page}
               key={"tab" + index}
               id={"tab" + index}
-              href={"#" + page}
+              href={page}
             />
           ))}
         </Tabs>

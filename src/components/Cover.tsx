@@ -32,7 +32,7 @@ export default function Cover({ setPage }: Props) {
   const coverOff = {
     rotateZ: 1080,
     rotateY: 0,
-    scale: 0.5,
+    scale: 0.1,
     transition: {
       duration: 0.8,
     },
@@ -67,7 +67,7 @@ export default function Cover({ setPage }: Props) {
     >
       <Button
         variant="contained"
-        href="#"
+        href="home"
         id="home"
         value="home"
         sx={{ marginRight: 30 }}
@@ -109,7 +109,7 @@ export default function Cover({ setPage }: Props) {
       </motions.AnimatePresence>
       <Button
         variant="contained"
-        href="#"
+        href="portfolio"
         id="portfolio"
         value="portfolio"
         sx={{ marginLeft: 30 }}
