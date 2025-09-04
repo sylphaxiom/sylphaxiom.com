@@ -16,7 +16,7 @@ export default function App() {
   const [cookies, setCookie] = useCookies(["covered"]);
   // const [isCover, setIsCover] = React.useState(true);
   const path = window.location.pathname.slice(1);
-  const curPg = !path ? "home" : path;
+  const curPg = path;
   const [page, setPage] = React.useState(curPg);
   if (!cookies.covered) {
     setCookie("covered", "havewemetbefore");
