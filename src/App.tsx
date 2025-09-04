@@ -14,20 +14,14 @@ import { useCookies } from "react-cookie";
 
 export default function App() {
   const [cookies, setCookie] = useCookies(["covered"]);
-  const [isCover, setIsCover] = React.useState(true);
+  // const [isCover, setIsCover] = React.useState(true);
   const [page, setPage] = React.useState("home");
 
   if (!cookies.covered) {
-    console.log("Let's get covered.");
     setCookie("covered", "havewemetbefore");
   } else {
-    console.log("cookies are: " + cookies.covered);
-    if (cookies.covered === "beentheredonethat" && isCover) {
-      console.log(
-        "Weve already seen the cover page. isCover should be (false): " +
-          isCover
-      );
-      setIsCover(false); // This will trigger re-render. Not optimal.
+    if (cookies.covered === "beentheredonethat") {
+      // setIsCover(false); // This will trigger re-render. Not optimal.
     }
   }
 
@@ -56,10 +50,8 @@ export default function App() {
       children = <Home />;
       break;
   }
-  if (isCover || cookies.covered === "havewemetbefore") {
-    return (
-      <Cover setIsCover={setIsCover} isCover={isCover} setPage={setPage} />
-    );
+  if (cookies.covered === "havewemetbefore") {
+    return <Cover setPage={setPage} />;
   } else {
     return (
       <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>

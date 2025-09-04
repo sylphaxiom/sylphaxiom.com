@@ -6,31 +6,19 @@ import Button from "@mui/material/Button";
 import { useCookies } from "react-cookie";
 
 interface Props {
-  setIsCover: (value: React.SetStateAction<boolean>) => void;
   setPage: (pg: string) => void;
-  isCover: boolean;
 }
 
-export default function Cover({ setIsCover, isCover, setPage }: Props) {
-  const [control, setControl] = React.useState(isCover);
-
+export default function Cover({ setPage }: Props) {
   // Cookie data
   const cookieName = "covered";
   const newFriend = "havewemetbefore";
   const cookieValue = "beentheredonethat";
 
   const [cookies, setCookie] = useCookies([cookieName]);
-
-  if (!cookies.covered) {
-    console.log("something fucked up here. There should be cookies");
-  } else if (cookies.covered === newFriend) {
-    console.log("looks like we have a new friend here: " + cookies.covered);
-    console.log("We will set our cookies out when we're done.");
-  } else if (cookies.covered === cookieValue) {
-    console.log(
-      "Oops! You shouldn't be seeing this! You've already done this..."
-    );
-  }
+  const [control, setControl] = React.useState(
+    cookies.covered === newFriend ? true : false
+  );
 
   const time = motions.useTime();
   const rotateY = motions.useTransform(
@@ -57,7 +45,6 @@ export default function Cover({ setIsCover, isCover, setPage }: Props) {
       const animation = animateExit(scopeExit.current, coverOff);
       animation.then(() => {
         setCookie("covered", cookieValue); // This should trigger a re-render and stop any further changes...
-        setIsCover(false);
       });
     }
   }, [control]);
