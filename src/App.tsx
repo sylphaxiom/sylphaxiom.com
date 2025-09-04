@@ -10,11 +10,21 @@ import Contact from "./components/Contact";
 import Placeholder from "./components/Placeholder";
 import Cover from "./components/Cover";
 import Portfolio from "./components/Portfolio";
+import { useCookies } from "react-cookie";
 
 export default function App() {
-  const [isCover, setIsCover] = React.useState(true);
-
+  const [cookies, setCookie] = useCookies(["covered"]);
+  // const [isCover, setIsCover] = React.useState(true);
   const [page, setPage] = React.useState("home");
+
+  if (!cookies.covered) {
+    setCookie("covered", "havewemetbefore");
+  } else {
+    if (cookies.covered === "beentheredonethat") {
+      // setIsCover(false); // This will trigger re-render. Not optimal.
+    }
+  }
+
   const handleSelect = (pg: string) => {
     setPage(pg);
   };
@@ -40,10 +50,8 @@ export default function App() {
       children = <Home />;
       break;
   }
-  if (isCover) {
-    return (
-      <Cover setIsCover={setIsCover} isCover={isCover} setPage={setPage} />
-    );
+  if (cookies.covered === "havewemetbefore") {
+    return <Cover setPage={setPage} />;
   } else {
     return (
       <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>

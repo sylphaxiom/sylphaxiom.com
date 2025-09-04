@@ -3,15 +3,22 @@ import * as motion from "motion/react-client";
 import * as motions from "motion/react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useCookies } from "react-cookie";
 
 interface Props {
-  setIsCover: (value: React.SetStateAction<boolean>) => void;
   setPage: (pg: string) => void;
-  isCover: boolean;
 }
 
-export default function Cover({ setIsCover, isCover, setPage }: Props) {
-  const [control, setControl] = React.useState(isCover);
+export default function Cover({ setPage }: Props) {
+  // Cookie data
+  const cookieName = "covered";
+  const newFriend = "havewemetbefore";
+  const cookieValue = "beentheredonethat";
+
+  const [cookies, setCookie] = useCookies([cookieName]);
+  const [control, setControl] = React.useState(
+    cookies.covered === newFriend ? true : false
+  );
 
   const time = motions.useTime();
   const rotateY = motions.useTransform(
@@ -25,7 +32,7 @@ export default function Cover({ setIsCover, isCover, setPage }: Props) {
   const coverOff = {
     rotateZ: 1080,
     rotateY: 0,
-    scale: 0,
+    scale: 0.5,
     transition: {
       duration: 0.8,
     },
@@ -37,15 +44,14 @@ export default function Cover({ setIsCover, isCover, setPage }: Props) {
     if (!control) {
       const animation = animateExit(scopeExit.current, coverOff);
       animation.then(() => {
-        setIsCover(false);
+        setCookie("covered", cookieValue); // This should trigger a re-render and stop any further changes...
       });
     }
   }, [control]);
 
   const handleTransition = (e: React.SyntheticEvent) => {
     let id = e.currentTarget.getAttribute("id");
-    console.log(id);
-    id ? setPage(id) : setPage("");
+    id ? setPage(id) : setPage("Oops");
     setControl(false);
   };
 
