@@ -1,4 +1,4 @@
-import * as React from "react";
+// import * as React from "react";
 import * as motion from "motion/react-client";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -9,15 +9,15 @@ import { stagger } from "motion";
 
 interface PageProps {
   current: string;
-  onChange: (pg: string) => void;
 }
 
 function firstUpper(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export default function Navigation({ current, onChange }: PageProps) {
+export default function Navigation({ current }: PageProps) {
   const pages = ["home", "portfolio", "stuff", "things", "contact"];
+  const disabled = ["stuff", "things", "contact"]; // any  tabs we want disabled we will put here.
   let title: string;
   let currentADJ: string | null = null;
   switch (current) {
@@ -62,12 +62,7 @@ export default function Navigation({ current, onChange }: PageProps) {
       }}
     >
       <Grid size={1} sx={{ float: "left" }}>
-        <Button
-          href="home"
-          onClick={() => {
-            onChange("home");
-          }}
-        >
+        <Button href="home">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1, rotate: 1080 }}
@@ -97,7 +92,7 @@ export default function Navigation({ current, onChange }: PageProps) {
               justifyContent: "center",
               overflow: "visible",
             }}
-            transition={{ delayChildren: stagger(0.1) }}
+            transition={{ delayChildren: stagger(0.05) }}
             initial="start"
             animate="animate"
             variants={variants}
@@ -113,6 +108,7 @@ export default function Navigation({ current, onChange }: PageProps) {
                   transition={{
                     type: "spring",
                     bounce: 0.5,
+                    duration: 0.5,
                   }}
                 >
                   {char}
@@ -128,10 +124,6 @@ export default function Navigation({ current, onChange }: PageProps) {
           role="navigation"
           id="navTabRoot"
           indicatorColor="secondary"
-          onChange={(event: React.SyntheticEvent, nxtPg) => {
-            event.preventDefault;
-            onChange(nxtPg);
-          }}
           value={currentADJ || current}
           centered
         >
@@ -140,6 +132,7 @@ export default function Navigation({ current, onChange }: PageProps) {
               LinkComponent={"a"}
               label={firstUpper(page)}
               value={page}
+              disabled={disabled.includes(page)}
               aria-controls={page}
               key={"tab" + index}
               id={"tab" + index}

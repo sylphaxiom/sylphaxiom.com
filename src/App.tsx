@@ -7,33 +7,27 @@ import Home from "./components/Home";
 import Stuff from "./components/Stuff";
 import Things from "./components/Things";
 import Contact from "./components/Contact";
-import Placeholder from "./components/Placeholder";
 import Cover from "./components/Cover";
 import Portfolio from "./components/Portfolio";
 import { useCookies } from "react-cookie";
 
 export default function App() {
   const [cookies, setCookie] = useCookies(["covered"]);
-  // const [isCover, setIsCover] = React.useState(true);
   const path = window.location.pathname.slice(1);
   const curPg = path;
   const [page, setPage] = React.useState(curPg);
   if (!cookies.covered) {
     setCookie("covered", "havewemetbefore");
   } else {
-    if (cookies.covered === "beentheredonethat") {
-      // setIsCover(false); // This will trigger re-render. Not optimal.
+    if (cookies.covered === "havewemetbefore") {
+      return <Cover setPage={setPage} />;
     }
   }
-
-  const handleSelect = (pg: string) => {
-    setPage(pg);
-  };
 
   let children: React.ReactNode = "";
   switch (page) {
     case "home":
-      children = <Placeholder />;
+      children = <Home />;
       break;
     case "portfolio":
       children = <Portfolio />;
@@ -51,16 +45,12 @@ export default function App() {
       children = <Home />;
       break;
   }
-  if (cookies.covered === "havewemetbefore") {
-    return <Cover setPage={setPage} />;
-  } else {
-    return (
-      <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
-        <Navigation current={page} onChange={handleSelect} />
-        <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
-          {children}
-        </Container>
-      </Box>
-    );
-  }
+  return (
+    <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
+      <Navigation current={page} />
+      <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
+        {children}
+      </Container>
+    </Box>
+  );
 }
