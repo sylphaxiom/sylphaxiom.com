@@ -19,6 +19,7 @@ function firstUpper(str: string) {
 export default function Navigation({ current, onChange }: PageProps) {
   const pages = ["home", "portfolio", "stuff", "things", "contact"];
   let title: string;
+  let currentADJ: string | null = null;
   switch (current) {
     case "portfolio":
       title = "This is the Guy...";
@@ -37,6 +38,7 @@ export default function Navigation({ current, onChange }: PageProps) {
       break;
 
     default:
+      !current && (currentADJ = "home"); // set to home if empty
       title = "Sylphaxiom Creative";
   }
 
@@ -130,7 +132,7 @@ export default function Navigation({ current, onChange }: PageProps) {
             event.preventDefault;
             onChange(nxtPg);
           }}
-          value={current}
+          value={currentADJ || current}
           centered
         >
           {pages.map((page, index) => (
