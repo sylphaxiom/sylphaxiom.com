@@ -52,13 +52,15 @@ export default function Navigation({ current }: PageProps) {
   return (
     <Grid
       container
+      id="navHead"
       sx={{
         justifyContent: "space-between",
         alignItems: "center",
-        height: 150,
+        height: 125,
         width: "100%",
         position: "fixed",
         top: 0,
+        backgroundColor: "white",
       }}
     >
       <Grid size={1} sx={{ float: "left" }}>
