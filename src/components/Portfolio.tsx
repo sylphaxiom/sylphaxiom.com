@@ -7,6 +7,9 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+import ButtonBase from "@mui/material/ButtonBase";
+import Tooltip from "@mui/material/Tooltip";
+import * as FileSaver from "file-saver";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
@@ -46,6 +49,10 @@ export default function Portfolio() {
     }, 1000);
     return () => clearInterval(swapper);
   }, [rays]);
+
+  const downloadCV = () => {
+    FileSaver.saveAs("./jacob_pell_resume.pdf", "jacob_pell_resume.pdf");
+  };
 
   return (
     <Box sx={{ width: 1 }}>
@@ -147,11 +154,11 @@ export default function Portfolio() {
               <polygon width="15px" points="0,5 0,15 600,15 500,5" />
             </svg>
             <Typography variant="h5" sx={{ ml: 0, mr: "20px" }}>
-              Automation and Scripting Specialist
+              Full-Stack Developer
             </Typography>
             <Divider flexItem orientation="vertical" sx={{}} />
             <Typography variant="h5" sx={{ mx: "20px" }}>
-              Full-Stack Developer
+              Automation and Scripting Specialist
             </Typography>
             <Divider flexItem orientation="vertical" />
             <Typography variant="h5" sx={{ mx: "20px" }}>
@@ -188,7 +195,7 @@ export default function Portfolio() {
             />
           </Grid>
         </Grid>
-        <Grid size={8} sx={{ textAlign: "left" }}>
+        <Grid size={8} sx={{ textAlign: "left", mt: 4 }}>
           <Typography sx={{ py: 2 }}>
             Once upon a time, there was this guy who liked stuff and did
             things...
@@ -237,8 +244,32 @@ export default function Portfolio() {
           </Typography>
         </Grid>
       </Grid>
+      <Divider sx={{ my: 3 }} />
+      <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
+        <img
+          width={450}
+          height={150}
+          src="./filligree.svg"
+          alt="some pretty curves"
+        />
+        <Tooltip title="Resume">
+          <ButtonBase id="ballet" onClick={downloadCV}>
+            Resume
+          </ButtonBase>
+        </Tooltip>
+        <img
+          width={450}
+          height={150}
+          src="./filligree.svg"
+          alt="some pretty curves"
+        />
+      </Grid>
+      <Divider sx={{ my: 3 }} />
       <Grid container>
         <Grid size={3}>
+          <Typography variant="h5" marginTop={5}>
+            The Skills...
+          </Typography>
           <Grid
             container
             sx={{ padding: 3, marginTop: 3 }}
@@ -268,7 +299,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./Python.svg" />
+              <img width={50} height={50} src="./css_old.svg" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -301,7 +332,7 @@ export default function Portfolio() {
               <img width={50} height={50} src="./linux.svg" />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./powershell.svg" />
+              <img width={50} height={50} src="./TypeScript.svg" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -318,33 +349,9 @@ export default function Portfolio() {
             <Grid size={1}>
               <img width={50} height={50} src="./materialui.svg" />
             </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./windows.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./css_old.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./TypeScript.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
           </Grid>
         </Grid>
-        <Grid size={8} sx={{ textAlign: "left" }}>
+        <Grid size={8} sx={{ textAlign: "left", marginTop: 1 }}>
           <Grid
             container
             sx={{ padding: 3 }}
@@ -353,34 +360,42 @@ export default function Portfolio() {
             columns={6}
           >
             <Grid size={4}>
-              <Container sx={{ width: 750, height: 350 }}>
+              <Container
+                sx={{
+                  width: 750,
+                  height: 250,
+                  textAlign: "center",
+                }}
+              >
                 <img
                   src="./sylphaxiom_web_512x.svg"
                   width={200}
                   height={200}
                   className=""
-                  style={{ float: "left", marginRight: 8 }}
+                  style={{ display: "box", float: "left", marginRight: 8 }}
                 />
                 <Typography variant="h5" sx={{ pt: 1 }}>
                   Sylphaxiom Creative
                 </Typography>
                 <Typography sx={{ py: 2 }}>
-                  Web application built with MUI and React for the frontend.
-                  There is currently no backend functionality required. More
-                  will be added as I continue to work on this long-running
-                  project.
+                  This is my current, primary project. It's a web application
+                  built with MUI and React for the frontend. There is currently
+                  no backend functionality required. More will be added as I
+                  continue to work on this long-running project.
                 </Typography>
               </Container>
+            </Grid>
+            <Grid size={2}>
+              <div
+                style={{ border: "none", width: "350px", height: "250px" }}
+              />
             </Grid>
             <Grid size={2}>
               <Container
                 sx={{
                   width: 350,
-                  height: 350,
+                  height: 250,
                   textAlign: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "end",
                 }}
               >
                 <Typography variant="h5" sx={{ py: 2 }}>
@@ -414,13 +429,80 @@ export default function Portfolio() {
               </Container>
             </Grid>
             <Grid size={2}>
-              <img width={350} height={350} />
+              <Container
+                sx={{
+                  width: 350,
+                  height: 250,
+                  textAlign: "center",
+                }}
+              >
+                <Typography variant="h5" sx={{ py: 2 }}>
+                  Worldbuilding/Storytelling
+                </Typography>
+                <div style={{ alignContent: "center" }}>
+                  <img
+                    width={75}
+                    height={75}
+                    style={{ marginRight: 15, borderRadius: 5 }}
+                    src="./Maze.jpg"
+                  />
+                  <img
+                    width={75}
+                    height={75}
+                    style={{ marginLeft: 15 }}
+                    src="./kothis.svg"
+                  />
+                  <img
+                    width={75}
+                    height={75}
+                    style={{ marginLeft: 15, borderRadius: 5 }}
+                    src="./OneNote.png"
+                  />
+                </div>
+                <Typography sx={{ py: 1 }}>
+                  Necessity is the mother of invention. When you need something,
+                  you might as well make it! This is how we discover new-found
+                  skills like SVG creation.
+                </Typography>
+              </Container>
             </Grid>
             <Grid size={2}>
-              <img width={350} height={350} />
-            </Grid>
-            <Grid size={2}>
-              <img width={350} height={350} />
+              <Container
+                sx={{
+                  width: 350,
+                  height: 250,
+                  textAlign: "center",
+                }}
+              >
+                <Typography variant="h5" sx={{ py: 2 }}>
+                  Automation/Scripting
+                </Typography>
+                <div style={{ alignContent: "center" }}>
+                  <img
+                    width={75}
+                    height={75}
+                    style={{ marginRight: 15 }}
+                    src="./powershell.svg"
+                  />
+                  <img
+                    width={75}
+                    height={75}
+                    style={{ marginLeft: 15 }}
+                    src="./windows.svg"
+                  />
+                  <img
+                    width={75}
+                    height={75}
+                    style={{ marginLeft: 15 }}
+                    src="./Python.svg"
+                  />
+                </div>
+                <Typography sx={{ py: 1 }}>
+                  Necessity is the mother of invention. When you need something,
+                  you might as well make it! This is how we discover new-found
+                  skills like SVG creation.
+                </Typography>
+              </Container>
             </Grid>
           </Grid>
         </Grid>

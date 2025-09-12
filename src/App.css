@@ -81,3 +81,19 @@ div:has(> a#tab0.Mui-selected) + span {
 .climberBg {
   display: block;
 }
+
+#ballet {
+  font-family: "Ballet", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4em;
+}
+#ballet:hover {
+  background-image: url("./download.svg");
+  background-size: 100px 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(245,245,245,0.8);
+  background-blend-mode: lighten;
+}
