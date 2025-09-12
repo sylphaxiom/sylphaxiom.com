@@ -14,11 +14,21 @@ export default function Cover({ setPage }: Props) {
   const cookieName = "covered";
   const newFriend = "havewemetbefore";
   const cookieValue = "beentheredonethat";
+  let goto: string | null = "";
+
+  function goAway(page: string | null, cookie: string) {
+    setCookie("covered", cookie);
+    setPage(page || "home");
+  }
 
   const [cookies, setCookie] = useCookies([cookieName]);
-  const [control, setControl] = React.useState(
-    cookies.covered === newFriend ? true : false
-  );
+  // let control = cookies.covered === newFriend;
+  if (!(cookies.covered === newFriend)) {
+    console.log(
+      "this is a mistake, you shouldn't be here. Let's clean this up..."
+    );
+    goAway(goto, cookieValue);
+  }
 
   const time = motions.useTime();
   const rotateY = motions.useTransform(
@@ -32,7 +42,7 @@ export default function Cover({ setPage }: Props) {
   const coverOff = {
     rotateZ: 1080,
     rotateY: 0,
-    scale: 0.5,
+    scale: 0.1,
     transition: {
       duration: 0.8,
     },
@@ -40,19 +50,14 @@ export default function Cover({ setPage }: Props) {
 
   const [scopeExit, animateExit] = motions.useAnimate();
 
-  React.useEffect(() => {
-    if (!control) {
-      const animation = animateExit(scopeExit.current, coverOff);
-      animation.then(() => {
-        setCookie("covered", cookieValue); // This should trigger a re-render and stop any further changes...
-      });
-    }
-  }, [control]);
-
   const handleTransition = (e: React.SyntheticEvent) => {
     let id = e.currentTarget.getAttribute("id");
-    id ? setPage(id) : setPage("Oops");
-    setControl(false);
+    goto = id;
+    // control = false;
+    const animation = animateExit(scopeExit.current, coverOff);
+    animation.then(() => {
+      goAway(goto, cookieValue);
+    });
   };
 
   return (
@@ -67,7 +72,6 @@ export default function Cover({ setPage }: Props) {
     >
       <Button
         variant="contained"
-        href="#"
         id="home"
         value="home"
         sx={{ marginRight: 30 }}
@@ -109,7 +113,6 @@ export default function Cover({ setPage }: Props) {
       </motions.AnimatePresence>
       <Button
         variant="contained"
-        href="#"
         id="portfolio"
         value="portfolio"
         sx={{ marginLeft: 30 }}
