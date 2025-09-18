@@ -19,10 +19,9 @@ export default function App() {
   const [page, setPage] = React.useState(curPg);
   if (!cookies.covered) {
     setCookie("covered", "havewemetbefore");
-  } else {
-    if (cookies.covered === "havewemetbefore") {
-      return <Cover setPage={setPage} />;
-    }
+  }
+  if (cookies.covered === "havewemetbefore") {
+    return <Cover setPage={setPage} />;
   }
 
   // let children: React.ReactNode = "";
@@ -52,7 +51,11 @@ export default function App() {
       <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
         {/* {children} */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          {cookies.covered === "havewemetbefore" ? (
+            <Route path="/" element={<Cover setPage={setPage} />} />
+          ) : (
+            <Route path="/" element={<Home />} />
+          )}
           <Route path="/home" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
         </Routes>
