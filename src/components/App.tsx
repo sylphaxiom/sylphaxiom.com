@@ -1,4 +1,3 @@
-import "./App.css";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Navigation from "./Navigation";
