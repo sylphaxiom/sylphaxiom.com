@@ -1,8 +1,8 @@
 import { Outlet, Scripts, ScrollRestoration } from "react-router";
 import * as React from "react";
-import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CookiesProvider } from "react-cookie";
+import "./App.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
