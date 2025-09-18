@@ -1,16 +1,16 @@
 import "./App.css";
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Navigation from "./components/Navigation";
+import Navigation from "./Navigation";
 import Container from "@mui/material/Container";
-import Home from "./components/Home";
+import Home from "./Home";
 // import Stuff from "./components/Stuff";
 // import Things from "./components/Things";
 // import Contact from "./components/Contact";
-import Cover from "./components/Cover";
-import Portfolio from "./components/Portfolio";
+import Cover from "./Cover";
+import Portfolio from "./Portfolio";
 import { useCookies } from "react-cookie";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 export default function App() {
   const [cookies, setCookie] = useCookies(["covered"]);
