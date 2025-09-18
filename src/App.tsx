@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import Cover from "./components/Cover";
 import Portfolio from "./components/Portfolio";
 import { useCookies } from "react-cookie";
+import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [cookies, setCookie] = useCookies(["covered"]);
@@ -49,7 +50,12 @@ export default function App() {
     <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
       <Navigation current={page} />
       <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
-        {children}
+        {/* {children} */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+        </Routes>
       </Container>
     </Box>
   );

@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
 import { stagger } from "motion";
+import { Link } from "react-router-dom";
 
 interface PageProps {
   current: string;
@@ -131,14 +132,14 @@ export default function Navigation({ current }: PageProps) {
         >
           {pages.map((page, index) => (
             <Tab
-              LinkComponent={"a"}
+              component={Link}
+              to={page}
               label={firstUpper(page)}
               value={page}
               disabled={disabled.includes(page)}
               aria-controls={page}
               key={"tab" + index}
               id={"tab" + index}
-              href={page}
             />
           ))}
         </Tabs>
