@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CookiesProvider } from "react-cookie";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -17,7 +18,9 @@ createRoot(document.getElementById("root")!).render(
           // domain: "sylphaxiom.com",
         }}
       >
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </CookiesProvider>
     </React.Fragment>
   </React.StrictMode>
