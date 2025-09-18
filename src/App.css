@@ -1,6 +1,5 @@
 body {
-  background-color: whitesmoke;
-  z-index: 0;
+  background-color: whitesmoke!important; /* setting this for the time being until I set up a theme */
 }
 
 #root {
