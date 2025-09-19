@@ -3,33 +3,13 @@ import * as motion from "motion/react-client";
 import * as motions from "motion/react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router";
+// import { useCookies } from "react-cookie";
+// import type { Route } from "./+types/Cover";
+// import { Link } from "react-router";
+// import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 
-interface Props {
-  setPage: (pg: string) => void;
-}
-
-export default function Cover({ setPage }: Props) {
-  // Cookie data
-  const cookieName = "covered";
-  const newFriend = "havewemetbefore";
-  const cookieValue = "beentheredonethat";
-  let goto: string | null = "";
-
-  function goAway(page: string | null, cookie: string) {
-    setCookie("covered", cookie);
-    setPage(page || "home");
-  }
-
-  const [cookies, setCookie] = useCookies([cookieName]);
-  // let control = cookies.covered === newFriend;
-  if (!(cookies.covered === newFriend)) {
-    console.log(
-      "this is a mistake, you shouldn't be here. Let's clean this up..."
-    );
-    goAway(goto, cookieValue);
-  }
-
+export default function Cover() {
   const time = motions.useTime();
   const rotateY = motions.useTransform(
     time,
@@ -49,14 +29,14 @@ export default function Cover({ setPage }: Props) {
   };
 
   const [scopeExit, animateExit] = motions.useAnimate();
+  // const [isPresent, safeToRemove] = motions.usePresence();
+  const navigate = useNavigate();
 
-  const handleTransition = (e: React.SyntheticEvent) => {
-    let id = e.currentTarget.getAttribute("id");
-    goto = id;
-    // control = false;
+  const handleTransition = (_e: React.SyntheticEvent, path: string) => {
     const animation = animateExit(scopeExit.current, coverOff);
     animation.then(() => {
-      goAway(goto, cookieValue);
+      console.log(path);
+      navigate(path);
     });
   };
 
@@ -66,8 +46,7 @@ export default function Cover({ setPage }: Props) {
       sx={{
         minWidth: 1,
         p: 0,
-        justifyContent: "center",
-        alignItems: "center",
+        textAlign: "center",
       }}
     >
       <Button
@@ -78,23 +57,15 @@ export default function Cover({ setPage }: Props) {
         size="large"
         color="primary"
         className="coverBtn"
-        onClick={handleTransition}
+        onClick={(e) => {
+          handleTransition(e, "/creative");
+        }}
       >
         Sylphaxiom
         <br />
         Creative
       </Button>
       <motions.AnimatePresence mode="wait">
-        {/* <motion.div
-          layoutRoot
-          key="entryway"
-          // onClick={handleTransition}
-          style={{
-            justifyContent: "center",
-            alignItems: "center",
-            display: "flex",
-          }}
-        > */}
         <motion.img
           layout
           ref={scopeExit}
@@ -103,13 +74,12 @@ export default function Cover({ setPage }: Props) {
             rotateY,
           }}
           initial={coverOn}
-          src={"./sylphaxiom_web_512x.svg"}
+          src={"/sylphaxiom_web_512x.svg"}
           key="logo"
           alt="curious guy in a browser"
           width={100}
           height={100}
         />
-        {/* </motion.div> */}
       </motions.AnimatePresence>
       <Button
         variant="contained"
@@ -117,7 +87,9 @@ export default function Cover({ setPage }: Props) {
         value="portfolio"
         sx={{ marginLeft: 30 }}
         className="coverBtn"
-        onClick={handleTransition}
+        onClick={(e) => {
+          handleTransition(e, "/portfolio");
+        }}
       >
         Jacob Pell
         <br />

@@ -1,19 +1,4 @@
-body {
-  background-color: whitesmoke!important; /* setting this for the time being until I set up a theme */
-}
 
-#root {
-  background-color: whitesmoke;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0rem;
-  text-align: center;
-  padding-top: 100px; 
-}
-
-#navHead {
-  background-color: whitesmoke;
-}
 
 .logo {
   height: 6em;
@@ -53,14 +38,25 @@ body {
 
 /* Custom additions */
 
-#tab0 {
-  position: absolute;
-  visibility: hidden;
-  top: -200000px;
+body {
+  background-color: whitesmoke!important; /* setting this for the time being until I set up a theme */
 }
 
-div:has(> a#tab0.Mui-selected) + span {
-  display: none;
+#everything {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
+  padding-top: 100px; 
+}
+
+#entryway {
+  margin: 0 auto;
+  padding-top: 45vh; /* This should generally get the thing to be in the center-ish */
+}
+
+#navHead {
+  background-color: whitesmoke;
 }
 
 .coverBtn:hover {
