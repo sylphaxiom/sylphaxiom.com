@@ -4,10 +4,6 @@ import * as motions from "motion/react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
-// import { useCookies } from "react-cookie";
-// import type { Route } from "./+types/Cover";
-// import { Link } from "react-router";
-// import type { ButtonBaseProps } from "@mui/material/ButtonBase";
 
 export default function Cover() {
   const time = motions.useTime();
@@ -29,7 +25,6 @@ export default function Cover() {
   };
 
   const [scopeExit, animateExit] = motions.useAnimate();
-  // const [isPresent, safeToRemove] = motions.usePresence();
   const navigate = useNavigate();
 
   const handleTransition = (_e: React.SyntheticEvent, path: string) => {

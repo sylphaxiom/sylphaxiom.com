@@ -145,7 +145,7 @@ export default function Portfolio() {
             />
           </Paper>
         </Grid>
-        <Grid size={9} container sx={{ alignContent: "space-evenly" }}>
+        <Grid size={9} container sx={{ alignContent: "center" }}>
           <Typography variant="h2" sx={{ justifySelf: "left" }}>
             Jacob Pell
           </Typography>
@@ -424,7 +424,9 @@ export default function Portfolio() {
                 <Typography sx={{ py: 1 }}>
                   Necessity is the mother of invention. When you need something,
                   you might as well make it! This is how we discover new-found
-                  skills like SVG creation.
+                  skills like SVG creation and other forms of digital art. My
+                  work with Blender and 3D has been a thrilling adventure so
+                  far!
                 </Typography>
               </Container>
             </Grid>
@@ -460,9 +462,12 @@ export default function Portfolio() {
                   />
                 </div>
                 <Typography sx={{ py: 1 }}>
-                  Necessity is the mother of invention. When you need something,
-                  you might as well make it! This is how we discover new-found
-                  skills like SVG creation.
+                  Writing is my oldest passion. Since my teen years, my writing
+                  has branched out beyond mere fiction. I have been building an
+                  entire world from the ground up! This world is called Kothis
+                  and it is the setting for a few D&D campaigns with the goal of
+                  becoming fully published setting (possibly with some side
+                  novels)
                 </Typography>
               </Container>
             </Grid>
@@ -475,7 +480,7 @@ export default function Portfolio() {
                 }}
               >
                 <Typography variant="h5" sx={{ py: 2 }}>
-                  Automation/Scripting
+                  Web Development/Scripting
                 </Typography>
                 <div style={{ alignContent: "center" }}>
                   <img
@@ -488,7 +493,7 @@ export default function Portfolio() {
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
-                    src="./windows.svg"
+                    src="./react.svg"
                   />
                   <img
                     width={75}
@@ -498,9 +503,12 @@ export default function Portfolio() {
                   />
                 </div>
                 <Typography sx={{ py: 1 }}>
-                  Necessity is the mother of invention. When you need something,
-                  you might as well make it! This is how we discover new-found
-                  skills like SVG creation.
+                  Technology stacks have changed, but passion for code sure
+                  hasn't. I have been trying to keep up with modern frameworks
+                  and have expanded my skillset to include React, TypeScript,
+                  and Playwright for testing. I still love PHP for backend work,
+                  but I am always eager to learn a new library or framework as
+                  needed.
                 </Typography>
               </Container>
             </Grid>

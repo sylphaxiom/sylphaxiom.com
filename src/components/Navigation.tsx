@@ -33,15 +33,14 @@ export default function Navigation() {
     throw new Error("No match for current route");
   }
   const [current, setCurrent] = React.useState(base);
-  const disabled: string[] = [];
-  //   "people",
-  //   "projects",
-  //   "createCont",
-  //   "web",
-  //   "assets",
-  //   "writing",
-  //   "portCont",
-  // ]; // any  tabs we want disabled we will put here.
+  const disabled: string[] = [
+    "people",
+    "projects",
+    "contact",
+    "web",
+    "assets",
+    "writing",
+  ]; // any  tabs we want disabled we will put here.
   let title: string;
   switch (base) {
     case "home":
@@ -90,7 +89,6 @@ export default function Navigation() {
   const variants = {
     start: { y: -100, opacity: 0 },
     animate: { y: 0, opacity: 1 },
-    // exit: { y: 20, opacity: 0 },
   };
 
   console.log("base is", base, "pages is", pages, "group is", group);
@@ -184,7 +182,9 @@ export default function Navigation() {
             {pages.map((page, index) => (
               <Tab
                 component={Link}
-                to={page === "home" ? "/creative" : page}
+                to={
+                  page === "home" || page === "portfolio" ? "/" + group : page
+                }
                 label={page}
                 value={page}
                 disabled={disabled.includes(page) || false}

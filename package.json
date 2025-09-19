@@ -14,12 +14,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.1",
     "@mui/material": "^7.3.1",
-    "@react-router/node": "^7.9.1",
-    "@react-spring/web": "^10.0.1",
     "file-saver": "^2.0.5",
-    "isbot": "^5",
     "motion": "^12.23.12",
     "react": "^19.1.1",
     "react-cookie": "^8.0.1",
