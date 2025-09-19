@@ -5,45 +5,77 @@ import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import { stagger } from "motion";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router";
+import { useMatch } from "react-router";
 
-interface PageProps {
-  current: string;
-}
+// function firstUpper(str: string) {
+//   return str.charAt(0).toUpperCase() + str.slice(1);
+// }
 
-function firstUpper(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-export default function Navigation({ current }: PageProps) {
-  const pages = ["home", "portfolio", "stuff", "things", "contact"];
-  const disabled = ["stuff", "things", "contact"]; // any  tabs we want disabled we will put here.
+export default function Navigation() {
+  const creative = ["home", "people", "projects", "contact"];
+  const portfolio = ["port", "web", "assets", "writing", "contact"];
+  const matchCreative = useMatch("/creative/*");
+  const matchPortfolio = useMatch("/portfolio/*");
+  let pages: string[];
+  let base: string;
+  if (matchCreative) {
+    pages = creative;
+    base = matchCreative.pathnameBase;
+  } else if (matchPortfolio) {
+    pages = portfolio;
+    base = matchPortfolio.pathnameBase;
+  } else {
+    throw new Error("No match for current route");
+  }
+  const disabled: string[] = [];
+  //   "people",
+  //   "projects",
+  //   "createCont",
+  //   "web",
+  //   "assets",
+  //   "writing",
+  //   "portCont",
+  // ]; // any  tabs we want disabled we will put here.
   let title: string;
-  let currentADJ: string | null = null;
-  switch (current) {
-    case "portfolio":
-      title = "This is the Guy...";
+  switch (base) {
+    case "home":
+      title = "Sylphaxiom Creative";
       break;
 
-    case "stuff":
-      title = "Oh look! Nerdy Stuff...";
+    case "people":
+      title = "Our Creative Team";
       break;
 
-    case "things":
-      title = "...More Nerdy Things...";
+    case "proj":
+      title = "Our Projects";
       break;
 
     case "contact":
-      title = "Talk Nerdy To Me!";
+      title = "Let's Create!";
+      break;
+
+    case "port":
+      title = "Creator Portfolio";
+      break;
+
+    case "web":
+      title = "Web Development";
+      break;
+
+    case "assets":
+      title = "Digital Art and Assets";
       break;
 
     default:
-      !current && (currentADJ = "home"); // set to home if empty
+      !base && base === "/";
       title = "Sylphaxiom Creative";
   }
 
-  // Titile animation
+  // Title animation
 
   const variants = {
     start: { y: -100, Opacity: 0 },
@@ -51,99 +83,104 @@ export default function Navigation({ current }: PageProps) {
   };
 
   return (
-    <Grid
-      container
-      id="navHead"
-      sx={{
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: 125,
-        width: "100%",
-        position: "fixed",
-        top: 0,
-        backgroundColor: "white",
-      }}
-    >
-      <Grid size={1} sx={{ float: "left" }}>
-        <Button href="home">
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1, rotate: 1080 }}
-            transition={{ duration: 0.8 }}
+    <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
+      <Grid
+        container
+        id="navHead"
+        sx={{
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: 125,
+          width: "100%",
+          position: "fixed",
+          top: 0,
+          backgroundColor: "white",
+        }}
+      >
+        <Grid size={1} sx={{ float: "left" }}>
+          <Button href="home">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, rotate: 1080 }}
+              transition={{ duration: 0.8 }}
+            >
+              <img
+                src={"/sylphaxiom_web_512x.svg"}
+                alt="curious guy in a browser"
+                width={100}
+                height={100}
+              />
+            </motion.div>
+          </Button>
+        </Grid>
+        <Grid size={"grow"}>
+          <Typography
+            id="main_title"
+            variant={"h2"}
+            component={"h1"}
+            noWrap
+            color={"primary"}
           >
-            <img
-              src={"./sylphaxiom_web_512x.svg"}
-              alt="curious guy in a browser"
-              width={100}
-              height={100}
-            />
-          </motion.div>
-        </Button>
-      </Grid>
-      <Grid size={"grow"}>
-        <Typography
-          id="main_title"
-          variant={"h2"}
-          component={"h1"}
-          noWrap
-          color={"primary"}
-        >
-          <motion.div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              overflow: "visible",
-            }}
-            transition={{ delayChildren: stagger(0.05) }}
-            initial="start"
-            animate="animate"
-            variants={variants}
+            <motion.div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                overflow: "visible",
+              }}
+              transition={{ delayChildren: stagger(0.05) }}
+              initial="start"
+              animate="animate"
+              variants={variants}
+            >
+              {title.split("").map((char: string, index: number) => {
+                if (char === " ") {
+                  char = "\u00A0";
+                }
+                return (
+                  <motion.span
+                    key={char + index}
+                    variants={variants}
+                    transition={{
+                      type: "spring",
+                      bounce: 0.5,
+                      duration: 0.5,
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                );
+              })}
+            </motion.div>
+          </Typography>
+        </Grid>
+        <Grid size={3} sx={{ float: "right" }}>
+          <Tabs
+            aria-label="nav tabs"
+            role="navigation"
+            id="navTabRoot"
+            indicatorColor="secondary"
+            value={base}
+            centered
           >
-            {title.split("").map((char: string, index: number) => {
-              if (char === " ") {
-                char = "\u00A0";
-              }
-              return (
-                <motion.span
-                  key={char + index}
-                  variants={variants}
-                  transition={{
-                    type: "spring",
-                    bounce: 0.5,
-                    duration: 0.5,
-                  }}
-                >
-                  {char}
-                </motion.span>
-              );
-            })}
-          </motion.div>
-        </Typography>
+            {pages.map((page, index) => (
+              <Tab
+                component={Link}
+                to={page}
+                label={page}
+                value={page}
+                disabled={disabled.includes(page) || false}
+                aria-controls={page}
+                key={"tab" + index}
+                id={"tab" + index}
+              />
+            ))}
+          </Tabs>
+        </Grid>
       </Grid>
-      <Grid size={3} sx={{ float: "right" }}>
-        <Tabs
-          aria-label="nav tabs"
-          role="navigation"
-          id="navTabRoot"
-          indicatorColor="secondary"
-          value={currentADJ || current}
-          centered
-        >
-          {pages.map((page, index) => (
-            <Tab
-              component={Link}
-              to={page}
-              label={firstUpper(page)}
-              value={page}
-              disabled={disabled.includes(page)}
-              aria-controls={page}
-              key={"tab" + index}
-              id={"tab" + index}
-            />
-          ))}
-        </Tabs>
-      </Grid>
-    </Grid>
+      <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
+        <Outlet />
+      </Container>
+    </Box>
   );
 }

@@ -32,7 +32,7 @@ export default function Cover() {
   // const [isPresent, safeToRemove] = motions.usePresence();
   const navigate = useNavigate();
 
-  const handleTransition = (e: React.SyntheticEvent, path: string) => {
+  const handleTransition = (_e: React.SyntheticEvent, path: string) => {
     const animation = animateExit(scopeExit.current, coverOff);
     animation.then(() => {
       console.log(path);
@@ -58,7 +58,7 @@ export default function Cover() {
         color="primary"
         className="coverBtn"
         onClick={(e) => {
-          handleTransition(e, "/home");
+          handleTransition(e, "/creative");
         }}
       >
         Sylphaxiom
@@ -74,7 +74,7 @@ export default function Cover() {
             rotateY,
           }}
           initial={coverOn}
-          src={"./sylphaxiom_web_512x.svg"}
+          src={"/sylphaxiom_web_512x.svg"}
           key="logo"
           alt="curious guy in a browser"
           width={100}
