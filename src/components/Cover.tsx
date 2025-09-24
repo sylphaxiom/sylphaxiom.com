@@ -30,7 +30,6 @@ export default function Cover() {
   const handleTransition = (_e: React.SyntheticEvent, path: string) => {
     const animation = animateExit(scopeExit.current, coverOff);
     animation.then(() => {
-      console.log(path);
       navigate(path);
     });
   };
