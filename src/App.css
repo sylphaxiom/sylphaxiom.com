@@ -84,7 +84,7 @@ body {
   font-size: 4em;
 }
 #ballet:hover {
-  background-image: url("./download.svg");
+  background-image: url("/download.svg");
   background-size: 100px 100px;
   background-position: center;
   background-repeat: no-repeat;

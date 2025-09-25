@@ -1,7 +1,6 @@
 import { Outlet, Scripts, ScrollRestoration } from "react-router";
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import "./App.css";
 import Loading from "./components/Loading";
 
 export function Layout({ children }: { children: React.ReactNode }) {

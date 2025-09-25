@@ -4,6 +4,7 @@ import * as motions from "motion/react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
+import "../App.css";
 
 export default function Cover() {
   const time = motions.useTime();
