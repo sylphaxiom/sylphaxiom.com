@@ -106,7 +106,7 @@ test('download resume link works', async({page})=>{
       page.waitForEvent('download'),
       downloadLink.click()
     ]);
-    expect(download.suggestedFilename()).toContain('Jacob_Pell_Resume.pdf');
+    expect(download.suggestedFilename()).toContain('jacob_pell_resume.pdf');
     // Save downloaded file somewhere
     const cv = await download.saveAs('./test-results/' + download.suggestedFilename());
     expect(cv).not.toBeNull();

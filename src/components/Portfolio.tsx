@@ -14,7 +14,7 @@ import * as FileSaver from "file-saver";
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
   const dudeRef = React.useRef(null); // holds the dude
-  const [topVal, setTopVal] = React.useState(210);
+  //const [topVal, setTopVal] = React.useState(210);
   const [rays, setRays] = React.useState(0);
 
   const vh = window.innerHeight;
@@ -40,8 +40,8 @@ export default function Portfolio() {
   React.useEffect(() => {
     const dudeAnchor = dudeRef.current;
     if (dudeAnchor) {
-      const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
-      setTopVal(climber.bottom - 500);
+      //const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
+      //setTopVal(climber.bottom - 500);
     }
     const swapper = setInterval(() => {
       setRays(rays === 0 ? 1 : 0);
@@ -255,8 +255,6 @@ export default function Portfolio() {
           <ButtonBase
             id="ballet"
             aria-label="download_resume"
-            href="/Jacob_Pell_Resume.pdf"
-            download={"/Jacob_Pell_Resume.pdf"}
             onClick={downloadCV}
           >
             Resume
