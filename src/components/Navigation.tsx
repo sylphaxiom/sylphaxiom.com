@@ -11,7 +11,6 @@ import Container from "@mui/material/Container";
 import { stagger } from "motion";
 import { Link, Outlet } from "react-router";
 import { useMatch } from "react-router";
-import "../App.css";
 
 export default function Navigation() {
   const creative = ["home", "people", "projects", "contact"];

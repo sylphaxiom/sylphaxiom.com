@@ -32,6 +32,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           as="font"
           crossOrigin="anonymous"
         />
+        <link
+          href="/App.css"
+          rel="stylesheet"
+          type="text/css"
+          charSet="utf-8"
+        />
         <title>Sylphaxiom Creations</title>
       </head>
       <body>
