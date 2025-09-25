@@ -4,7 +4,12 @@ import CardMedia from "@mui/material/CardMedia";
 
 export default function Home() {
   return (
-    <Card raised elevation={5} sx={{ maxWidth: 550, mx: "auto" }}>
+    <Card
+      raised
+      elevation={5}
+      id="home_content"
+      sx={{ maxWidth: 550, mx: "auto" }}
+    >
       <CardMedia
         component={"img"}
         title="stick-figure construction workers working on a web page"

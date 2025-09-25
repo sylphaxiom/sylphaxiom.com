@@ -1,5 +1,5 @@
 // import * as React from 'react'
 
 export default function Web() {
-  return <div>The websites</div>;
+  return <div id="web_content">The websites</div>;
 }

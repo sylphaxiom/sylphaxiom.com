@@ -8,6 +8,15 @@ test('has title', async ({ page }) => {
     await page.close()
 });
 
+test('has content', async({page})=>{
+    await page.goto('/');
+
+    const content = await page.locator('#entryway');
+    await expect(content).toBeVisible();
+
+    await page.close();
+});
+
 test('cover image has attributes', async({page})=>{
     await page.goto('/');
    const coverImage = await page.locator('img[alt="curious guy in a browser"]');

@@ -55,7 +55,7 @@ export default function Portfolio() {
   };
 
   return (
-    <Box sx={{ width: 1 }}>
+    <Box sx={{ width: 1 }} id="portfolio_content">
       <motions.AnimatePresence mode="wait">
         <Box
           id="climber"

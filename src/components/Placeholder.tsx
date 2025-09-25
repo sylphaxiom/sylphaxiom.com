@@ -18,7 +18,7 @@ export default function Placeholder() {
     "0px 3px 3px -2px #9c27b033, 0px 3px 4px 0px #9c27b024, 0px 1px 8px 0px #9c27b01F"; // elevation 3
 
   return (
-    <Grid container spacing={2} height={1}>
+    <Grid id="nav_content" container spacing={2} height={1}>
       <Grid size={8} sx={{ maxHeight: 350 }}>
         <Card
           raised
