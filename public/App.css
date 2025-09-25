@@ -42,13 +42,13 @@ body {
   background-color: whitesmoke!important; /* setting this for the time being until I set up a theme */
 }
 
-#everything {
+/* #everything {
   width: 100%;
   margin: 0 auto;
   padding: 0rem;
   text-align: center;
-  padding-top: 100px; 
-}
+  padding-top: 15vh; 
+} */
 
 /* #entryway {
   margin: 0 auto;
