@@ -54,7 +54,7 @@ export default function Portfolio() {
   };
 
   return (
-    <Box sx={{ width: 1 }} id="portfolio_content">
+    <Box sx={{ minWidth: 1, textAlign: "center" }} id="portfolio_content">
       <motions.AnimatePresence mode="wait">
         <Box
           id="climber"
@@ -65,6 +65,7 @@ export default function Portfolio() {
             top: 0,
             width: "60px",
           }}
+          sx={{ display: { xs: "none", lg: "block" } }}
         >
           <motion.div
             id="rope-1"
@@ -122,8 +123,8 @@ export default function Portfolio() {
           />
         </Box>
       </motions.AnimatePresence>
-      <Grid container id="portHead" width={1}>
-        <Grid direction={"column"} size={3}>
+      <Grid container id="portHead" width={{ xs: 1, xl: 1 }}>
+        <Grid direction={"column"} size={{ xl: 3, lg: 4, xs: 12 }}>
           <Paper
             elevation={8}
             sx={{
@@ -144,25 +145,51 @@ export default function Portfolio() {
             />
           </Paper>
         </Grid>
-        <Grid size={9} container sx={{ alignContent: "center" }}>
-          <Typography variant="h2" sx={{ justifySelf: "left" }}>
-            Jacob Pell
-          </Typography>
-          <Grid direction={"row"} container size={12} sx={{ mt: "20px" }}>
+        <Grid
+          size={{ xs: 12, lg: 8 }}
+          container
+          sx={{ alignContent: "center", textAlign: "center" }}
+        >
+          <Grid size={12}>
+            <Typography
+              variant="h2"
+              sx={{ justifySelf: { md: "center", xl: "left" } }}
+            >
+              Jacob Pell
+            </Typography>
+          </Grid>
+          <Grid
+            size={12}
+            sx={{
+              mt: "20px",
+              scale: { md: 1.5, lg: 1.5, xl: 1 },
+              ml: { xs: 0, md: "25%", xl: 0 },
+            }}
+          >
             <svg width="100%" height="30px">
               <polygon width="15px" points="0,5 0,15 600,15 500,5" />
             </svg>
-            <Typography variant="h5" sx={{ ml: 0, mr: "20px" }}>
-              Full-Stack Developer
-            </Typography>
-            <Divider flexItem orientation="vertical" sx={{}} />
-            <Typography variant="h5" sx={{ mx: "20px" }}>
+          </Grid>
+          <Grid size={{ xs: 12, lg: "auto" }}>
+            <Typography variant="h5">Full-Stack Developer</Typography>
+          </Grid>
+          <Divider
+            flexItem
+            orientation="vertical"
+            sx={{ height: 0.1, mx: "auto" }}
+          />
+          <Grid size={{ xs: 12, lg: "auto" }}>
+            <Typography variant="h5">
               Automation and Scripting Specialist
             </Typography>
-            <Divider flexItem orientation="vertical" />
-            <Typography variant="h5" sx={{ mx: "20px" }}>
-              Author/Worldbuilder
-            </Typography>
+          </Grid>
+          <Divider
+            flexItem
+            orientation="vertical"
+            sx={{ height: 0.11, mx: "auto" }}
+          />
+          <Grid size={{ xs: 12, lg: "auto" }}>
+            <Typography variant="h5">Author/Worldbuilder</Typography>
           </Grid>
         </Grid>
       </Grid>

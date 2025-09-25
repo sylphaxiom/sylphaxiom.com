@@ -116,13 +116,18 @@ export default function Navigation() {
           textAlign: "center",
           height: 125,
           width: "100%",
+          px: { xs: 2, md: 10, lg: 0 },
           position: "fixed",
           top: 0,
           backgroundColor: "white",
         }}
       >
-        <Grid size={1} sx={{ float: "left" }}>
-          <Button component={Link} to={"/"}>
+        <Grid size={{ xs: 1, lg: 2 }} sx={{ float: "left" }}>
+          <Button
+            component={Link}
+            to={"/"}
+            sx={{ scale: { xs: 0.5, sm: 0.75, md: 1 } }}
+          >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1, rotate: 1080 }}
@@ -138,13 +143,18 @@ export default function Navigation() {
             </motion.div>
           </Button>
         </Grid>
-        <Grid size={"grow"}>
+        <Grid size={{ xs: 8, lg: 6 }}>
           <Typography
             id="main_title"
             variant={"h2"}
             component={"h1"}
             noWrap
             color={"primary"}
+            sx={{
+              fontSize: { xs: "2.5rem", lg: "4rem" },
+              fontWeight: { xs: 400, lg: 300 },
+              display: { xs: "none", sm: "block" },
+            }}
           >
             <motions.AnimatePresence mode="wait">
               <motion.div
@@ -184,7 +194,7 @@ export default function Navigation() {
           </Typography>
         </Grid>
         <Grid
-          size={4}
+          size={{ xs: 3, xl: 4 }}
           sx={{ float: "right", display: "flex", alignItems: "center" }}
         >
           <Button
