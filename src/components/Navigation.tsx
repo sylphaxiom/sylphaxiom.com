@@ -11,8 +11,14 @@ import Container from "@mui/material/Container";
 import { stagger } from "motion";
 import { Link, Outlet } from "react-router";
 import { useMatch } from "react-router";
+import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 export default function Navigation() {
+  const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(menuRef);
+  // Define the pages for each group
   const creative = ["home", "people", "projects", "contact"];
   const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
   const matchCreative = useMatch("/creative/*");
@@ -91,6 +97,14 @@ export default function Navigation() {
     animate: { y: 0, opacity: 1 },
   };
 
+  // Event handlers
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setMenuRef(event.currentTarget);
+  };
+  const handleClose = () => {
+    setMenuRef(null);
+  };
+
   return (
     <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0, pt: "15vh" }}>
       <Grid
@@ -99,6 +113,7 @@ export default function Navigation() {
         sx={{
           justifyContent: "space-between",
           alignItems: "center",
+          textAlign: "center",
           height: 125,
           width: "100%",
           position: "fixed",
@@ -168,7 +183,50 @@ export default function Navigation() {
             </motions.AnimatePresence>
           </Typography>
         </Grid>
-        <Grid size={3} sx={{ float: "right" }}>
+        <Grid
+          size={4}
+          sx={{ float: "right", display: "flex", alignItems: "center" }}
+        >
+          <Button
+            id="nav_drawer"
+            aria-controls={open ? "nav_menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleMenu}
+            sx={{
+              display: { xs: "block", xl: "none" },
+              mx: "auto",
+            }}
+          >
+            <MenuIcon fontSize="large" sx={{ transform: "scale(2)" }} />
+          </Button>
+          <Menu
+            id="nav_menu"
+            anchorEl={menuRef}
+            open={open}
+            onClose={handleClose}
+            role="navigation"
+            slotProps={{
+              list: {
+                "aria-labelledby": "nav_drawer",
+              },
+            }}
+            children={pages.map((page, index) => (
+              <MenuItem
+                disabled={disabled.includes(page) || false}
+                selected={page === base}
+                sx={{ textTransform: "uppercase" }}
+                component={Link}
+                to={
+                  page === "home" || page === "portfolio" ? "/" + group : page
+                }
+                key={"tab" + index}
+                id={"tab" + index}
+              >
+                {page}
+              </MenuItem>
+            ))}
+          ></Menu>
           <Tabs
             aria-label="nav tabs"
             role="navigation"
@@ -185,6 +243,9 @@ export default function Navigation() {
                 }
                 label={page}
                 value={page}
+                sx={{
+                  display: { xs: "none", xl: "inline-flex" },
+                }}
                 disabled={disabled.includes(page) || false}
                 aria-controls={page}
                 key={"tab" + index}

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite && react-router dev",
+    "kill": "npx kill-port 5173",
     "demo": "tsc -b && vite build --base=/test/",
     "build": "tsc -b && react-router build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com",
     "production": "npm update && tsc -b && react-router build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com --PROD",
@@ -15,6 +16,7 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.2",
     "@mui/material": "^7.3.1",
     "@react-router/node": "^7.9.1",
     "file-saver": "^2.0.5",
