@@ -1,33 +1,40 @@
 import {test, expect} from '@playwright/test';
 
-test('has title', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+
+    // Navigate to the cover page before each test
     await page.goto('/creative');
+    
+});
+
+test.afterEach(async ({ page }) => {
+
+    // Close the page after each test
+    await page.close();
+
+});
+
+test('has title', async ({ page }) => {
 
     await expect(page).toHaveTitle(/Sylphaxiom Creations/);
 
-    await page.close()
 });
 
 test('has page header', async({page})=>{
-    await page.goto('/creative');
 
     const header = page.locator('h1');
     await expect(header).toHaveText('Sylphaxiom Creative');
 
-    await page.close();
 });
 
 test('home tab content is visible', async({page})=>{
-    await page.goto('/creative');
 
     const homeTabContent = page.locator('#home_content');
     await expect(homeTabContent).toBeVisible();
 
-    await page.close();
 });
 
 test('check tabs', async({page})=>{
-    await page.goto('/creative');
 
     const tabs = page.getByRole('tablist', { name: 'nav tabs' });
     await expect(tabs).toHaveCount(1); // Apparently only non-disabled tabs are counted
@@ -44,11 +51,10 @@ test('check tabs', async({page})=>{
     await expect(tabs.getByRole('tab', { name: 'contact' })).toBeVisible();
     await expect(tabs.getByRole('tab', { name: 'contact' })).toHaveAttribute('aria-disabled', 'true'); // Contact tab should be disabled
 
-    await page.close();
 });
 
 test('img has attributes', async({page})=>{
-    await page.goto('/creative');
+
     const img = await page.getByRole('img', { name: 'curious guy in a browser' });
     await expect(img).toBeVisible();
     await expect(img).toHaveAttribute('src', '/sylphaxiom_web_512x.svg');
@@ -60,5 +66,4 @@ test('img has attributes', async({page})=>{
     const coverContent = await page.locator('#entryway');
     await expect(coverContent).toBeVisible();
 
-    await page.close();
 });
