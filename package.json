@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite && react-router dev",
     "demo": "tsc -b && vite build --base=/test/",
-    "build": "tsc -b && vite build && react-router build",
+    "build": "tsc -b && vite build && react-router build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com && npm run dev",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "react-router typegen && tsc"
