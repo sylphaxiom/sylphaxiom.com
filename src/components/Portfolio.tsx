@@ -14,7 +14,7 @@ import * as FileSaver from "file-saver";
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
   const dudeRef = React.useRef(null); // holds the dude
-  //const [topVal, setTopVal] = React.useState(210);
+  const [topVal, setTopVal] = React.useState(210);
   const [rays, setRays] = React.useState(0);
 
   const vh = window.innerHeight;
@@ -40,8 +40,8 @@ export default function Portfolio() {
   React.useEffect(() => {
     const dudeAnchor = dudeRef.current;
     if (dudeAnchor) {
-      //const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
-      //setTopVal(climber.bottom - 500);
+      const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
+      setTopVal(climber.bottom - 500);
     }
     const swapper = setInterval(() => {
       setRays(rays === 0 ? 1 : 0);
@@ -164,6 +164,7 @@ export default function Portfolio() {
               mt: "20px",
               scale: { md: 1.5, lg: 1.5, xl: 1 },
               ml: { xs: 0, md: "25%", xl: 0 },
+              zIndex: -1,
             }}
           >
             <svg width="100%" height="30px">
@@ -193,12 +194,17 @@ export default function Portfolio() {
           </Grid>
         </Grid>
       </Grid>
+      <Divider sx={{ my: 3 }} />
       <Grid container>
-        <Grid size={3}>
+        <Grid size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" marginTop={5}>
             A Brief History...
           </Typography>
-          <Grid container direction={"column"} sx={{ alignContent: "center" }}>
+          <Grid
+            container
+            direction={"column"}
+            sx={{ alignContent: "center", display: { xs: "none", md: "flex" } }}
+          >
             <img
               width={40}
               height={30}
@@ -221,7 +227,10 @@ export default function Portfolio() {
             />
           </Grid>
         </Grid>
-        <Grid size={8} sx={{ textAlign: "left", mt: 4 }}>
+        <Grid
+          size={{ xs: 12, md: 8 }}
+          sx={{ textAlign: { xs: "center", md: "left" }, mt: 4 }}
+        >
           <Typography sx={{ py: 2 }}>
             Once upon a time, there was this guy who liked stuff and did
             things...
