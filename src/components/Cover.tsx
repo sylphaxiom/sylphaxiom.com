@@ -18,9 +18,10 @@ export default function Cover() {
   const coverOff = {
     rotateZ: 1080,
     rotateY: 0,
-    scale: 0.1,
+    scale: 0,
     transition: {
       duration: 0.8,
+      clamp: true,
     },
   };
 
