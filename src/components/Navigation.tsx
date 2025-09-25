@@ -91,8 +91,6 @@ export default function Navigation() {
     animate: { y: 0, opacity: 1 },
   };
 
-  console.log("base is", base, "pages is", pages, "group is", group);
-
   return (
     <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0 }}>
       <Grid
