@@ -42,7 +42,6 @@ export default function Portfolio() {
     if (dudeAnchor) {
       const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
       setTopVal(climber.bottom - 500);
-      console.log(topVal);
     }
     const swapper = setInterval(() => {
       setRays(rays === 0 ? 1 : 0);
@@ -55,7 +54,7 @@ export default function Portfolio() {
   };
 
   return (
-    <Box sx={{ width: 1 }}>
+    <Box sx={{ width: 1 }} id="portfolio_content">
       <motions.AnimatePresence mode="wait">
         <Box
           id="climber"
@@ -253,7 +252,13 @@ export default function Portfolio() {
           alt="some pretty curves"
         />
         <Tooltip title="Resume">
-          <ButtonBase id="ballet" onClick={downloadCV}>
+          <ButtonBase
+            id="ballet"
+            aria-label="download_resume"
+            href="/Jacob_Pell_Resume.pdf"
+            download={"/Jacob_Pell_Resume.pdf"}
+            onClick={downloadCV}
+          >
             Resume
           </ButtonBase>
         </Tooltip>
