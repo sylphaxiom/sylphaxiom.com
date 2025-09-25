@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="60"
+   height="500"
+   viewBox="0 0 60 500"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="rope-bottom.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="1.63"
+     inkscape:cx="3.3742331"
+     inkscape:cy="243.25153"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linejoin:round;stroke-opacity:1"
+       d="m 35,0 c 0,21.881391 15.785611,44.275198 0,65.644172 -20.618273,30.059103 -16.366629,50.821828 0,67.484658 15.525535,20.93703 19.940801,42.25717 0,64.41718 -14.658493,24.43251 -11.919404,39.48022 -6.290214,58.80213 5.618525,15.9724 10.534504,28.229 12.083635,45.83304 2.50342,16.60021 3.035712,30.89687 2.232024,41.30268 -2.233034,11.7389 -8.021845,26.62641 -12.307058,37.7553 -4.248923,14.10393 -3.880263,32.55419 1.674251,45.90808 8.599965,21.87813 20.048296,14.96666 22.530483,33.87704 1.180765,19.45264 -18.434575,18.66497 -21.654059,22.60615 -5.936717,7.78175 21.824297,5.18817 22.067132,8.41797 0.372699,5.15507 -21.695247,2.25586 -22.301597,4.50258 0.224162,2.12376 19.516924,0.29955 23.56407,2.84597 C 43.392181,499.26102 42.159459,499.61181 35,500"
+       id="path1"
+       sodipodi:nodetypes="ccccccccccccccc" />
+  </g>
+</svg>
