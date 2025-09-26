@@ -14,11 +14,10 @@ import * as FileSaver from "file-saver";
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
   const dudeRef = React.useRef(null); // holds the dude
-  const [topVal, setTopVal] = React.useState(210);
   const [rays, setRays] = React.useState(0);
 
   const vh = window.innerHeight;
-  let point = vh - 75; // Y @ top of dude rel: bottom
+  let point = vh; // Y @ top of dude rel: bottom
   let point2 = point - 135; // Y @ bottom of Dude rel: bottom
 
   const scrollClimber = motions.useTransform(
@@ -38,11 +37,6 @@ export default function Portfolio() {
   );
 
   React.useEffect(() => {
-    const dudeAnchor = dudeRef.current;
-    if (dudeAnchor) {
-      const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
-      setTopVal(climber.bottom - 500);
-    }
     const swapper = setInterval(() => {
       setRays(rays === 0 ? 1 : 0);
     }, 1000);
@@ -164,7 +158,7 @@ export default function Portfolio() {
               mt: "20px",
               scale: { md: 1.5, lg: 1.5, xl: 1 },
               ml: { xs: 0, md: "25%", xl: 0 },
-              zIndex: -1,
+              zIndex: 0,
             }}
           >
             <svg width="100%" height="30px">

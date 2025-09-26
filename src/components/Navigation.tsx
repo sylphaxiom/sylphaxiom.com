@@ -120,6 +120,7 @@ export default function Navigation() {
           position: "fixed",
           top: 0,
           backgroundColor: "white",
+          zIndex: 1,
         }}
       >
         <Grid size={{ xs: 1, lg: 2 }} sx={{ float: "left" }}>
@@ -254,7 +255,7 @@ export default function Navigation() {
                 label={page}
                 value={page}
                 sx={{
-                  display: { xs: "none", xl: "inline-flex" },
+                  display: { xs: "none", xl: "flex" },
                 }}
                 disabled={disabled.includes(page) || false}
                 aria-controls={page}
