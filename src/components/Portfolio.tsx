@@ -147,7 +147,7 @@ export default function Portfolio() {
           <Grid size={12}>
             <Typography
               variant="h2"
-              sx={{ justifySelf: { md: "center", xl: "left" } }}
+              sx={{ justifySelf: { md: "center", xl: "left" }, mt: 5 }}
             >
               Jacob Pell
             </Typography>
@@ -165,15 +165,15 @@ export default function Portfolio() {
               <polygon width="15px" points="0,5 0,15 600,15 500,5" />
             </svg>
           </Grid>
-          <Grid size={{ xs: 12, lg: "auto" }}>
+          <Grid size={{ xs: 12, xl: "auto" }}>
             <Typography variant="h5">Full-Stack Developer</Typography>
           </Grid>
           <Divider
             flexItem
             orientation="vertical"
-            sx={{ height: 0.1, mx: "auto" }}
+            sx={{ height: 0.1, mx: 2, width: "5px" }}
           />
-          <Grid size={{ xs: 12, lg: "auto" }}>
+          <Grid size={{ xs: 12, xl: "auto" }}>
             <Typography variant="h5">
               Automation and Scripting Specialist
             </Typography>
@@ -181,14 +181,14 @@ export default function Portfolio() {
           <Divider
             flexItem
             orientation="vertical"
-            sx={{ height: 0.11, mx: "auto" }}
+            sx={{ height: 0.1, mx: 2, width: "5px" }}
           />
-          <Grid size={{ xs: 12, lg: "auto" }}>
+          <Grid size={{ xs: 12, xl: "auto" }}>
             <Typography variant="h5">Author/Worldbuilder</Typography>
           </Grid>
         </Grid>
       </Grid>
-      <Divider sx={{ my: 3 }} />
+      <Divider sx={{ my: 5 }} />
       <Grid container>
         <Grid size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" marginTop={5}>
@@ -274,38 +274,48 @@ export default function Portfolio() {
         </Grid>
       </Grid>
       <Divider sx={{ my: 3 }} />
-      <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
-        <img
-          width={450}
-          height={150}
-          src="./filligree.svg"
-          alt="some pretty curves"
-        />
-        <Tooltip title="Resume">
-          <ButtonBase
-            id="ballet"
-            aria-label="download_resume"
-            onClick={downloadCV}
-          >
-            Resume
-          </ButtonBase>
-        </Tooltip>
-        <img
-          width={450}
-          height={150}
-          src="./filligree.svg"
-          alt="some pretty curves"
-        />
+      <Grid container sx={{ justifyContent: "center", alignContent: "center" }}>
+        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+          <img
+            width={250}
+            height={150}
+            src="./filligree.svg"
+            alt="some pretty curves"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+          <Tooltip title="Resume">
+            <ButtonBase
+              id="ballet"
+              aria-label="download_resume"
+              onClick={downloadCV}
+            >
+              Resume
+            </ButtonBase>
+          </Tooltip>
+        </Grid>
+        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+          <img
+            width={250}
+            height={150}
+            src="./filligree.svg"
+            alt="some pretty curves"
+          />
+        </Grid>
       </Grid>
       <Divider sx={{ my: 3 }} />
       <Grid container>
-        <Grid size={3}>
+        <Grid size={{ xs: 12, lg: 3 }}>
           <Typography variant="h5" marginTop={5}>
             The Skills...
           </Typography>
           <Grid
             container
-            sx={{ padding: 3, marginTop: 3 }}
+            sx={{
+              padding: 3,
+              marginTop: 3,
+              display: { xs: "none", lg: "flex" },
+            }}
             rowSpacing={3}
             id="logoTiles"
             columns={4}
@@ -384,7 +394,7 @@ export default function Portfolio() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid size={8} sx={{ textAlign: "left", marginTop: 1 }}>
+        <Grid size={{ xs: 12, lg: 8 }} sx={{ textAlign: "left", marginTop: 1 }}>
           <Grid
             container
             sx={{ padding: 3 }}
