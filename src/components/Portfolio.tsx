@@ -305,7 +305,7 @@ export default function Portfolio() {
       </Grid>
       <Divider sx={{ my: 3 }} />
       <Grid container>
-        <Grid size={{ xs: 12, lg: 3 }}>
+        <Grid size={{ xs: 12, xl: 3 }}>
           <Typography variant="h5" marginTop={5}>
             The Skills...
           </Typography>
@@ -314,7 +314,7 @@ export default function Portfolio() {
             sx={{
               padding: 3,
               marginTop: 3,
-              display: { xs: "none", lg: "flex" },
+              display: { xs: "none", xl: "flex" },
             }}
             rowSpacing={3}
             id="logoTiles"
@@ -394,7 +394,7 @@ export default function Portfolio() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid size={{ xs: 12, lg: 8 }} sx={{ textAlign: "left", marginTop: 1 }}>
+        <Grid size={{ xs: 12, xl: 8 }} sx={{ textAlign: "left", marginTop: 1 }}>
           <Grid
             container
             sx={{ padding: 3 }}
@@ -402,20 +402,26 @@ export default function Portfolio() {
             id="infoTiles"
             columns={6}
           >
-            <Grid size={4}>
-              <Container
+            <Grid size={6}>
+              <Grid
                 sx={{
-                  width: 750,
+                  maxWidth: 750,
                   height: 250,
                   textAlign: "center",
+                  mx: "auto",
                 }}
               >
-                <img
+                <Box
+                  component="img"
                   src="./sylphaxiom_web_512x.svg"
-                  width={200}
-                  height={200}
-                  className=""
-                  style={{ display: "box", float: "left", marginRight: 8 }}
+                  alt="curious guy in a browser"
+                  sx={{
+                    width: "200px",
+                    height: "200px",
+                    float: "left",
+                    display: { xs: "none", md: "flex" },
+                    marginRight: 8,
+                  }}
                 />
                 <Typography variant="h5" sx={{ pt: 1 }}>
                   Sylphaxiom Creative
@@ -426,18 +432,18 @@ export default function Portfolio() {
                   no backend functionality required. More will be added as I
                   continue to work on this long-running project.
                 </Typography>
-              </Container>
+              </Grid>
             </Grid>
-            <Grid size={2}>
+            {/* <Grid size={2}>
               <div
                 style={{ border: "none", width: "350px", height: "250px" }}
               />
-            </Grid>
-            <Grid size={2}>
+            </Grid> */}
+            <Grid size={{ xs: 6, md: 2 }}>
               <Container
                 sx={{
-                  width: 350,
-                  height: 250,
+                  width: "350px",
+                  minHeight: 250,
                   textAlign: "center",
                 }}
               >
@@ -473,11 +479,11 @@ export default function Portfolio() {
                 </Typography>
               </Container>
             </Grid>
-            <Grid size={2}>
+            <Grid size={{ xs: 6, md: 2 }}>
               <Container
                 sx={{
-                  width: 350,
-                  height: 250,
+                  width: "350px",
+                  minHeight: 250,
                   textAlign: "center",
                 }}
               >
@@ -514,11 +520,11 @@ export default function Portfolio() {
                 </Typography>
               </Container>
             </Grid>
-            <Grid size={2}>
+            <Grid size={{ xs: 6, md: 2 }}>
               <Container
                 sx={{
-                  width: 350,
-                  height: 250,
+                  width: "350px",
+                  minHeight: 250,
                   textAlign: "center",
                 }}
               >
