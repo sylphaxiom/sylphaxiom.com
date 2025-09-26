@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as motion from "motion/react-client";
 import * as motions from "motion/react";
+import * as FileSaver from "file-saver";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -9,7 +10,6 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import ButtonBase from "@mui/material/ButtonBase";
 import Tooltip from "@mui/material/Tooltip";
-import * as FileSaver from "file-saver";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();

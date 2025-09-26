@@ -36,20 +36,42 @@ test('home tab content is visible', async({page})=>{
 
 test('check tabs', async({page})=>{
 
+    const menu = page.locator('#nav_drawer');
     const tabs = page.getByRole('tablist', { name: 'nav tabs' });
-    await expect(tabs).toHaveCount(1); // Apparently only non-disabled tabs are counted
 
-    await expect(tabs.getByRole('tab', { name: 'home' })).toBeVisible();
-    await expect(tabs.getByRole('tab', { name: 'home' })).toHaveAttribute('aria-selected', 'true'); // Home tab should be selected by default
+    if (await menu.isVisible()) {
+        await menu.click();
 
-    await expect(tabs.getByRole('tab', { name: 'people' })).toBeVisible();
-    await expect(tabs.getByRole('tab', { name: 'people' })).toHaveAttribute('aria-disabled', 'true'); // People tab should be disabled
+        await expect(menu).toHaveCount(1)
 
-    await expect(tabs.getByRole('tab', { name: 'projects' })).toBeVisible();
-    await expect(tabs.getByRole('tab', { name: 'projects' })).toHaveAttribute('aria-disabled', 'true'); // Projects tab should be disabled
+        await expect(menu.getByRole('menuitem', { name: 'home' })).toBeVisible();
+        await expect(menu.getByRole('menuitem', { name: 'home' })).toHaveAttribute('aria-selected', 'true'); // Home tab should be selected by default
 
-    await expect(tabs.getByRole('tab', { name: 'contact' })).toBeVisible();
-    await expect(tabs.getByRole('tab', { name: 'contact' })).toHaveAttribute('aria-disabled', 'true'); // Contact tab should be disabled
+        await expect(menu.getByRole('menuitem', { name: 'people' })).toBeVisible();
+        await expect(menu.getByRole('menuitem', { name: 'people' })).toHaveAttribute('aria-disabled', 'true'); // People tab should be disabled
+
+        await expect(menu.getByRole('menuitem', { name: 'projects' })).toBeVisible();
+        await expect(menu.getByRole('menuitem', { name: 'projects' })).toHaveAttribute('aria-disabled', 'true'); // Projects tab should be disabled
+
+        await expect(menu.getByRole('menuitem', { name: 'contact' })).toBeVisible();
+        await expect(menu.getByRole('menuitem', { name: 'contact' })).toHaveAttribute('aria-disabled', 'true'); // Contact tab should be disabled
+    }
+
+    if (await tabs.isVisible()) {
+        await expect(tabs).toHaveCount(1); // Apparently only non-disabled tabs are counted
+
+        await expect(tabs.getByRole('tab', { name: 'home' })).toBeVisible();
+        await expect(tabs.getByRole('tab', { name: 'home' })).toHaveAttribute('aria-selected', 'true'); // Home tab should be selected by default
+
+        await expect(tabs.getByRole('tab', { name: 'people' })).toBeVisible();
+        await expect(tabs.getByRole('tab', { name: 'people' })).toHaveAttribute('aria-disabled', 'true'); // People tab should be disabled
+
+        await expect(tabs.getByRole('tab', { name: 'projects' })).toBeVisible();
+        await expect(tabs.getByRole('tab', { name: 'projects' })).toHaveAttribute('aria-disabled', 'true'); // Projects tab should be disabled
+
+        await expect(tabs.getByRole('tab', { name: 'contact' })).toBeVisible();
+        await expect(tabs.getByRole('tab', { name: 'contact' })).toHaveAttribute('aria-disabled', 'true'); // Contact tab should be disabled
+    }
 
 });
 
