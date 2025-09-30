@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as motion from "motion/react-client";
 import * as motions from "motion/react";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
+import Grid from "@mui/material/Grid";
 
 export default function Cover() {
   const time = motions.useTime();
@@ -36,60 +36,73 @@ export default function Cover() {
   };
 
   return (
-    <Box
+    <Grid
       id="entryway"
+      container
+      spacing={2}
       sx={{
         minWidth: 1,
+        mx: "auto",
+        my: 0,
         p: 0,
+        pt: { lg: "45vh", xs: "10vh" },
         textAlign: "center",
       }}
     >
-      <Button
-        variant="contained"
-        id="home"
-        value="home"
-        sx={{ marginRight: 30 }}
-        size="large"
-        color="primary"
-        className="coverBtn"
-        onClick={(e) => {
-          handleTransition(e, "/creative");
-        }}
-      >
-        Sylphaxiom
-        <br />
-        Creative
-      </Button>
-      <motions.AnimatePresence mode="wait">
-        <motion.img
-          layout
-          ref={scopeExit}
-          layoutId="logo"
-          style={{
-            rotateY,
+      <Grid size={{ lg: 2, xs: 12 }} offset={{ xl: 1, lg: 1, md: 0 }}>
+        <Button
+          variant="contained"
+          id="home"
+          value="home"
+          size="large"
+          color="primary"
+          className="coverBtn"
+          onClick={(e) => {
+            handleTransition(e, "/creative");
           }}
-          initial={coverOn}
-          src={"/sylphaxiom_web_512x.svg"}
-          key="logo"
-          alt="curious guy in a browser"
-          width={100}
-          height={100}
-        />
-      </motions.AnimatePresence>
-      <Button
-        variant="contained"
-        id="portfolio"
-        value="portfolio"
-        sx={{ marginLeft: 30 }}
-        className="coverBtn"
-        onClick={(e) => {
-          handleTransition(e, "/portfolio");
-        }}
+        >
+          Sylphaxiom
+          <br />
+          Creative
+        </Button>
+      </Grid>
+      <Grid
+        size={4}
+        offset={{ lg: 1, xs: 4 }}
+        sx={{ minHeight: "500px", pt: { lg: 0, xs: "25vh" } }}
       >
-        Jacob Pell
-        <br />
-        Portfolio
-      </Button>
-    </Box>
+        <motions.AnimatePresence mode="wait">
+          <motion.img
+            layout
+            ref={scopeExit}
+            layoutId="logo"
+            style={{
+              rotateY,
+            }}
+            initial={coverOn}
+            src={"/sylphaxiom_web_512x.svg"}
+            key="logo"
+            alt="curious guy in a browser"
+            width={100}
+            height={100}
+          />
+        </motions.AnimatePresence>
+      </Grid>
+      <Grid size={{ lg: 2, xs: 12 }} offset={{ xl: 1, lg: 1, md: 0 }}>
+        <Button
+          variant="contained"
+          id="portfolio"
+          value="portfolio"
+          className="coverBtn"
+          onClick={(e) => {
+            handleTransition(e, "/portfolio");
+          }}
+        >
+          Creator
+          <br />
+          Portfolio
+        </Button>
+      </Grid>
+    </Grid>
   );
 }

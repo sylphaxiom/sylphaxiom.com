@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as motion from "motion/react-client";
 import * as motions from "motion/react";
+import * as FileSaver from "file-saver";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
@@ -9,16 +10,14 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import ButtonBase from "@mui/material/ButtonBase";
 import Tooltip from "@mui/material/Tooltip";
-import * as FileSaver from "file-saver";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
   const dudeRef = React.useRef(null); // holds the dude
-  //const [topVal, setTopVal] = React.useState(210);
   const [rays, setRays] = React.useState(0);
 
   const vh = window.innerHeight;
-  let point = vh - 75; // Y @ top of dude rel: bottom
+  let point = vh; // Y @ top of dude rel: bottom
   let point2 = point - 135; // Y @ bottom of Dude rel: bottom
 
   const scrollClimber = motions.useTransform(
@@ -38,11 +37,6 @@ export default function Portfolio() {
   );
 
   React.useEffect(() => {
-    const dudeAnchor = dudeRef.current;
-    if (dudeAnchor) {
-      //const climber = (dudeAnchor as HTMLImageElement).getBoundingClientRect();
-      //setTopVal(climber.bottom - 500);
-    }
     const swapper = setInterval(() => {
       setRays(rays === 0 ? 1 : 0);
     }, 1000);
@@ -54,7 +48,7 @@ export default function Portfolio() {
   };
 
   return (
-    <Box sx={{ width: 1 }} id="portfolio_content">
+    <Box sx={{ minWidth: 1, textAlign: "center" }} id="portfolio_content">
       <motions.AnimatePresence mode="wait">
         <Box
           id="climber"
@@ -65,6 +59,7 @@ export default function Portfolio() {
             top: 0,
             width: "60px",
           }}
+          sx={{ display: { xs: "none", lg: "block" } }}
         >
           <motion.div
             id="rope-1"
@@ -122,8 +117,8 @@ export default function Portfolio() {
           />
         </Box>
       </motions.AnimatePresence>
-      <Grid container id="portHead" width={1}>
-        <Grid direction={"column"} size={3}>
+      <Grid container id="portHead" width={{ xs: 1, xl: 1 }}>
+        <Grid direction={"column"} size={{ xl: 3, lg: 4, xs: 12 }}>
           <Paper
             elevation={8}
             sx={{
@@ -144,34 +139,66 @@ export default function Portfolio() {
             />
           </Paper>
         </Grid>
-        <Grid size={9} container sx={{ alignContent: "center" }}>
-          <Typography variant="h2" sx={{ justifySelf: "left" }}>
-            Jacob Pell
-          </Typography>
-          <Grid direction={"row"} container size={12} sx={{ mt: "20px" }}>
+        <Grid
+          size={{ xs: 12, lg: 8 }}
+          container
+          sx={{ alignContent: "center", textAlign: "center" }}
+        >
+          <Grid size={12}>
+            <Typography
+              variant="h2"
+              sx={{ justifySelf: { md: "center", xl: "left" }, mt: 5 }}
+            >
+              Jacob Pell
+            </Typography>
+          </Grid>
+          <Grid
+            size={12}
+            sx={{
+              mt: "20px",
+              scale: { md: 1.5, lg: 1.5, xl: 1 },
+              ml: { xs: 0, md: "25%", xl: 0 },
+              zIndex: 0,
+            }}
+          >
             <svg width="100%" height="30px">
               <polygon width="15px" points="0,5 0,15 600,15 500,5" />
             </svg>
-            <Typography variant="h5" sx={{ ml: 0, mr: "20px" }}>
-              Full-Stack Developer
-            </Typography>
-            <Divider flexItem orientation="vertical" sx={{}} />
-            <Typography variant="h5" sx={{ mx: "20px" }}>
+          </Grid>
+          <Grid size={{ xs: 12, xl: "auto" }}>
+            <Typography variant="h5">Full-Stack Developer</Typography>
+          </Grid>
+          <Divider
+            flexItem
+            orientation="vertical"
+            sx={{ height: 0.1, mx: 2, width: "5px" }}
+          />
+          <Grid size={{ xs: 12, xl: "auto" }}>
+            <Typography variant="h5">
               Automation and Scripting Specialist
             </Typography>
-            <Divider flexItem orientation="vertical" />
-            <Typography variant="h5" sx={{ mx: "20px" }}>
-              Author/Worldbuilder
-            </Typography>
+          </Grid>
+          <Divider
+            flexItem
+            orientation="vertical"
+            sx={{ height: 0.1, mx: 2, width: "5px" }}
+          />
+          <Grid size={{ xs: 12, xl: "auto" }}>
+            <Typography variant="h5">Author/Worldbuilder</Typography>
           </Grid>
         </Grid>
       </Grid>
+      <Divider sx={{ my: 5 }} />
       <Grid container>
-        <Grid size={3}>
+        <Grid size={{ xs: 12, md: 3 }}>
           <Typography variant="h5" marginTop={5}>
             A Brief History...
           </Typography>
-          <Grid container direction={"column"} sx={{ alignContent: "center" }}>
+          <Grid
+            container
+            direction={"column"}
+            sx={{ alignContent: "center", display: { xs: "none", md: "flex" } }}
+          >
             <img
               width={40}
               height={30}
@@ -194,7 +221,10 @@ export default function Portfolio() {
             />
           </Grid>
         </Grid>
-        <Grid size={8} sx={{ textAlign: "left", mt: 4 }}>
+        <Grid
+          size={{ xs: 12, md: 8 }}
+          sx={{ textAlign: { xs: "center", md: "left" }, mt: 4 }}
+        >
           <Typography sx={{ py: 2 }}>
             Once upon a time, there was this guy who liked stuff and did
             things...
@@ -244,38 +274,48 @@ export default function Portfolio() {
         </Grid>
       </Grid>
       <Divider sx={{ my: 3 }} />
-      <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
-        <img
-          width={450}
-          height={150}
-          src="./filligree.svg"
-          alt="some pretty curves"
-        />
-        <Tooltip title="Resume">
-          <ButtonBase
-            id="ballet"
-            aria-label="download_resume"
-            onClick={downloadCV}
-          >
-            Resume
-          </ButtonBase>
-        </Tooltip>
-        <img
-          width={450}
-          height={150}
-          src="./filligree.svg"
-          alt="some pretty curves"
-        />
+      <Grid container sx={{ justifyContent: "center", alignContent: "center" }}>
+        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+          <img
+            width={250}
+            height={150}
+            src="./filligree.svg"
+            alt="some pretty curves"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+          <Tooltip title="Resume">
+            <ButtonBase
+              id="ballet"
+              aria-label="download_resume"
+              onClick={downloadCV}
+            >
+              Resume
+            </ButtonBase>
+          </Tooltip>
+        </Grid>
+        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+          <img
+            width={250}
+            height={150}
+            src="./filligree.svg"
+            alt="some pretty curves"
+          />
+        </Grid>
       </Grid>
       <Divider sx={{ my: 3 }} />
       <Grid container>
-        <Grid size={3}>
+        <Grid size={{ xs: 12, xl: 3 }}>
           <Typography variant="h5" marginTop={5}>
             The Skills...
           </Typography>
           <Grid
             container
-            sx={{ padding: 3, marginTop: 3 }}
+            sx={{
+              padding: 3,
+              marginTop: 3,
+              display: { xs: "none", xl: "flex" },
+            }}
             rowSpacing={3}
             id="logoTiles"
             columns={4}
@@ -354,7 +394,7 @@ export default function Portfolio() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid size={8} sx={{ textAlign: "left", marginTop: 1 }}>
+        <Grid size={{ xs: 12, xl: 8 }} sx={{ textAlign: "left", marginTop: 1 }}>
           <Grid
             container
             sx={{ padding: 3 }}
@@ -362,20 +402,26 @@ export default function Portfolio() {
             id="infoTiles"
             columns={6}
           >
-            <Grid size={4}>
-              <Container
+            <Grid size={6}>
+              <Grid
                 sx={{
-                  width: 750,
+                  maxWidth: 750,
                   height: 250,
                   textAlign: "center",
+                  mx: "auto",
                 }}
               >
-                <img
+                <Box
+                  component="img"
                   src="./sylphaxiom_web_512x.svg"
-                  width={200}
-                  height={200}
-                  className=""
-                  style={{ display: "box", float: "left", marginRight: 8 }}
+                  alt="curious guy in a browser"
+                  sx={{
+                    width: "200px",
+                    height: "200px",
+                    float: "left",
+                    display: { xs: "none", md: "flex" },
+                    marginRight: 8,
+                  }}
                 />
                 <Typography variant="h5" sx={{ pt: 1 }}>
                   Sylphaxiom Creative
@@ -386,18 +432,18 @@ export default function Portfolio() {
                   no backend functionality required. More will be added as I
                   continue to work on this long-running project.
                 </Typography>
-              </Container>
+              </Grid>
             </Grid>
-            <Grid size={2}>
+            {/* <Grid size={2}>
               <div
                 style={{ border: "none", width: "350px", height: "250px" }}
               />
-            </Grid>
-            <Grid size={2}>
+            </Grid> */}
+            <Grid size={{ xs: 6, md: 2 }}>
               <Container
                 sx={{
-                  width: 350,
-                  height: 250,
+                  width: "350px",
+                  minHeight: 250,
                   textAlign: "center",
                 }}
               >
@@ -433,11 +479,11 @@ export default function Portfolio() {
                 </Typography>
               </Container>
             </Grid>
-            <Grid size={2}>
+            <Grid size={{ xs: 6, md: 2 }}>
               <Container
                 sx={{
-                  width: 350,
-                  height: 250,
+                  width: "350px",
+                  minHeight: 250,
                   textAlign: "center",
                 }}
               >
@@ -474,11 +520,11 @@ export default function Portfolio() {
                 </Typography>
               </Container>
             </Grid>
-            <Grid size={2}>
+            <Grid size={{ xs: 6, md: 2 }}>
               <Container
                 sx={{
-                  width: 350,
-                  height: 250,
+                  width: "350px",
+                  minHeight: 250,
                   textAlign: "center",
                 }}
               >

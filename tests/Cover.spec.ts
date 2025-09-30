@@ -1,48 +1,52 @@
 import {test, expect} from '@playwright/test';
 
-test('has title', async ({ page }) => {
+test.beforeEach(async ({ page }) => {
+    // Navigate to the cover page before each test
     await page.goto('/');
+});
+
+test.afterEach(async ({ page }) => {
+    // Close the page after each test
+    await page.close();
+});
+
+test('has title', async ({ page }) => {
 
     await expect(page).toHaveTitle(/Sylphaxiom Creations/);
 
-    await page.close()
 });
 
 test('has content', async({page})=>{
-    await page.goto('/');
 
     const content = await page.locator('#entryway');
     await expect(content).toBeVisible();
 
-    await page.close();
 });
 
 test('cover image has attributes', async({page})=>{
-    await page.goto('/');
+
    const coverImage = await page.locator('img[alt="curious guy in a browser"]');
    await expect(coverImage).toBeVisible();
    await expect(coverImage).toHaveAttribute('src', '/sylphaxiom_web_512x.svg');
    await expect(coverImage).toHaveAttribute('width', '100');
    await expect(coverImage).toHaveAttribute('height', '100');
 
-    await page.close();
 });
 
 test('cover image is animating', async({page})=>{
-    await page.goto('/');
+
     const coverImage = await page.locator('img[alt="curious guy in a browser"]');
     const initialTransform = await coverImage.evaluate((el) => getComputedStyle(el).transform);
     await page.waitForTimeout(1000);
     const finalTransform = await coverImage.evaluate((el) => getComputedStyle(el).transform);
     await expect(initialTransform).not.toEqual(finalTransform);
 
-    await page.close();
 });
 
 test('cover buttons are clickable', async({page})=>{
-    await page.goto('/');    
+
     const creativeButton = await page.getByRole('button', { name: 'Sylphaxiom Creative' });
-    const portfolioButton = await page.getByRole('button', { name: 'Jacob Pell Portfolio' });
+    const portfolioButton = await page.getByRole('button', { name: 'Creator Portfolio' });
 
     await expect(creativeButton).toBeVisible();
     await expect(portfolioButton).toBeVisible();
@@ -55,5 +59,4 @@ test('cover buttons are clickable', async({page})=>{
     await portfolioButton.click();
     await expect(page).toHaveURL(/portfolio/);
 
-    await page.close();
 });
