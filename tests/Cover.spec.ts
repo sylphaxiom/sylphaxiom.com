@@ -18,14 +18,14 @@ test('has title', async ({ page }) => {
 
 test('has content', async({page})=>{
 
-    const content = await page.locator('#entryway');
+    const content = page.locator('#entryway');
     await expect(content).toBeVisible();
 
 });
 
 test('cover image has attributes', async({page})=>{
 
-   const coverImage = await page.locator('img[alt="curious guy in a browser"]');
+   const coverImage = page.locator('img[alt="curious guy in a browser"]');
    await expect(coverImage).toBeVisible();
    await expect(coverImage).toHaveAttribute('src', '/sylphaxiom_web_512x.svg');
    await expect(coverImage).toHaveAttribute('width', '100');
@@ -35,18 +35,18 @@ test('cover image has attributes', async({page})=>{
 
 test('cover image is animating', async({page})=>{
 
-    const coverImage = await page.locator('img[alt="curious guy in a browser"]');
+    const coverImage = page.locator('img[alt="curious guy in a browser"]');
     const initialTransform = await coverImage.evaluate((el) => getComputedStyle(el).transform);
     await page.waitForTimeout(1000);
     const finalTransform = await coverImage.evaluate((el) => getComputedStyle(el).transform);
-    await expect(initialTransform).not.toEqual(finalTransform);
+    expect(initialTransform).not.toEqual(finalTransform);
 
 });
 
 test('cover buttons are clickable', async({page})=>{
 
-    const creativeButton = await page.getByRole('button', { name: 'Sylphaxiom Creative' });
-    const portfolioButton = await page.getByRole('button', { name: 'Creator Portfolio' });
+    const creativeButton = page.getByRole('button', { name: 'Sylphaxiom Creative' });
+    const portfolioButton = page.getByRole('button', { name: 'Creator Portfolio' });
 
     await expect(creativeButton).toBeVisible();
     await expect(portfolioButton).toBeVisible();

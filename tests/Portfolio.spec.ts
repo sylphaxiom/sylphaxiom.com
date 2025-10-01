@@ -90,17 +90,23 @@ test("content link is valid", async({page})=>{
 
 test('check section headers', async({page})=>{
 
+    // Add any new H5 element text here
+    const sections = [
+        'Full-Stack Developer',
+        'Automation and Scripting Specialist',
+        'Author/Worldbuilder',
+        'A Brief History...',
+        'The Skills...',
+        'Sylphaxiom Creative',
+        'Asset/Logo Creation',
+        'Worldbuilding/Storytelling',
+        'Web Development/Scripting'
+    ]
     const sectionHeaders = page.locator('h5');
     await expect(sectionHeaders).toHaveCount(9);
-    await expect(sectionHeaders.nth(0)).toHaveText('Full-Stack Developer');
-    await expect(sectionHeaders.nth(1)).toHaveText('Automation and Scripting Specialist');
-    await expect(sectionHeaders.nth(2)).toHaveText('Author/Worldbuilder');
-    await expect(sectionHeaders.nth(3)).toHaveText('A Brief History...');
-    await expect(sectionHeaders.nth(4)).toHaveText('The Skills...');
-    await expect(sectionHeaders.nth(5)).toHaveText('Sylphaxiom Creative');
-    await expect(sectionHeaders.nth(6)).toHaveText('Asset/Logo Creation');
-    await expect(sectionHeaders.nth(7)).toHaveText('Worldbuilding/Storytelling');
-    await expect(sectionHeaders.nth(8)).toHaveText('Web Development/Scripting');
+    for await ( const [index, section] of sections.entries()) {
+        await expect(sectionHeaders.nth(index)).toHaveText(section);
+    }
 
 });
 
