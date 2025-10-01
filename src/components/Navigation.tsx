@@ -51,14 +51,7 @@ export default function Navigation() {
     throw new Error("No match for current route");
   }
   const [current, setCurrent] = React.useState(base);
-  const disabled: string[] = [
-    "people",
-    "projects",
-    "contact",
-    "web",
-    "assets",
-    "writing",
-  ]; // any  tabs we want disabled we will put here.
+  const disabled: string[] = ["people", "projects", "web", "assets", "writing"]; // any  tabs we want disabled we will put here.
   let title: string;
   switch (base) {
     case "home":
