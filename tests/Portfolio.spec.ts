@@ -34,50 +34,28 @@ test('tab content is visible', async({page})=>{
 
 test('check tabs', async({page})=>{
 
+    const links = ['portfolio', 'web', 'assets', 'writing', 'contact'];
     const menu = page.locator('#nav_drawer');
     const tabs = page.getByRole('tablist', { name: 'nav tabs' });
+    const item = menu || tabs
+    const type = (item === menu) ? 'menuitem' : 'tab'
 
-    if (await menu.isVisible()) {
+    await item.isVisible()
+
+    if (item === menu){
         await menu.click();
-
-        await expect(menu).toHaveCount(1)
-
-        await expect(menu.getByRole('menuitem', { name: 'portfolio' })).toBeVisible();
-        await expect(menu.getByRole('menuitem', { name: 'portfolio' })).toHaveAttribute('aria-selected', 'true'); // Home tab should be selected by default
-
-        await expect(menu.getByRole('menuitem', { name: 'web' })).toBeVisible();
-        await expect(menu.getByRole('menuitem', { name: 'web' })).toHaveAttribute('aria-disabled', 'true'); // People tab should be disabled
-
-        await expect(menu.getByRole('menuitem', { name: 'assets' })).toBeVisible();
-        await expect(menu.getByRole('menuitem', { name: 'assets' })).toHaveAttribute('aria-disabled', 'true'); // Projects tab should be disabled
-
-        await expect(menu.getByRole('menuitem', { name: 'writing' })).toBeVisible();
-        await expect(menu.getByRole('menuitem', { name: 'writing' })).toHaveAttribute('aria-disabled', 'true'); // Projects tab should be disabled
-
-        await expect(menu.getByRole('menuitem', { name: 'contact' })).toBeVisible();
-        await expect(menu.getByRole('menuitem', { name: 'contact' })).toHaveAttribute('aria-disabled', 'true'); // Contact tab should be disabled
     }
 
-    if (await tabs.isVisible()) {
-        
-        await expect(tabs).toHaveCount(1); // Apparently only non-disabled tabs are counted
+    await expect(item).toHaveCount(1)
 
-        await expect(tabs.getByRole('tab', { name: 'portfolio' })).toBeVisible();
-        await expect(tabs.getByRole('tab', { name: 'portfolio' })).toHaveAttribute('aria-selected', 'true'); // Portfolio tab should be selected by default
-
-        await expect(tabs.getByRole('tab', { name: 'web' })).toBeVisible();
-        await expect(tabs.getByRole('tab', { name: 'web' })).toHaveAttribute('aria-disabled', 'true'); // Web tab should be disabled
-
-        await expect(tabs.getByRole('tab', { name: 'assets' })).toBeVisible();
-        await expect(tabs.getByRole('tab', { name: 'assets' })).toHaveAttribute('aria-disabled', 'true'); // Assets tab should be disabled
-
-        await expect(tabs.getByRole('tab', { name: 'writing' })).toBeVisible();
-        await expect(tabs.getByRole('tab', { name: 'writing' })).toHaveAttribute('aria-disabled', 'true'); // Assets tab should be disabled
-
-        await expect(tabs.getByRole('tab', { name: 'contact' })).toBeVisible();
-        await expect(tabs.getByRole('tab', { name: 'contact' })).toHaveAttribute('aria-disabled', 'true'); // Contact tab should be disabled
+    for await (const link of links) {
+        await expect(page.getByRole(type, { name: link })).toBeVisible();
+        if (link === 'portfolio') {
+            await expect(page.getByRole(type, { name: link })).toHaveAttribute('class', /Mui-selected/);
+        } else {
+            await expect(page.getByRole(type, { name: link })).toHaveAttribute('aria-disabled', 'true');
+        }
     }
-
 });
 
 test('portfolio img has attributes', async({page})=>{
@@ -145,9 +123,31 @@ test('download resume link works', async({page})=>{
 
 });
 
+test('GitHub link works', async({page})=>{
+
+    const downloadLink = page.locator('#ghLink');
+    await expect(downloadLink).toHaveAttribute('href', 'https://github.com/sylphaxiom');
+    await expect(downloadLink).toHaveAttribute('aria-label', 'github.com/sylphaxiom');
+
+    await downloadLink.click();
+    await expect(page).toHaveURL('https://github.com/sylphaxiom');
+
+});
+
+test('LinkedIn link works', async({page})=>{
+
+    const downloadLink = page.locator('#liLink');
+    await expect(downloadLink).toHaveAttribute('aria-label', 'linkedin.com/in/sylphaxiom');
+    await expect(downloadLink).toHaveAttribute('href', 'https://www.linkedin.com/in/sylphaxiom/');
+
+    await downloadLink.click();
+    await expect(page).toHaveURL(/www.linkedin.com/);
+
+});
+
 test('check image visible', async({page})=>{
 
     const img = page.locator('img');
-    await expect(img).toHaveCount(43); // There are 43 images on the portfolio page
+    await expect(img).toHaveCount(45); // There are 45 images on the portfolio page after adding ghLogo and liLogo
 
 });

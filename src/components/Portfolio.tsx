@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import ButtonBase from "@mui/material/ButtonBase";
+import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 
 export default function Portfolio() {
@@ -275,7 +276,10 @@ export default function Portfolio() {
       </Grid>
       <Divider sx={{ my: 3 }} />
       <Grid container sx={{ justifyContent: "center", alignContent: "center" }}>
-        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+        <Grid
+          size={{ xs: 12, sm: 3, xl: 2 }}
+          sx={{ display: { xs: "none", xl: "flex" } }}
+        >
           <img
             width={250}
             height={150}
@@ -283,18 +287,56 @@ export default function Portfolio() {
             alt="some pretty curves"
           />
         </Grid>
+        <Grid size={{ xs: 12, md: 2 }}>
+          <Tooltip title="github.com/sylphaxiom">
+            <IconButton
+              href="https://github.com/sylphaxiom"
+              aria-label="github.com/sylphaxiom"
+              id="ghLink"
+              sx={{ py: 3 }}
+            >
+              <img
+                width={100}
+                height={100}
+                src="./github-mark.svg"
+                alt="GitHub logo linking to github.com/sylphaxiom"
+              />
+            </IconButton>
+          </Tooltip>
+        </Grid>
         <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
           <Tooltip title="Resume">
             <ButtonBase
               id="ballet"
               aria-label="download_resume"
               onClick={downloadCV}
+              sx={{ py: 2 }}
             >
               Resume
             </ButtonBase>
           </Tooltip>
         </Grid>
-        <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
+        <Grid size={{ xs: 12, md: 2 }}>
+          <Tooltip title="linkedin.com/in/sylphaxiom">
+            <IconButton
+              href="https://www.linkedin.com/in/sylphaxiom/"
+              aria-label="linkedin.com/in/sylphaxiom"
+              id="liLink"
+              sx={{ py: 3 }}
+            >
+              <img
+                width={100}
+                height={100}
+                src="./LI-In-Bug.png"
+                alt="LinkedIn logo linking to linkedin.com/in/sylphaxiom/"
+              />
+            </IconButton>
+          </Tooltip>
+        </Grid>
+        <Grid
+          size={{ xs: 12, sm: 3, xl: 2 }}
+          sx={{ display: { xs: "none", xl: "flex" } }}
+        >
           <img
             width={250}
             height={150}
