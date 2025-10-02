@@ -8,13 +8,12 @@ declare module "react-router"{
 export default [
     // Cover and default route
     index("./components/Cover.tsx", {id:"Cover"}),
-    route("*?", "./components/Cover.tsx", {id:"Cover_Def"}),
+    route("*?", "./components/Loading.tsx", {id:"catchall"}),
     // Creative side paths
     route("creative", "./components/Navigation.tsx", {id:"createNav"}, [
         index("./components/Home.tsx"),
         route("people", "./components/People.tsx"),
         route("projects", "./components/Projects.tsx"),
-        route("contact", "./components/Contact.tsx", {id:"createCont"}),
     ]),
     // Portfolio side paths
     route ("portfolio", "./components/Navigation.tsx", {id:"portNav"}, [
@@ -22,6 +21,6 @@ export default [
         route("web", "./components/Web.tsx"),
         route("assets", "./components/Assets.tsx"),
         route("writing", "./components/Writing.tsx"),
-        route("contact", "./components/Contact.tsx", {id:"portCont"}),
     ]),
+    route("contact", "./components/Contact.tsx", {id:"contact"}),
 ] satisfies RouteConfig
