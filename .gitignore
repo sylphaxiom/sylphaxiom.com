@@ -34,3 +34,6 @@ dist-ssr
 .react-router/
 *.d.ts
 build/
+
+# Always exclude the bucket!!!
+*bucket.php
