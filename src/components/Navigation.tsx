@@ -33,6 +33,7 @@ export default function Navigation() {
   // Define the pages for each group
   const creative = ["home", "people", "projects", "contact"];
   const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
+  const contact = ["creative", "portfolio", "contact"];
   const matchCreative = useMatch("/creative/*");
   const matchPortfolio = useMatch("/portfolio/*");
   let pages: string[];
@@ -47,8 +48,9 @@ export default function Navigation() {
     group = "portfolio";
     base = matchPortfolio.pathname.split("/")[2] || "portfolio";
   } else {
-    base = "";
-    throw new Error("No match for current route");
+    pages = contact;
+    group = "contact";
+    base = "contact";
   }
   const [current, setCurrent] = React.useState(base);
   const disabled: string[] = ["people", "projects", "web", "assets", "writing"]; // any  tabs we want disabled we will put here.
@@ -273,7 +275,10 @@ export default function Navigation() {
                 sx={{ textTransform: "uppercase" }}
                 component={Link}
                 to={
-                  page === "home" || page === "portfolio" ? "/" + group : page
+                  page === "home" || page === "portfolio" ? "/" + group
+                  : page in creative ?
+                    "/"
+                  : page
                 }
                 key={"tab" + index}
                 id={"tab" + index}
@@ -294,7 +299,10 @@ export default function Navigation() {
               <Tab
                 component={Link}
                 to={
-                  page === "home" || page === "portfolio" ? "/" + group : page
+                  pages === contact || page === "contact" ? "/" + page
+                  : page === "home" || page === "portfolio" ?
+                    "/" + group
+                  : page
                 }
                 label={page}
                 value={page}
