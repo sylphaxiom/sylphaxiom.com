@@ -10,7 +10,7 @@
     "rootDirs": [".", "./.react-router/types"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
     },
 
     /* Bundler mode */
@@ -29,5 +29,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", ".react-router/types"]
+  "include": ["src", ".react-router/types", "api"],
+  "exclude": ["*bucket.php"]
 }

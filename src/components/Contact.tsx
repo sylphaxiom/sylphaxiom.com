@@ -22,6 +22,8 @@ export default function Contact() {
   const [nameHelper, setNameHelper] = React.useState("");
   const [creator, setCreator] = React.useState(false);
 
+  console.log(setNameHelper);
+
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value;
     switch (target) {
