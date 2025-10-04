@@ -1,5 +1,5 @@
 <?php
-require_once "./bucket.php";
+require_once "/home2/xikihgmy/includes/bucket.php";
 $BUCKET = new Bucket;
 $headers = apache_request_headers();
 $dropError = <<<HTML
