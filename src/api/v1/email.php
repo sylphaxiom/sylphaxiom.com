@@ -1,6 +1,5 @@
 <?php
 require_once "/home2/xikihgmy/includes/bucket.php";
-$BUCKET = new Bucket;
 $headers = apache_request_headers();
 $dropError = <<<HTML
         <html>
@@ -11,14 +10,15 @@ $dropError = <<<HTML
             </div>
         </html>
     HTML;
-if (!isset($headers['rain'])) {
+$rainHead = $headers['Rain'];
+if (!isset($rainHead)) {
     http_response_code(401);
-    echo $dropError;
+    echo $dropError." - Rain is not present - ".var_dump($rainHead);
     exit(1);
 }
-if (!$BUICKET->rainDance($headers['rain'])) {
+if (!Bucket::rainDance($rainHead)) {
     http_response_code(401);
-    echo $dropError;
+    echo $dropError."Rain is incorrect";
     exit(1);
 }
 
@@ -33,15 +33,23 @@ $input = json_decode(file_get_contents('php://input'), true);
 switch($method) {
     case 'GET':
         // GET info like SELECT statements or queries go here
+
         break;
     
     case 'POST':
         /* Set vars from input stream */
         $name = $input['name'];
-        $subject = $input['subject'];
+        $subject = $name . " - " . $input['subject'];
         $who = $input['who'];
         $email = $input['email'];
         $message = $input['message'];
+		$from = array('From' => 'webmaster@sylphaxiom.com');
+		
+		$sent = mail($email,$subject,$message,$from);
+		
+		if(!$sent) {
+			$error = error_get_last()['message'];
+		}
 
         /* Prepare, bind, and execute statement */
         try {
@@ -54,7 +62,11 @@ switch($method) {
             echo json_encode(['result'=>'failure', 'message'=>"An unknown error has occurred: $e"]);
             break;
         }
-        echo json_encode(["result"=>"success", "message"=>"Email successfully sent", "id"=>$retID]);
+        if(!$sent) {
+            echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email: ".$error, "id"=>$retID]);
+        } else {
+            echo json_encode(["result"=>"success", "message"=>"Email sent successfully", "id"=>$retID]);
+        }
         break;
 
     case 'PUT':
