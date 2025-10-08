@@ -72,7 +72,7 @@ switch($method) {
         if(!$sent) {
             echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email: ".$error, "id"=>$retID]);
         } else {
-            echo json_encode(["result"=>"success", "message"=>"Email sent successfully: ".var_dump($headers)." - Error data - ".var_dump($error)." - input data - ".var_dump($input), "id"=>$retID]);
+            echo json_encode(["result"=>"success", "message"=>"Email sent successfully: ", "id"=>$retID]);
         }
         break;
 
