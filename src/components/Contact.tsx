@@ -16,44 +16,58 @@ import TextField from "@mui/material/TextField";
 import Textarea from "@mui/joy/Textarea";
 import { useFetcher } from "react-router";
 import type { Route } from "./+types/Contact";
+import axios from "axios";
 
 export async function clientAction({ request }: Route.ClientLoaderArgs) {
   await new Promise((res) => setTimeout(res, 1000));
-  let data = await request.formData();
-  console.log("You're in the action function");
-  const name = String(data.get("name"));
-  const who = String(data.get("who_group"));
-  const email = String(data.get("email"));
-  let subject = String(data.get("subject")); // needs to be mutable since it may not be set by default.
-  const message = String(data.get("message"));
+  let formData = await request.formData();
+  console.log("You're in the action function ");
+  const name = String(formData.get("name"));
+  const who = String(formData.get("who_group"));
+  const email = String(formData.get("email"));
+  let subject = String(formData.get("subject")); // needs to be mutable since it may not be set by default.
+  const message = String(formData.get("message"));
   let recipient = "";
   let creator = "";
-  let errors = { name: "", email: "", who: "", subject: "", message: "" };
-  let err = false;
+
+  console.log(
+    "Var check:\n%s\n%s\n%s\n%s\n%s",
+    name,
+    who,
+    email,
+    subject,
+    message
+  );
 
   // Validate name field, if needed
   if (Boolean(name.match(/^[A-Za-z\s]+$/))) {
-    console.log("looks good: " + name);
+    console.log("Name looks good: " + name);
   } else {
-    errors.name =
-      "Looks like theres some characters other than letters and spaces, have another look and try again: " +
-      name;
-    err = true;
+    console.log("Error in Name section");
+    return {
+      ok: false,
+      nameError:
+        "Looks like theres some characters other than letters and spaces, have another look and try again: " +
+        name,
+    };
   }
 
   // Validate email field
-  let validator = email
+  const validator = email
     .toLowerCase()
     .match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   if (Boolean(validator)) {
-    console.log("looks good: " + email);
+    console.log("Emain looks good: " + email + " - data - " + validator);
   } else {
-    errors.email =
-      "There appears to be an issue with your email address, have another look and try again: " +
-      email;
-    err = true;
+    console.log("Error in Email section");
+    return {
+      ok: false,
+      emailError:
+        "There appears to be an issue with your email address, have another look and try again: " +
+        email,
+    };
   }
 
   // Apply Who logic
@@ -74,32 +88,57 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
 
   // Subject validation
   if (subject.length < 255) {
-    console.log("looks good: " + subject);
+    console.log("Subject looks good: " + subject);
   } else {
-    err = true;
-    errors.subject =
-      "Your subject is a bit too long. Please keep it under 255 characters.";
+    console.log("Error in Subject section");
+    return {
+      ok: false,
+      subjError:
+        "Your subject is a bit too long. Please keep it under 255 characters.",
+    };
   }
 
   // Message validation
   if (message.length < 65535) {
-    console.log("looks good: " + subject);
+    console.log("Message looks good: " + message);
   } else {
-    err = true;
-    errors.subject =
-      "Your message is a bit too long. Please keep it under (only) 65,535 characters.";
+    console.log("Error in Message section");
+    return {
+      ok: false,
+      msgError:
+        "Your message is a bit too long. Please keep it under (only) 65,535 characters.",
+    };
   }
 
   // Form the API call and await the response
-  const jsonStr = JSON.stringify({
+  const body = {
     name: name,
     subject: subject,
     who: who,
     email: email,
     message: message,
     recipient: recipient,
+  };
+  console.log(body);
+
+  const API = axios.create({
+    baseURL: "https://api.sylphaxiom.com/",
+    timeout: 1000,
+    headers: {
+      rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
+      "Content-Type": "application/json",
+    },
   });
-  console.log(jsonStr);
+
+  API.post("email.php", body)
+    .then(function (response) {
+      console.log(response);
+      return { ok: true, response: response };
+    })
+    .catch(function (error) {
+      console.log(error);
+      return { ok: false, apiError: error };
+    });
 }
 
 export default function Contact() {
@@ -110,8 +149,9 @@ export default function Contact() {
   );
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake");
   const [creator, setCreator] = React.useState("jacob");
-  let nameHelper = "";
-  let emailHelper = "";
+  const nameHelper = fetcher.data?.nameError || "";
+  const emailHelper = fetcher.data?.emailError || "";
+  const subjHelper = fetcher.data?.subjError || "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value;
@@ -243,17 +283,18 @@ export default function Contact() {
                   </Grid>
                   <Grid size={9}>
                     <TextField
-                      id="name"
+                      id="subject"
+                      name="subject"
                       label="Subject"
                       variant="standard"
                       error={fetcher.data?.error}
                       sx={{ width: 1 }}
                     />
                     <FormHelperText
-                      id="nameHelper_field"
+                      id="subjHelper_field"
                       sx={{ mb: 2, textAlign: "center" }}
                     >
-                      {nameHelper}
+                      {subjHelper}
                     </FormHelperText>
                   </Grid>
                 </Grid>
@@ -270,6 +311,7 @@ export default function Contact() {
                   <TextField
                     id="name"
                     label="Name"
+                    name="name"
                     variant="standard"
                     error={fetcher.data?.error}
                     sx={{ width: 1 }}
@@ -284,6 +326,7 @@ export default function Contact() {
                 <Grid size={6}>
                   <TextField
                     id="email"
+                    name="email"
                     label="Email"
                     variant="standard"
                     error={fetcher.data?.error}
@@ -316,9 +359,17 @@ export default function Contact() {
               />
             </FormControl>
             <Button variant="text" type="submit">
-              Submit
+              {fetcher.state !== "idle" ? "Sending..." : "Submit"}
             </Button>
           </fetcher.Form>
+          {fetcher.data?.apiError ?
+            <Typography variant="h5" color="Danger">
+              {fetcher.data?.apiError}
+            </Typography>
+          : <Typography variant="h5" color="Success">
+              {fetcher.data?.response}
+            </Typography>
+          }
         </Stack>
       </Grid>
     </Grid>
