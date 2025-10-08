@@ -119,7 +119,6 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
     message: message,
     recipient: recipient,
   };
-  console.log(body);
 
   const API = axios.create({
     baseURL: "https://api.sylphaxiom.com/",
@@ -129,10 +128,13 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
     },
   });
 
-  API.post("email.php", body)
+  await API.post("email.php", body)
     .then(function (response) {
-      console.log(response);
-      return { ok: true, response: response };
+      console.log("response is: " + response);
+      return {
+        ok: true,
+        resp: "Thanks! Your email was successfully sent. Have a nice day!",
+      };
     })
     .catch(function (error) {
       console.log(error);
@@ -148,9 +150,21 @@ export default function Contact() {
   );
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake");
   const [creator, setCreator] = React.useState("jacob");
+  const [submitted, setSubmitted] = React.useState(false);
   const nameHelper = fetcher.data?.nameError || "";
   const emailHelper = fetcher.data?.emailError || "";
   const subjHelper = fetcher.data?.subjError || "";
+
+  console.log(Boolean(fetcher.data?.ok));
+
+  // React.useEffect(() => {
+  //   if (submitted) {
+  //     const thanks =
+  //   }
+  // }, []);
+
+  console.log("Fetcher data is: ");
+  console.log(String(fetcher.data?.resp));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value;
@@ -286,11 +300,12 @@ export default function Contact() {
                       name="subject"
                       label="Subject"
                       variant="standard"
-                      error={fetcher.data?.error}
+                      error={fetcher.data?.subjError}
                       sx={{ width: 1 }}
                     />
                     <FormHelperText
                       id="subjHelper_field"
+                      error={fetcher.data?.subjError}
                       sx={{ mb: 2, textAlign: "center" }}
                     >
                       {subjHelper}
@@ -312,12 +327,13 @@ export default function Contact() {
                     label="Name"
                     name="name"
                     variant="standard"
-                    error={fetcher.data?.error}
+                    error={fetcher.data?.nameError}
                     sx={{ width: 1 }}
                   />
                   <FormHelperText
                     id="nameHelper_field"
                     sx={{ mb: 2, textAlign: "center" }}
+                    error={fetcher.data?.nameError}
                   >
                     {nameHelper}
                   </FormHelperText>
@@ -328,11 +344,12 @@ export default function Contact() {
                     name="email"
                     label="Email"
                     variant="standard"
-                    error={fetcher.data?.error}
+                    error={fetcher.data?.emailError}
                     sx={{ width: 1 }}
                   />
                   <FormHelperText
                     id="nameHelper_field"
+                    error={fetcher.data?.emailError}
                     sx={{ mb: 2, textAlign: "center" }}
                   >
                     {emailHelper}
@@ -352,7 +369,7 @@ export default function Contact() {
                     {text.length} character(s)
                   </Typography>
                 }
-                error={fetcher.data?.error}
+                error={fetcher.data?.msgError}
                 sx={{ backgroundColor: "whitesmoke" }}
                 placeholder="Stuff... Things... Whatever..."
               />
@@ -361,12 +378,12 @@ export default function Contact() {
               {fetcher.state !== "idle" ? "Sending..." : "Submit"}
             </Button>
           </fetcher.Form>
-          {fetcher.data?.apiError ?
-            <Typography variant="h5" color="Danger">
-              {fetcher.data?.apiError}
+          {fetcher.data?.ok ?
+            <Typography variant="h5" color="Success">
+              {fetcher.data?.resp}
             </Typography>
-          : <Typography variant="h5" color="Success">
-              {fetcher.data?.response}
+          : <Typography variant="h5" color="Danger">
+              {fetcher.data?.apiError}
             </Typography>
           }
         </Stack>
