@@ -150,7 +150,7 @@ export default function Contact() {
   );
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake");
   const [creator, setCreator] = React.useState("jacob");
-  const [submitted, setSubmitted] = React.useState(false);
+  // const [submitted, setSubmitted] = React.useState(false);
   const nameHelper = fetcher.data?.nameError || "";
   const emailHelper = fetcher.data?.emailError || "";
   const subjHelper = fetcher.data?.subjError || "";
