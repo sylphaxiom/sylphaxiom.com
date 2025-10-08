@@ -59,7 +59,7 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
   if (Boolean(validator)) {
-    console.log("Emain looks good: " + email + " - data - " + validator);
+    console.log("Email looks good: " + email);
   } else {
     console.log("Error in Email section");
     return {
@@ -123,9 +123,8 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
 
   const API = axios.create({
     baseURL: "https://api.sylphaxiom.com/",
-    timeout: 1000,
     headers: {
-      rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
+      Rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
       "Content-Type": "application/json",
     },
   });

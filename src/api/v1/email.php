@@ -1,4 +1,12 @@
 <?php
+header('Access-Control-Allow-Origin:*');
+header('Access-Control-Max-Age:3600');
+header('Access-Control-Allow-Headers:Content-type,Rain');
+header('Access-Control-Allow-Methods:POST,OPTIONS');
+if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("HTTP/1.1 200 OK");
+    die();
+}
 require_once "/home2/xikihgmy/includes/bucket.php";
 $headers = apache_request_headers();
 $dropError = <<<HTML
@@ -10,15 +18,15 @@ $dropError = <<<HTML
             </div>
         </html>
     HTML;
-$rainHead = $headers['rain'];
+$rainHead = $headers["Rain"];
 if (!isset($rainHead)) {
     http_response_code(401);
-    echo $dropError." - Rain is not present - ".var_dump($rainHead);
+    echo var_dump($headers)." - rain is not present - ".var_dump($rainHead);
     exit(1);
 }
 if (!Bucket::rainDance($rainHead)) {
     http_response_code(401);
-    echo $dropError."Rain is incorrect";
+    echo "rain is incorrect";
     exit(1);
 }
 
@@ -49,7 +57,8 @@ switch($method) {
             'Reply-To' => $email,
             'X-Mailer' => 'PHP/'.phpversion(),
             'Content-type' => 'text/plain',
-            'MIME-Version' => '1.0'
+            'MIME-Version' => '1.0',
+            'Access-Control-Allow-Origin'=>'https://api.sylphaxiom.com*',
         );
 		
 		$sent = mail($to,$subject,$message,$headers);
@@ -70,8 +79,10 @@ switch($method) {
             break;
         }
         if(!$sent) {
+            http_response_code(207);
             echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email: ".$error, "id"=>$retID]);
         } else {
+            http_response_code(200);
             echo json_encode(["result"=>"success", "message"=>"Email sent successfully: ", "id"=>$retID]);
         }
         break;
