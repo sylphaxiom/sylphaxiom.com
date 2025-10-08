@@ -10,7 +10,7 @@ $dropError = <<<HTML
             </div>
         </html>
     HTML;
-$rainHead = $headers['Rain'];
+$rainHead = $headers['rain'];
 if (!isset($rainHead)) {
     http_response_code(401);
     echo $dropError." - Rain is not present - ".var_dump($rainHead);
@@ -43,9 +43,16 @@ switch($method) {
         $who = $input['who'];
         $email = $input['email'];
         $message = $input['message'];
-		$from = array('From' => 'webmaster@sylphaxiom.com');
+		$to = $input['recipient'];
+        $headers = array(
+            'From' => $name.' <'.$email.'>',
+            'Reply-To' => $email,
+            'X-Mailer' => 'PHP/'.phpversion(),
+            'Content-type' => 'text/plain',
+            'MIME-Version' => '1.0'
+        );
 		
-		$sent = mail($email,$subject,$message,$from);
+		$sent = mail($to,$subject,$message,$headers);
 		
 		if(!$sent) {
 			$error = error_get_last()['message'];
@@ -65,7 +72,7 @@ switch($method) {
         if(!$sent) {
             echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email: ".$error, "id"=>$retID]);
         } else {
-            echo json_encode(["result"=>"success", "message"=>"Email sent successfully", "id"=>$retID]);
+            echo json_encode(["result"=>"success", "message"=>"Email sent successfully: ".var_dump($headers)." - Error data - ".var_dump($error)." - input data - ".var_dump($input), "id"=>$retID]);
         }
         break;
 
