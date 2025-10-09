@@ -14,11 +14,14 @@ import Checkbox from "@mui/material/Checkbox";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import Textarea from "@mui/joy/Textarea";
-import { useFetcher, data, redirectDocument } from "react-router";
+import { useFetcher, data } from "react-router";
 import type { Route } from "./+types/Contact";
 import axios from "axios";
 
-export async function clientAction({ request }: Route.ClientActionArgs) {
+export async function clientAction({
+  params,
+  request,
+}: Route.ClientActionArgs) {
   await new Promise((res) => setTimeout(res, 1000));
   let formData = await request.formData();
   console.log("You're in the action function ");
@@ -100,7 +103,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   }
 
   if (Object.keys(errs).length > 0) {
-    return data({ status: 400, errs: errs });
+    return data({ status: 400, msg: errs });
   }
 
   // Form the API call and await the response
@@ -122,14 +125,18 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   });
 
   await API.post("email.php", body)
-    .then(function (_response) {
-      console.log("Attempting to redirect to /contact/sub");
+    .then(function (response) {
+      console.log("Attempting to redirect to /contact/" + response.data.result);
       delete errs.apiError;
-      return redirectDocument("/contact/?sub=true");
+      params.sub = response.data.result;
+      return data({
+        status: response.data.status,
+        msg: response.data.message,
+      });
     })
     .catch(function (error) {
       console.log(error);
-      return data({ status: error.status, apiError: error.message });
+      return data({ status: error.status, msg: error.message });
     });
 }
 
@@ -137,8 +144,9 @@ export async function clientLoader({
   params,
   request,
 }: Route.ClientLoaderArgs) {
-  console.log("params in loader function: " + JSON.stringify(params));
-  console.log("request in loader function: " + JSON.stringify(request));
+  console.log("params in loader function: " + JSON.stringify(params.sub));
+  console.log("request in loader function: " + JSON.stringify(request.body));
+  return { params, request };
 }
 
 export default function Contact() {
@@ -150,10 +158,10 @@ export default function Contact() {
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake");
   const [creator, setCreator] = React.useState("jacob");
   // const [submitted, setSubmitted] = React.useState(false);
-  const nameHelper = fetcher.data?.errs.nameError || "";
-  const emailHelper = fetcher.data?.errs.emailError || "";
-  const subjHelper = fetcher.data?.errs.subjError || "";
-  const msgHelper = fetcher.data?.errs.msgError || "";
+  const nameHelper = fetcher.data?.msg.nameError || "";
+  const emailHelper = fetcher.data?.msg?.emailError || "";
+  const subjHelper = fetcher.data?.msg?.subjError || "";
+  const msgHelper = fetcher.data?.msg?.msgError || "";
   const results = fetcher.data?.status || 0;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,12 +192,7 @@ export default function Contact() {
         setCreator("ty");
         break;
       default:
-        console.log(
-          "What kind of fuckery did you do to get here? Only checkbox and radio values should be passed in here.\nLooks like your dumb-ass forgot to add a case. Tsk, tsk."
-        );
-        console.log(
-          "ugh, you complain too much. Here is some data:\n" + target
-        );
+        console.log("Contact.handleChange.switch.default.ERR");
     }
   };
 
@@ -209,7 +212,7 @@ export default function Contact() {
           <Typography variant="h3">
             Fill out the form below and we'll get right back to you!
           </Typography>
-          <fetcher.Form method="POST">
+          <fetcher.Form method="post">
             <FormControl sx={{ m: 4 }} focused>
               <FormLabel id="who_label" sx={{ mt: 2 }}>
                 Who do you want to contact?
@@ -290,7 +293,7 @@ export default function Contact() {
                       name="subject"
                       label="Subject"
                       variant="standard"
-                      error={fetcher.data?.errs.subjError}
+                      error={fetcher.data?.msg.subjError}
                       sx={{ width: 1 }}
                     />
                     <FormHelperText
@@ -317,13 +320,13 @@ export default function Contact() {
                     label="Name"
                     name="name"
                     variant="standard"
-                    error={fetcher.data?.errs.nameError}
+                    error={fetcher.data?.msg.nameError}
                     sx={{ width: 1 }}
                   />
                   <FormHelperText
                     id="nameHelper_field"
                     sx={{ mb: 2, textAlign: "center" }}
-                    error={fetcher.data?.errs.nameError}
+                    error={fetcher.data?.msg.nameError}
                   >
                     {nameHelper}
                   </FormHelperText>
@@ -334,12 +337,12 @@ export default function Contact() {
                     name="email"
                     label="Email"
                     variant="standard"
-                    error={fetcher.data?.errs.emailError}
+                    error={fetcher.data?.msg.emailError}
                     sx={{ width: 1 }}
                   />
                   <FormHelperText
                     id="nameHelper_field"
-                    error={fetcher.data?.errs.emailError}
+                    error={fetcher.data?.msg.emailError}
                     sx={{ mb: 2, textAlign: "center" }}
                   >
                     {emailHelper}
@@ -359,13 +362,13 @@ export default function Contact() {
                     {text.length} character(s)
                   </Typography>
                 }
-                error={fetcher.data?.errs.msgError}
+                error={fetcher.data?.msg.msgError}
                 sx={{ backgroundColor: "whitesmoke" }}
                 placeholder="Stuff... Things... Whatever..."
               />
               <FormHelperText
                 id="msgHelper_field"
-                error={fetcher.data?.errs.msgError}
+                error={fetcher.data?.msg.msgError}
                 sx={{ mb: 2, textAlign: "center" }}
               >
                 {msgHelper}
@@ -377,10 +380,10 @@ export default function Contact() {
           </fetcher.Form>
           {results < 300 ?
             <Typography variant="h5" color="Success">
-              {fetcher.data?.data}
+              {fetcher.data?.msg}
             </Typography>
           : <Typography variant="h5" color="Danger">
-              {fetcher.data?.errs.apiError}
+              {fetcher.data?.msg.apiError}
             </Typography>
           }
         </Stack>
