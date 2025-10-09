@@ -25,7 +25,7 @@ purposes until I set up a more perminent DB and architecture.
 
 ## Architecture/Design
 
-I am using Ract.ts as the front end framework. Some of my additional functionality
+I am using Ract.ts as the front end framework. Some of my additional functionalities
 in the app are using additional libraries and design patterns: 
 
 - Styling is being done with [MUI](https://mui.com/material-ui/ "MUI documentation") components and custom CSS.
@@ -35,4 +35,39 @@ in the app are using additional libraries and design patterns:
 - API testing done with [Postman](https://www.postman.com/ "Postman home page")
 - API code written in generic PHP (no framework)
 - REST calls made by the site use [axios](https://axios-http.com/docs/intro "axios documentation")
-- 
+
+The site is built to be modular. While it is not structured that way now, I intend to
+implement a custom CMS to allow the format to expand with user-base. I would like to use
+this site for future business and have decided to split the application into 2 sides.
+The portfolio side and the creative side. The portfolio side is intended to be a place
+where creators can have their own profile to display their personal work. This is
+separate from the main site so it can stand alone if someone wanted to use it as
+a professional portfolio. The creative side is intended to be a front-end for the
+business itself. A place for creative people to get together and collaborate on
+projects. I also intend for this to be the entry point for my D&D application.
+
+With that in mind, you can see a clear division in the routing of the application.
+The Cover.tsx page is being used as the landing point. From there users can click a
+button to go to the portfolio side of the app or the creative side of the app. Once
+they navigate to their chosen side of the application, the navbar at the top populates
+and displays the available pages. There is an array in Navigation.tsx which contains
+any paths that we do not want to display. This is to prevent people from going to 
+pages that are not completed yet. The contact page is shared between both sides of
+the application. The navigation links there merely let you choose Portfolio or Creative.
+
+## Supporting Components
+
+For this project I also built some Python scripts to aid me in my development and
+deployment of the application. Since I am testing locally with Vite through VS Code and
+WAMP, I also have set up a subdirectory on the public website to be used as a testing
+area for this, or any other application I am working on. The API calls also go to and
+from a subdomain. The python scripts that I build can be found in the py_scripts repo
+here. They are basic and are called after build operations (see package.json for commands)
+
+The script moves all files necessary for the project after build to a staging directory.
+I have set up API, DEV, and PROD staging areas in my directory tree. Each of those areas
+has a directory for the project and a cache to save the last version of the deployed app.
+After the script caches the previous build and moves the current build to the staging area
+After everything is staged, the script uses [Paramiko](https://docs.paramiko.org/en/stable/ "paramiko documentation")
+to FTP the files to the remote web host. They are also (depending on the switches used) moves
+to the WAMP directory for additional local testing.
