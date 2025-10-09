@@ -1,4 +1,4 @@
-import {type RouteConfig, route, index,} from "@react-router/dev/routes"
+import {type RouteConfig, route, layout, index,} from "@react-router/dev/routes"
 import "react-router"
 declare module "react-router"{
     interface AppLoadContext {
@@ -22,7 +22,10 @@ export default [
         route("assets", "./components/Assets.tsx"),
         route("writing", "./components/Writing.tsx"),
     ]),
-    route("contact/:sub?", "./components/Navigation.tsx", {id:"contact"}, [
-        index("./components/Contact.tsx")
+    route("contact", "./components/Navigation.tsx", {id:"contact"}, [
+        layout("./components/Contact.tsx",[
+            index("./components/FormContact.tsx", {id:"formContact"}),
+            route("contact/:sub", "./components/SubContact.tsx")
+        ])
     ]),
 ] satisfies RouteConfig
