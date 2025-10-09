@@ -22,7 +22,7 @@ export default [
         route("assets", "./components/Assets.tsx"),
         route("writing", "./components/Writing.tsx"),
     ]),
-    route("contact", "./components/Navigation.tsx", {id:"contact"}, [
+    route("contact/:sub?", "./components/Navigation.tsx", {id:"contact"}, [
         index("./components/Contact.tsx")
     ]),
 ] satisfies RouteConfig

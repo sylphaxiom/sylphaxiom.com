@@ -14,11 +14,11 @@ import Checkbox from "@mui/material/Checkbox";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
 import Textarea from "@mui/joy/Textarea";
-import { useFetcher } from "react-router";
+import { useFetcher, data, redirectDocument } from "react-router";
 import type { Route } from "./+types/Contact";
 import axios from "axios";
 
-export async function clientAction({ request }: Route.ClientLoaderArgs) {
+export async function clientAction({ request }: Route.ClientActionArgs) {
   await new Promise((res) => setTimeout(res, 1000));
   let formData = await request.formData();
   console.log("You're in the action function ");
@@ -29,27 +29,21 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
   const message = String(formData.get("message"));
   let recipient = "";
   let creator = "";
-
-  console.log(
-    "Var check:\n%s\n%s\n%s\n%s\n%s",
-    name,
-    who,
-    email,
-    subject,
-    message
-  );
+  let errs: { [k: string]: string | null } = {};
 
   // Validate name field, if needed
   if (Boolean(name.match(/^[A-Za-z\s]+$/))) {
     console.log("Name looks good: " + name);
+    delete errs.nameError;
   } else {
     console.log("Error in Name section");
-    return {
-      ok: false,
-      nameError:
-        "Looks like theres some characters other than letters and spaces, have another look and try again: " +
-        name,
-    };
+    if (name === "") {
+      errs.nameError = "Name field cannot be blank.";
+    } else if (name.match(/[^A-Za-z\s]+/)) {
+      errs.nameError = "Only letters and spaces may be used.";
+    } else {
+      errs.nameError = "An Unknown error occurred.";
+    }
   }
 
   // Validate email field
@@ -60,14 +54,10 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
     );
   if (Boolean(validator)) {
     console.log("Email looks good: " + email);
+    delete errs.emailError;
   } else {
     console.log("Error in Email section");
-    return {
-      ok: false,
-      emailError:
-        "There appears to be an issue with your email address, have another look and try again: " +
-        email,
-    };
+    errs.emailError = "Check your email address";
   }
 
   // Apply Who logic
@@ -89,25 +79,28 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
   // Subject validation
   if (subject.length < 255) {
     console.log("Subject looks good: " + subject);
+    delete errs.subjError;
   } else {
     console.log("Error in Subject section");
-    return {
-      ok: false,
-      subjError:
-        "Your subject is a bit too long. Please keep it under 255 characters.",
-    };
+    errs.subjError = "Subject may not exceed 255 characters.";
   }
 
   // Message validation
   if (message.length < 65535) {
-    console.log("Message looks good: " + message);
+    if (message.length > 0) {
+      console.log("message looks good: " + message);
+      delete errs.msgError;
+    } else {
+      console.log("Error in Message section");
+      errs.msgError = "Message cannot be empty.";
+    }
   } else {
     console.log("Error in Message section");
-    return {
-      ok: false,
-      msgError:
-        "Your message is a bit too long. Please keep it under (only) 65,535 characters.",
-    };
+    errs.msgError = "Message may not exceed 65,535 characters.";
+  }
+
+  if (Object.keys(errs).length > 0) {
+    return data({ status: 400, errs: errs });
   }
 
   // Form the API call and await the response
@@ -129,17 +122,23 @@ export async function clientAction({ request }: Route.ClientLoaderArgs) {
   });
 
   await API.post("email.php", body)
-    .then(function (response) {
-      console.log("response is: " + response);
-      return {
-        ok: true,
-        resp: "Thanks! Your email was successfully sent. Have a nice day!",
-      };
+    .then(function (_response) {
+      console.log("Attempting to redirect to /contact/sub");
+      delete errs.apiError;
+      return redirectDocument("/contact/?sub=true");
     })
     .catch(function (error) {
       console.log(error);
-      return { ok: false, apiError: error };
+      return data({ status: error.status, apiError: error.message });
     });
+}
+
+export async function clientLoader({
+  params,
+  request,
+}: Route.ClientLoaderArgs) {
+  console.log("params in loader function: " + JSON.stringify(params));
+  console.log("request in loader function: " + JSON.stringify(request));
 }
 
 export default function Contact() {
@@ -151,20 +150,11 @@ export default function Contact() {
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake");
   const [creator, setCreator] = React.useState("jacob");
   // const [submitted, setSubmitted] = React.useState(false);
-  const nameHelper = fetcher.data?.nameError || "";
-  const emailHelper = fetcher.data?.emailError || "";
-  const subjHelper = fetcher.data?.subjError || "";
-
-  console.log(Boolean(fetcher.data?.ok));
-
-  // React.useEffect(() => {
-  //   if (submitted) {
-  //     const thanks =
-  //   }
-  // }, []);
-
-  console.log("Fetcher data is: ");
-  console.log(String(fetcher.data?.resp));
+  const nameHelper = fetcher.data?.errs.nameError || "";
+  const emailHelper = fetcher.data?.errs.emailError || "";
+  const subjHelper = fetcher.data?.errs.subjError || "";
+  const msgHelper = fetcher.data?.errs.msgError || "";
+  const results = fetcher.data?.status || 0;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value;
@@ -300,7 +290,7 @@ export default function Contact() {
                       name="subject"
                       label="Subject"
                       variant="standard"
-                      error={fetcher.data?.subjError}
+                      error={fetcher.data?.errs.subjError}
                       sx={{ width: 1 }}
                     />
                     <FormHelperText
@@ -327,13 +317,13 @@ export default function Contact() {
                     label="Name"
                     name="name"
                     variant="standard"
-                    error={fetcher.data?.nameError}
+                    error={fetcher.data?.errs.nameError}
                     sx={{ width: 1 }}
                   />
                   <FormHelperText
                     id="nameHelper_field"
                     sx={{ mb: 2, textAlign: "center" }}
-                    error={fetcher.data?.nameError}
+                    error={fetcher.data?.errs.nameError}
                   >
                     {nameHelper}
                   </FormHelperText>
@@ -344,12 +334,12 @@ export default function Contact() {
                     name="email"
                     label="Email"
                     variant="standard"
-                    error={fetcher.data?.emailError}
+                    error={fetcher.data?.errs.emailError}
                     sx={{ width: 1 }}
                   />
                   <FormHelperText
                     id="nameHelper_field"
-                    error={fetcher.data?.emailError}
+                    error={fetcher.data?.errs.emailError}
                     sx={{ mb: 2, textAlign: "center" }}
                   >
                     {emailHelper}
@@ -369,21 +359,28 @@ export default function Contact() {
                     {text.length} character(s)
                   </Typography>
                 }
-                error={fetcher.data?.msgError}
+                error={fetcher.data?.errs.msgError}
                 sx={{ backgroundColor: "whitesmoke" }}
                 placeholder="Stuff... Things... Whatever..."
               />
+              <FormHelperText
+                id="msgHelper_field"
+                error={fetcher.data?.errs.msgError}
+                sx={{ mb: 2, textAlign: "center" }}
+              >
+                {msgHelper}
+              </FormHelperText>
             </FormControl>
             <Button variant="text" type="submit">
               {fetcher.state !== "idle" ? "Sending..." : "Submit"}
             </Button>
           </fetcher.Form>
-          {fetcher.data?.ok ?
+          {results < 300 ?
             <Typography variant="h5" color="Success">
-              {fetcher.data?.resp}
+              {fetcher.data?.data}
             </Typography>
           : <Typography variant="h5" color="Danger">
-              {fetcher.data?.apiError}
+              {fetcher.data?.errs.apiError}
             </Typography>
           }
         </Stack>
