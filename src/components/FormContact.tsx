@@ -97,35 +97,36 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   }
 
   // Form the API call and await the response
-  const body = {
-    name: name,
-    subject: subject,
-    who: who,
-    email: email,
-    message: message,
-    recipient: recipient,
-  };
+  // const body = {
+  //   name: name,
+  //   subject: subject,
+  //   who: who,
+  //   email: email,
+  //   message: message,
+  //   recipient: recipient,
+  // };
 
-  const API = axios.create({
-    baseURL: "https://api.sylphaxiom.com/",
-    headers: {
-      Rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
-      "Content-Type": "application/json",
-    },
-  });
+  // const API = axios.create({
+  //   baseURL: "https://api.sylphaxiom.com/",
+  //   headers: {
+  //     Rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
+  //     "Content-Type": "application/json",
+  //   },
+  // });
 
-  await API.put("email.php", body)
-    .then(function (response) {
-      delete errs.apiError;
-      status = 200;
-      msg = response.data.message;
-    })
-    .catch(function (error) {
-      console.log(error);
-      status = 400;
-      msg = error.message;
-    });
-  return data({ status, msg });
+  // await API.put("email.php", body)
+  //   .then(function (response) {
+  //     delete errs.apiError;
+  //     status = 200;
+  //     msg = response.data.message;
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //     status = 400;
+  //     msg = error.message;
+  //   });
+  // return data({ status, msg });
+  return data({ status: 200, msg: "Looks good for testing" }); // Only here for testing purposes so the actual API is not called.
 }
 
 export default function FormContact() {
@@ -190,7 +191,7 @@ export default function FormContact() {
 
   return (
     <fetcher.Form method="post" key={"contactForm"}>
-      <FormControl sx={{ m: 4 }} focused>
+      <FormControl sx={{ m: 4, mb: 2 }} focused>
         <FormLabel id="who_label" sx={{ mt: 2 }}>
           Who do you want to contact?
         </FormLabel>
@@ -343,15 +344,17 @@ export default function FormContact() {
         <FormHelperText
           id="msgHelper_field"
           error={isMsgErr}
-          sx={{ mb: 2, textAlign: "center" }}
+          sx={{ mb: 1, textAlign: "center" }}
         >
           {msgHelper}
         </FormHelperText>
       </FormControl>
       {submitted === 200 && (
-        <div>Here is some additional data: {JSON.stringify(fetcher.data)}</div>
+        <Typography sx={{ color: "success", fontSize: "1.5em" }}>
+          Thanks for your feedback! {fetcher.data.msg}
+        </Typography>
       )}
-      <Button variant="text" type="submit">
+      <Button variant="text" type="submit" sx={{ mt: 1 }}>
         {fetcher.state !== "idle" ? "Sending..." : "Submit"}
       </Button>
     </fetcher.Form>
