@@ -25,7 +25,6 @@ export default [
     route("contact", "./components/Navigation.tsx", {id:"contact"}, [
         layout("./components/Contact.tsx",[
             index("./components/FormContact.tsx", {id:"formContact"}),
-            route("contact/:sub", "./components/SubContact.tsx")
         ])
     ]),
 ] satisfies RouteConfig

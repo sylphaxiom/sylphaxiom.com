@@ -2,7 +2,7 @@
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Max-Age:3600');
 header('Access-Control-Allow-Headers:Content-type,Rain');
-header('Access-Control-Allow-Methods:POST,OPTIONS');
+header('Access-Control-Allow-Methods:PUT,OPTIONS');
 if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("HTTP/1.1 200 OK");
     die();
@@ -21,7 +21,7 @@ $dropError = <<<HTML
 $rainHead = $headers["Rain"];
 if (!isset($rainHead)) {
     http_response_code(401);
-    echo var_dump($headers)." - rain is not present - ".var_dump($rainHead);
+    echo "rain is not present";
     exit(1);
 }
 if (!Bucket::rainDance($rainHead)) {
@@ -45,6 +45,10 @@ switch($method) {
         break;
     
     case 'POST':
+        // POST info like updates and creations (requiring navigation and feedback)   
+        break;     
+
+    case 'PUT':
         /* Set vars from input stream */
         $name = $input['name'];
         $subject = $name . " - " . $input['subject'];
@@ -83,12 +87,8 @@ switch($method) {
             echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email: ".$error, "id"=>$retID]);
         } else {
             http_response_code(200);
-            echo json_encode(["result"=>"success", "message"=>"Email sent successfully: ", "id"=>$retID]);
+            echo json_encode(["result"=>"success", "message"=>"Email sent successfully", "id"=>$retID]);
         }
-        break;
-
-    case 'PUT':
-        // PUT info like UPDATE statements.
         break;
         
     case 'DELETE':
