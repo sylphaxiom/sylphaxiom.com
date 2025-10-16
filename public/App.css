@@ -38,9 +38,10 @@
 
 /* Custom additions */
 
-body {
+/* body {
   background-color: whitesmoke!important; /* setting this for the time being until I set up a theme */
-}
+/*} 
+*/
 
 /* #everything {
   width: 100%;
@@ -56,9 +57,9 @@ body {
 } 
 */
 
-#navHead {
+/* #navHead {
   background-color: whitesmoke;
-}
+} */
 
 .coverBtn:hover {
   color: lightgrey;
@@ -84,11 +85,14 @@ body {
   font-style: normal;
   font-size: 4em;
 }
-#ballet:hover {
+#ballet::after {
   background-image: url("/download.svg");
   background-size: 100px 100px;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(245,245,245,0.8);
-  background-blend-mode: lighten;
+  opacity: .8;
+}
+
+img.svg, svg {
+  filter:invert()
 }

@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import ButtonBase from "@mui/material/ButtonBase";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
+import theme from "../theme";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
@@ -71,11 +72,11 @@ export default function Portfolio() {
               bottom: topClimber, //135px from the top
               width: 2, //const
               originY: 0, //const
-              backgroundColor: "black", //const
+              backgroundColor: theme.vars?.palette.text.primary, //const
             }}
           />
           <motion.img
-            className="climberBg"
+            className="climberBg svg"
             id="scrollDude"
             key="scrollDude"
             alt="Just a dude rapelling down the DOM"
@@ -99,11 +100,11 @@ export default function Portfolio() {
               bottom: 500, //const
               width: 2, //const
               originY: point2, //const
-              backgroundColor: "black", //const
+              backgroundColor: theme.vars?.palette.text.primary, //const
             }}
           />
           <motion.img
-            className="climberBg"
+            className="climberBg svg"
             id="ropeBottom"
             key="ropeBottom"
             alt="some squiggles that look like a dangling rope"
@@ -205,6 +206,7 @@ export default function Portfolio() {
               height={30}
               alt="a flying saucer"
               src="./saucer_asset-20x15.svg"
+              className="svg"
             />
             <motion.img
               layout
@@ -213,12 +215,14 @@ export default function Portfolio() {
               height={30}
               alt="a rays"
               src={"./rays" + rays + "_asset-20x15.svg"}
+              className="svg"
             />
             <img
               width={40}
               height={30}
               alt="a cow"
               src="./cow_asset-20x15.svg"
+              className="svg"
             />
           </Grid>
         </Grid>
@@ -284,6 +288,7 @@ export default function Portfolio() {
             width={250}
             height={150}
             src="./filligree.svg"
+            className="svg"
             alt="some pretty curves"
           />
         </Grid>
@@ -299,6 +304,7 @@ export default function Portfolio() {
                 width={100}
                 height={100}
                 src="./github-mark.svg"
+                className="svg"
                 alt="GitHub logo linking to github.com/sylphaxiom"
               />
             </IconButton>
@@ -313,6 +319,7 @@ export default function Portfolio() {
               sx={{ py: 2 }}
             >
               Resume
+              <span></span>
             </ButtonBase>
           </Tooltip>
         </Grid>
@@ -341,6 +348,7 @@ export default function Portfolio() {
             width={250}
             height={150}
             src="./filligree.svg"
+            className="svg"
             alt="some pretty curves"
           />
         </Grid>
@@ -366,25 +374,21 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./PHP.svg" />
+              <img width={50} height={50} src="./PHP.svg" className="svg" />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./Bash_light.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./JS.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
+              <img
+                width={50}
+                height={50}
+                src="./Bash_light.svg"
+                className="svg"
+              />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./css_old.svg" />
+              <img width={50} height={50} src="./JS.svg" className="svg" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -393,37 +397,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./mysql.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./playwright.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./salesforce.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./GitHub_light.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./linux.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./TypeScript.svg" />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} style={{ opacity: 0 }} />
-            </Grid>
-            <Grid size={1}>
-              <img width={50} height={50} src="./html5.svg" />
+              <img width={50} height={50} src="./css_old.svg" className="svg" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -432,7 +406,71 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./materialui.svg" />
+              <img width={50} height={50} src="./mysql.svg" className="svg" />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} style={{ opacity: 0 }} />
+            </Grid>
+            <Grid size={1}>
+              <img
+                width={50}
+                height={50}
+                src="./playwright.svg"
+                className="svg"
+              />
+            </Grid>
+            <Grid size={1}>
+              <img
+                width={50}
+                height={50}
+                src="./salesforce.svg"
+                className="svg"
+              />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} style={{ opacity: 0 }} />
+            </Grid>
+            <Grid size={1}>
+              <img
+                width={50}
+                height={50}
+                src="./GitHub_light.svg"
+                className="svg"
+              />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} style={{ opacity: 0 }} />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} src="./linux.svg" className="svg" />
+            </Grid>
+            <Grid size={1}>
+              <img
+                width={50}
+                height={50}
+                src="./TypeScript.svg"
+                className="svg"
+              />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} style={{ opacity: 0 }} />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} src="./html5.svg" className="svg" />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} style={{ opacity: 0 }} />
+            </Grid>
+            <Grid size={1}>
+              <img width={50} height={50} style={{ opacity: 0 }} />
+            </Grid>
+            <Grid size={1}>
+              <img
+                width={50}
+                height={50}
+                src="./materialui.svg"
+                className="svg"
+              />
             </Grid>
           </Grid>
         </Grid>
@@ -457,6 +495,7 @@ export default function Portfolio() {
                   component="img"
                   src="./sylphaxiom_web_512x.svg"
                   alt="curious guy in a browser"
+                  className="svg"
                   sx={{
                     width: "200px",
                     height: "200px",
@@ -498,18 +537,21 @@ export default function Portfolio() {
                     height={75}
                     style={{ marginRight: 15 }}
                     src="./map_draw_350x.svg"
+                    className="svg"
                   />
                   <img
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./talas-hey-buddy.svg"
+                    className="svg"
                   />
                   <img
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./cow_asset-20x15.svg"
+                    className="svg"
                   />
                 </div>
                 <Typography sx={{ py: 1 }}>
@@ -544,6 +586,7 @@ export default function Portfolio() {
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./kothis.svg"
+                    className="svg"
                   />
                   <img
                     width={75}
@@ -579,18 +622,21 @@ export default function Portfolio() {
                     height={75}
                     style={{ marginRight: 15 }}
                     src="./powershell.svg"
+                    className="svg"
                   />
                   <img
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./react.svg"
+                    className="svg"
                   />
                   <img
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./Python.svg"
+                    className="svg"
                   />
                 </div>
                 <Typography sx={{ py: 1 }}>

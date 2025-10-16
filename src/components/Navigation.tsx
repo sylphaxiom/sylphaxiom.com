@@ -14,6 +14,7 @@ import { useMatch } from "react-router";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import theme from "../theme";
 
 export default function Navigation() {
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
@@ -119,7 +120,7 @@ export default function Navigation() {
           px: { xs: 2, md: 10, lg: 0 },
           position: "fixed",
           top: 0,
-          backgroundColor: "white",
+          backgroundColor: theme.vars?.palette.background.default,
           zIndex: 1,
         }}
       >
@@ -139,6 +140,7 @@ export default function Navigation() {
                 src={"/sylphaxiom_web_512x.svg"}
                 alt="curious guy in a browser"
                 width={100}
+                className="svg"
                 height={100}
               />
             </motion.div>
