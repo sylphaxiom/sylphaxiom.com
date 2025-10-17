@@ -7,10 +7,10 @@
     "dev": "vite && react-router dev",
     "kill": "npx kill-port 5173",
     "demo": "tsc -b && vite build --base=/test/",
-    "build": "tsc -b && react-router build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com",
+    "build": "tsc -b && vite build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com",
     "api": "py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com --API",
-    "production": "npm update && tsc -b && react-router build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com --PROD",
-    "development": "npm update && tsc -b && react-router build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com --DEV",
+    "production": "npm update && tsc -b && vite build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com --PROD",
+    "development": "npm update && tsc -b && vite build && py C:\\users\\image\\code_projects\\py_scripts\\DevDeploy.py sylphaxiom.com --DEV",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "react-router typegen && tsc"

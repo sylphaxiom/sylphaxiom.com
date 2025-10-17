@@ -328,7 +328,9 @@ export default function FormContact() {
           id="message"
           minRows={4}
           value={text}
-          onChange={(event) => setText(event.target.value)}
+          onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setText(event.target.value)
+          }
           name="message"
           aria-label="message"
           variant="outlined"
