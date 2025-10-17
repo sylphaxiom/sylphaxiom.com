@@ -12,6 +12,7 @@ import ButtonBase from "@mui/material/ButtonBase";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import theme from "../theme";
+import Link from "@mui/material/Link";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
@@ -206,7 +207,7 @@ export default function Portfolio() {
               height={30}
               alt="a flying saucer"
               src="./saucer_asset-20x15.svg"
-              className="svg"
+              className=""
             />
             <motion.img
               layout
@@ -237,9 +238,9 @@ export default function Portfolio() {
           <Typography sx={{ py: 2 }}>
             ...Only joking, nobody wants to read that. If you want to read
             something,{" "}
-            <a id="SotN_ad" href="https://a.co/d/6Mezoxp">
+            <Link id="SotN_ad" href="https://a.co/d/6Mezoxp">
               here
-            </a>{" "}
+            </Link>{" "}
             is a small book you can read (I wrote that too, don't worry.) If
             you're here, you are looking to know who I am, and what I can do. I
             Got my AAS in software development with a certificate in web
@@ -311,7 +312,7 @@ export default function Portfolio() {
           </Tooltip>
         </Grid>
         <Grid size={{ xs: 12, sm: 3, xl: 2 }}>
-          <Tooltip title="Resume">
+          <Tooltip title="Download PDF Resume">
             <ButtonBase
               id="ballet"
               aria-label="download_resume"
@@ -319,7 +320,13 @@ export default function Portfolio() {
               sx={{ py: 2 }}
             >
               Resume
-              <span></span>
+              <img
+                id="downImg"
+                src="./download.svg"
+                width={100}
+                height={100}
+                style={{ position: "absolute", opacity: 0.2 }}
+              ></img>
             </ButtonBase>
           </Tooltip>
         </Grid>
@@ -374,7 +381,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./PHP.svg" className="svg" />
+              <img width={50} height={50} src="./PHP.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img
@@ -388,7 +395,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./JS.svg" className="svg" />
+              <img width={50} height={50} src="./JS.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -397,7 +404,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./css_old.svg" className="svg" />
+              <img width={50} height={50} src="./css_old.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -406,26 +413,16 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./mysql.svg" className="svg" />
+              <img width={50} height={50} src="./mysql.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img
-                width={50}
-                height={50}
-                src="./playwright.svg"
-                className="svg"
-              />
+              <img width={50} height={50} src="./playwright.svg" className="" />
             </Grid>
             <Grid size={1}>
-              <img
-                width={50}
-                height={50}
-                src="./salesforce.svg"
-                className="svg"
-              />
+              <img width={50} height={50} src="./salesforce.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -442,7 +439,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./linux.svg" className="svg" />
+              <img width={50} height={50} src="./linux.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img
@@ -456,7 +453,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img width={50} height={50} src="./html5.svg" className="svg" />
+              <img width={50} height={50} src="./html5.svg" className="" />
             </Grid>
             <Grid size={1}>
               <img width={50} height={50} style={{ opacity: 0 }} />
@@ -465,12 +462,7 @@ export default function Portfolio() {
               <img width={50} height={50} style={{ opacity: 0 }} />
             </Grid>
             <Grid size={1}>
-              <img
-                width={50}
-                height={50}
-                src="./materialui.svg"
-                className="svg"
-              />
+              <img width={50} height={50} src="./materialui.svg" className="" />
             </Grid>
           </Grid>
         </Grid>
@@ -544,7 +536,7 @@ export default function Portfolio() {
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./talas-hey-buddy.svg"
-                    className="svg"
+                    className=""
                   />
                   <img
                     width={75}
@@ -622,21 +614,21 @@ export default function Portfolio() {
                     height={75}
                     style={{ marginRight: 15 }}
                     src="./powershell.svg"
-                    className="svg"
+                    className=""
                   />
                   <img
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./react.svg"
-                    className="svg"
+                    className=""
                   />
                   <img
                     width={75}
                     height={75}
                     style={{ marginLeft: 15 }}
                     src="./Python.svg"
-                    className="svg"
+                    className=""
                   />
                 </div>
                 <Typography sx={{ py: 1 }}>

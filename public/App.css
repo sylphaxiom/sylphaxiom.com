@@ -85,14 +85,16 @@
   font-style: normal;
   font-size: 4em;
 }
-#ballet::after {
-  background-image: url("/download.svg");
-  background-size: 100px 100px;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: .8;
+
+#ballet:hover #downImg{
+  display: block;
+}
+#downImg{
+  display: none;
 }
 
-img.svg, svg {
-  filter:invert()
+@media (prefers-color-scheme: dark) {
+  img.svg, svg {
+    filter: hue-rotate(180deg) invert() contrast(90%)
+  }
 }
