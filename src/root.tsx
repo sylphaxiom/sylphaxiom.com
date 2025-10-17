@@ -6,7 +6,7 @@ import theme from "./theme";
 import { ThemeProvider, THEME_ID as MUI } from "@mui/material/styles";
 import { useColorScheme } from "@mui/material/styles";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
-import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
+// import { CssVarsProvider as JoyCssVarsProvider } from "@mui/joy/styles";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { systemMode } = useColorScheme();
@@ -61,11 +61,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             defaultMode={systemMode}
             theme={{ [MUI]: theme }}
           >
-            <JoyCssVarsProvider>
-              <CssBaseline />
-              {children}
-              <ScrollRestoration />
-            </JoyCssVarsProvider>
+            {/* <JoyCssVarsProvider> */}
+            <CssBaseline />
+            {children}
+            <ScrollRestoration />
+            {/* </JoyCssVarsProvider> */}
           </ThemeProvider>
         </React.Fragment>
         <Scripts />
