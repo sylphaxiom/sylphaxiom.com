@@ -14,6 +14,7 @@ export default function Home() {
         component={"img"}
         title="stick-figure construction workers working on a web page"
         src="/construction.svg"
+        className="svg"
         sx={{ width: 500, height: 500, mx: "auto" }}
       />
     </Card>

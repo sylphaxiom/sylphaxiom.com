@@ -35,6 +35,7 @@ export default function Placeholder() {
                 width={350}
                 alt="quill drawing a map"
                 src="./map_draw_350x.svg"
+                className="svg"
                 sx={{ maxHeight: 350, maxWidth: 350 }}
               />
             </Grid>
@@ -121,6 +122,7 @@ export default function Placeholder() {
               component="img"
               alt="stick-figure construction workers building a web page"
               src="./construction.svg"
+              className="svg"
               sx={{ height: 350, width: 350, float: "left" }}
             />
             <Divider orientation="vertical" flexItem sx={{ px: 1 }} />

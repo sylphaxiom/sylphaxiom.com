@@ -154,6 +154,6 @@ test('LinkedIn link works', async({page})=>{
 test('check image visible', async({page})=>{
 
     const img = page.locator('img');
-    await expect(img).toHaveCount(45); // There are 45 images on the portfolio page after adding ghLogo and liLogo
+    await expect(img).toHaveCount(46); // There are 46 images on the portfolio page after adding ghLogo and liLogo
 
 });
