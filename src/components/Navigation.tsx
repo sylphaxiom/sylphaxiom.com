@@ -282,6 +282,7 @@ export default function Navigation() {
                 }
                 key={"tab" + index}
                 id={"tab" + index}
+                aria-controls={page}
               >
                 {page}
               </MenuItem>

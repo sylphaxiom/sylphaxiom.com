@@ -44,7 +44,7 @@ export default function Loading() {
       }}
     >
       <img
-        src={"/loading.svg"}
+        src={"/waiting_500x200.svg"}
         id="loading_img"
         className="svg"
         alt="A dude waiting by his computer with his 2 cats"

@@ -48,12 +48,14 @@ test('check tabs', async({page})=>{
 
     await expect(item).toHaveCount(1)
 
+    const enabled = ['portfolio','contact']
+
     for await (const link of links) {
         await expect(page.getByRole(type, { name: link })).toBeVisible();
-        if (link === 'portfolio') {
+        if (link in enabled) {
             await expect(page.getByRole(type, { name: link })).toHaveAttribute('class', /Mui-selected/);
         } else {
-            await expect(page.getByRole(type, { name: link })).toHaveAttribute('aria-disabled', 'true');
+            await expect(page.getByRole(type, { name: link })).toHaveAttribute('aria-controls', link);
         }
     }
 });

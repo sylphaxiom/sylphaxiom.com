@@ -97,36 +97,36 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   }
 
   // Form the API call and await the response
-  // const body = {
-  //   name: name,
-  //   subject: subject,
-  //   who: who,
-  //   email: email,
-  //   message: message,
-  //   recipient: recipient,
-  // };
+  const body = {
+    name: name,
+    subject: subject,
+    who: who,
+    email: email,
+    message: message,
+    recipient: recipient,
+  };
 
-  // const API = axios.create({
-  //   baseURL: "https://api.sylphaxiom.com/",
-  //   headers: {
-  //     Rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
-  //     "Content-Type": "application/json",
-  //   },
-  // });
+  const API = axios.create({
+    baseURL: "https://api.sylphaxiom.com/",
+    headers: {
+      Rain: "PMGeRUcuQcOZGeE71WHJWuCPXbWX8Geul4rmpeLXx6mGDfSk9Wc4eWrgtqLl8m3z",
+      "Content-Type": "application/json",
+    },
+  });
 
-  // await API.put("email.php", body)
-  //   .then(function (response) {
-  //     delete errs.apiError;
-  //     status = 200;
-  //     msg = response.data.message;
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //     status = 400;
-  //     msg = error.message;
-  //   });
-  // return data({ status, msg });
-  return data({ status: 200, msg: "Looks good for testing" }); // Only here for testing purposes so the actual API is not called.
+  await API.put("email.php", body)
+    .then(function (response) {
+      delete errs.apiError;
+      status = 200;
+      msg = response.data.message;
+    })
+    .catch(function (error) {
+      console.log(error);
+      status = 400;
+      msg = error.message;
+    });
+  return data({ status, msg });
+  // return data({ status: 200, msg: "Looks good for testing" }); // Only here for testing purposes so the actual API is not called.
 }
 
 export default function FormContact() {
