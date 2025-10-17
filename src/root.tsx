@@ -5,6 +5,7 @@ import Loading from "./components/Loading";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
 import { useColorScheme } from "@mui/material/styles";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { systemMode } = useColorScheme();
@@ -52,8 +53,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <title>Sylphaxiom Creations</title>
       </head>
       <body>
+        <InitColorSchemeScript attribute="class" />
         <React.Fragment>
-          <ThemeProvider theme={theme} defaultMode={systemMode}>
+          <ThemeProvider
+            disableTransitionOnChange={false}
+            theme={theme}
+            defaultMode={systemMode}
+          >
             <CssBaseline />
             {children}
             <ScrollRestoration />
