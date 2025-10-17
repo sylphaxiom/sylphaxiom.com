@@ -69,7 +69,9 @@ export const light: ThemeOptions = {
 };
 
 const theme = createTheme({
-  cssVariables: true,
+  cssVariables: {
+    colorSchemeSelector: 'class'
+  },
   colorSchemes: {
     light: light,
     dark: dark,

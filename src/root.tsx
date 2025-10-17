@@ -4,8 +4,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Loading from "./components/Loading";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
+import { useColorScheme } from "@mui/material/styles";
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { systemMode } = useColorScheme();
+
   return (
     <html lang="en">
       <head>
@@ -50,7 +53,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <React.Fragment>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={theme} defaultMode={systemMode}>
             <CssBaseline />
             {children}
             <ScrollRestoration />

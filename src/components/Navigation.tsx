@@ -15,8 +15,19 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import theme from "../theme";
+import { useColorScheme } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 
 export default function Navigation() {
+  const { mode, setMode, systemMode } = useColorScheme();
+  const [_color, setColor] = React.useState(
+    systemMode?.toString() || mode?.toString()
+  );
+  if (!mode) {
+    return null;
+  }
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
   const open = Boolean(menuRef);
   // Define the pages for each group
@@ -105,6 +116,10 @@ export default function Navigation() {
   const handleClose = () => {
     setMenuRef(null);
   };
+  const handleMode = () => {
+    mode === "light" ? setMode("dark") : setMode("light");
+    setColor(mode.toString());
+  };
 
   return (
     <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0, pt: "15vh" }}>
@@ -124,11 +139,35 @@ export default function Navigation() {
           zIndex: 1,
         }}
       >
-        <Grid size={{ xs: 1, lg: 2 }} sx={{ float: "left" }}>
+        {/* <Grid size={{ xs: 1 }} sx={{ display: { sm: "block", sx: "none" } }}> */}
+        {/* <FormGroup>
+            <FormLabel component="legend">Mode</FormLabel>
+            <FormControlLabel
+              value="bottom"
+              control={<Switch color="primary" />}
+              label="Bottom"
+              labelPlacement="bottom"
+            />
+          </FormGroup> */}
+        {/* </Grid> */}
+        <Grid
+          size={{ xs: 2, lg: 2 }}
+          sx={{ float: "left", alignItems: "center" }}
+        >
+          <IconButton
+            aria-label="change mode"
+            color="secondary"
+            onClick={handleMode}
+            sx={{ display: { xs: "none", md: "inline-block" }, px: 0 }}
+          >
+            {mode === "dark" ?
+              <DarkModeOutlinedIcon />
+            : <LightModeOutlinedIcon />}
+          </IconButton>
           <Button
             component={Link}
             to={"/"}
-            sx={{ scale: { xs: 0.5, sm: 0.75, md: 1 } }}
+            sx={{ scale: { xs: 0.5, sm: 0.75, md: 1, px: 0 } }}
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -146,7 +185,7 @@ export default function Navigation() {
             </motion.div>
           </Button>
         </Grid>
-        <Grid size={{ xs: 8, lg: 6 }}>
+        <Grid size={{ xs: 7, lg: 6 }}>
           <Typography
             id="main_title"
             variant={"h2"}
@@ -208,11 +247,21 @@ export default function Navigation() {
             onClick={handleMenu}
             sx={{
               display: { xs: "block", xl: "none" },
-              mx: "auto",
+              mr: 2,
             }}
           >
             <MenuIcon fontSize="large" sx={{ transform: "scale(2)" }} />
           </Button>
+          <IconButton
+            aria-label="change mode"
+            color="secondary"
+            onClick={handleMode}
+            sx={{ display: { md: "none", xs: "inline-block" }, px: 0 }}
+          >
+            {mode === "dark" ?
+              <DarkModeOutlinedIcon />
+            : <LightModeOutlinedIcon />}
+          </IconButton>
           <Menu
             id="nav_menu"
             anchorEl={menuRef}
