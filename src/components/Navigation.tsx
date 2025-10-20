@@ -25,20 +25,15 @@ export default function Navigation() {
   const [_color, setColor] = React.useState(
     systemMode?.toString() || mode?.toString()
   );
-  if (!mode) {
-    return null;
-  }
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(menuRef);
-  // Define the pages for each group
-  const creative = ["home", "people", "projects", "contact"];
-  const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
-  const contact = ["creative", "portfolio", "contact"];
   const matchCreative = useMatch("/creative/*");
   const matchPortfolio = useMatch("/portfolio/*");
   let pages: string[];
   let base: string;
   let group: string;
+  const creative = ["home", "people", "projects", "contact"];
+  const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
+  const contact = ["creative", "portfolio", "contact"];
   if (matchCreative) {
     pages = creative;
     group = "creative";
@@ -53,6 +48,8 @@ export default function Navigation() {
     base = "contact";
   }
   const [current, setCurrent] = React.useState(base);
+  const open = Boolean(menuRef);
+  // Define the pages for each group
   const disabled: string[] = ["people", "projects", "web", "assets", "writing"]; // any  tabs we want disabled we will put here.
   let title: string;
   switch (base) {
@@ -111,6 +108,10 @@ export default function Navigation() {
   const handleClose = () => {
     setMenuRef(null);
   };
+
+  if (!mode) {
+    return null;
+  }
   const handleMode = () => {
     mode === "light" ? setMode("dark") : setMode("light");
     setColor(mode.toString());

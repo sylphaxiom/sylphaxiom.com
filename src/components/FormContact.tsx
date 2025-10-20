@@ -9,13 +9,13 @@ import FormGroup from "@mui/material/FormGroup";
 import Checkbox from "@mui/material/Checkbox";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
-import Textarea from "@mui/joy/Textarea";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { data, useFetcher } from "react-router";
 import type { Route } from "./+types/FormContact";
 import axios from "axios";
+import InputAdornment from "@mui/material/InputAdornment";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   // await new Promise((res) => setTimeout(res, 1000));
@@ -324,7 +324,7 @@ export default function FormContact() {
             </FormHelperText>
           </Grid>
         </Grid>
-        <Textarea
+        <TextField
           id="message"
           minRows={4}
           value={text}
@@ -334,11 +334,20 @@ export default function FormContact() {
           name="message"
           aria-label="message"
           variant="outlined"
-          endDecorator={
-            <Typography sx={{ ml: "auto", opacity: 0.8 }}>
-              {text.length} character(s)
-            </Typography>
-          }
+          multiline
+          rows={5}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment
+                  position="end"
+                  sx={{ ml: "auto", opacity: 0.8, alignSelf: "end" }}
+                >
+                  {text.length} character(s)
+                </InputAdornment>
+              ),
+            },
+          }}
           error={fetcher.data?.msg.msgError}
           sx={{ backgroundColor: "whitesmoke" }}
           placeholder="Stuff... Things... Whatever..."
