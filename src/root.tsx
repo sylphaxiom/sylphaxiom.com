@@ -3,13 +3,10 @@ import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Loading from "./components/Loading";
 import theme from "./theme";
-import { ThemeProvider, THEME_ID as MUI } from "@mui/material/styles";
-import { useColorScheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { systemMode } = useColorScheme();
-
   return (
     <html lang="en">
       <head>
@@ -55,12 +52,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <InitColorSchemeScript attribute="class" />
         <React.Fragment>
-          <ThemeProvider
-            disableTransitionOnChange={false}
-            defaultMode={systemMode}
-            theme={{ [MUI]: theme }}
-          >
-            <CssBaseline />
+          <ThemeProvider disableTransitionOnChange={false} noSsr theme={theme}>
+            <CssBaseline enableColorScheme />
             {children}
             <ScrollRestoration />
           </ThemeProvider>

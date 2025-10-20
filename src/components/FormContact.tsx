@@ -326,7 +326,6 @@ export default function FormContact() {
         </Grid>
         <TextField
           id="message"
-          minRows={4}
           value={text}
           onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
             setText(event.target.value)
@@ -341,7 +340,11 @@ export default function FormContact() {
               endAdornment: (
                 <InputAdornment
                   position="end"
-                  sx={{ ml: "auto", opacity: 0.8, alignSelf: "end" }}
+                  sx={{
+                    ml: "auto",
+                    opacity: 0.8,
+                    alignSelf: "end",
+                  }}
                 >
                   {text.length} character(s)
                 </InputAdornment>
@@ -349,7 +352,7 @@ export default function FormContact() {
             },
           }}
           error={fetcher.data?.msg.msgError}
-          sx={{ backgroundColor: "whitesmoke" }}
+          sx={{}}
           placeholder="Stuff... Things... Whatever..."
         />
         <FormHelperText
@@ -362,7 +365,7 @@ export default function FormContact() {
       </FormControl>
       {submitted === 200 && (
         <Typography sx={{ color: "success", fontSize: "1.5em" }}>
-          Thanks for your feedback! {fetcher.data.msg}
+          Thanks for your message! {fetcher.data.msg}
         </Typography>
       )}
       <Button variant="text" type="submit" sx={{ mt: 1 }}>

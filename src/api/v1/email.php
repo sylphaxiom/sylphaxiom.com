@@ -64,15 +64,10 @@ switch($method) {
             'MIME-Version' => '1.0',
             'Access-Control-Allow-Origin'=>'https://api.sylphaxiom.com*',
         );
-		
-		$sent = mail($to,$subject,$message,$headers);
-		
-		if(!$sent) {
-			$error = error_get_last()['message'];
-		}
 
         /* Prepare, bind, and execute statement */
         try {
+		    $sent = mail($to,$subject,$message,$headers);
             $stmt = $conn->prepare('INSERT INTO web_form(name, subject, target, email, message) VALUES(?, ?, ?, ?, ?)');
             $stmt->bind_param("sssss", $name, $subject, $who, $email, $message);
             $stmt->execute();
@@ -83,8 +78,26 @@ switch($method) {
             break;
         }
         if(!$sent) {
+            $eTo = "webmaster@sylphaxiom.com";
+            $eSubj = "An error sending an email occurred on sylphaxiom.com";
+            $eMsg = "Looks like there was an error on the sylphaxiom.com website at ".date(DATE_COOKIE).
+                ". Take a look at the mail logs to see if there is actually an issue. Here is the output from the site just in case: \n\nTo: ".$to.
+                "\nFrom: ".$email.
+                "\nSubject: ".$subject.
+                "\nMessage: ".$message.
+                "\nHeaders: ".var_dump($headers).
+                "\nDB submission ID: ".$retID;
+            $eHeaders = array(
+                'From' => $name.' <'.$email.'>',
+                'Reply-To' => $email,
+                'X-Mailer' => 'PHP/'.phpversion(),
+                'Content-type' => 'text/plain',
+                'MIME-Version' => '1.0',
+                'Access-Control-Allow-Origin'=>'https://api.sylphaxiom.com*',
+            );
+            $eSend = mail($eTo,$eSubj,$eMsg,$eHeaders);
             http_response_code(207);
-            echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email: ".$error, "id"=>$retID]);
+            echo json_encode(["result"=>"failure", "message"=>"There was an issue sending the email, but a message was sent to the webmaster so it should be resolved soon!", "id"=>$retID]);
         } else {
             http_response_code(200);
             echo json_encode(["result"=>"success", "message"=>"Email sent successfully", "id"=>$retID]);

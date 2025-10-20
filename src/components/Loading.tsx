@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 
 export default function Loading() {
   const [scope, animate] = motions.useAnimate();
-  const [bounce, setBounce] = React.useState(false);
+  const [bounce, setBounce] = React.useState(true);
   let title = "LOADING...";
   let subtitle = null;
   let display = "none";
@@ -72,6 +72,7 @@ export default function Loading() {
       </motions.AnimatePresence>
       <Typography
         variant="h2"
+        component="div"
         sx={{ fontFamily: "Brush Scritp MT, cursive", marginBottom: 10 }}
       >
         {subtitle}

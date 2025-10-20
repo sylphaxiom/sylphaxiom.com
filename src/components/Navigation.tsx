@@ -19,10 +19,16 @@ import { useColorScheme } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Navigation() {
   const { mode, setMode, systemMode } = useColorScheme();
+  if (!mode) {
+    return null;
+  }
+  const isDark = useMediaQuery("(prefers-color-scheme: dark)");
   const [_color, setColor] = React.useState(
+    // This is only here to re-trigger the rendering.
     systemMode?.toString() || mode?.toString()
   );
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
@@ -93,8 +99,11 @@ export default function Navigation() {
   // Title animation
 
   React.useEffect(() => {
+    if (mode === "system") {
+      isDark ? setMode("dark") : setMode("light");
+    }
     setCurrent(base);
-  }, [base]);
+  }, [base, mode]);
 
   const variants = {
     start: { y: -100, opacity: 0 },
@@ -109,9 +118,6 @@ export default function Navigation() {
     setMenuRef(null);
   };
 
-  if (!mode) {
-    return null;
-  }
   const handleMode = () => {
     mode === "light" ? setMode("dark") : setMode("light");
     setColor(mode.toString());
@@ -135,17 +141,6 @@ export default function Navigation() {
           zIndex: 1,
         }}
       >
-        {/* <Grid size={{ xs: 1 }} sx={{ display: { sm: "block", sx: "none" } }}> */}
-        {/* <FormGroup>
-            <FormLabel component="legend">Mode</FormLabel>
-            <FormControlLabel
-              value="bottom"
-              control={<Switch color="primary" />}
-              label="Bottom"
-              labelPlacement="bottom"
-            />
-          </FormGroup> */}
-        {/* </Grid> */}
         <Grid
           size={{ xs: 2, lg: 2 }}
           sx={{ float: "left", alignItems: "center" }}
@@ -276,9 +271,9 @@ export default function Navigation() {
                 sx={{ textTransform: "uppercase" }}
                 component={Link}
                 to={
-                  page === "home" || page === "portfolio" ? "/" + group
-                  : page in creative ?
-                    "/"
+                  pages === contact || page === "contact" ? "/" + page
+                  : page === "home" || page === "portfolio" ?
+                    "/" + group
                   : page
                 }
                 key={"tab" + index}
