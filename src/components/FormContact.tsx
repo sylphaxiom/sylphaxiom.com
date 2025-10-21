@@ -29,7 +29,6 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   let subject = String(formData.get("subject")); // needs to be mutable since it may not be set by default.
   const message = String(formData.get("message"));
   let recipient = "";
-  let creator = "";
   let errs: { [k: string]: string | null } = {};
   let status: number | null = null;
   let msg: Object | String = "";
