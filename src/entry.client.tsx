@@ -5,6 +5,10 @@ import { HydratedRouter } from "react-router-dom";
 ReactDom.hydrateRoot(
   document,
   <React.StrictMode>
-    <HydratedRouter />
+    <HydratedRouter
+      unstable_onError={(error, errorInfo) => {
+        console.error(error, errorInfo);
+      }}
+    />
   </React.StrictMode>
 );

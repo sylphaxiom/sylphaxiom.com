@@ -4,14 +4,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Loading from "./components/Loading";
 import theme from "./theme";
 import { ThemeProvider } from "@mui/material/styles";
-import { useColorScheme } from "@mui/material/styles";
 import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { systemMode } = useColorScheme();
-
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/sylphaxiom_web_512x.svg" />
@@ -55,12 +52,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <InitColorSchemeScript attribute="class" />
         <React.Fragment>
-          <ThemeProvider
-            disableTransitionOnChange={false}
-            theme={theme}
-            defaultMode={systemMode}
-          >
-            <CssBaseline />
+          <ThemeProvider disableTransitionOnChange={false} noSsr theme={theme}>
+            <CssBaseline enableColorScheme />
             {children}
             <ScrollRestoration />
           </ThemeProvider>

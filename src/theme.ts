@@ -75,6 +75,13 @@ const theme = createTheme({
   colorSchemes: {
     light: light,
     dark: dark,
+  },
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
   }
 });
 

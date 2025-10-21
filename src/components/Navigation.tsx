@@ -19,25 +19,27 @@ import { useColorScheme } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Navigation() {
   const { mode, setMode, systemMode } = useColorScheme();
-  const [_color, setColor] = React.useState(
-    systemMode?.toString() || mode?.toString()
-  );
   if (!mode) {
     return null;
   }
+  const isDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const [_color, setColor] = React.useState(
+    // This is only here to re-trigger the rendering.
+    systemMode?.toString() || mode?.toString()
+  );
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(menuRef);
-  // Define the pages for each group
-  const creative = ["home", "people", "projects", "contact"];
-  const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
   const matchCreative = useMatch("/creative/*");
   const matchPortfolio = useMatch("/portfolio/*");
   let pages: string[];
   let base: string;
   let group: string;
+  const creative = ["home", "people", "projects", "contact"];
+  const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
+  const contact = ["creative", "portfolio", "contact"];
   if (matchCreative) {
     pages = creative;
     group = "creative";
@@ -47,18 +49,14 @@ export default function Navigation() {
     group = "portfolio";
     base = matchPortfolio.pathname.split("/")[2] || "portfolio";
   } else {
-    base = "";
-    throw new Error("No match for current route");
+    pages = contact;
+    group = "contact";
+    base = "contact";
   }
   const [current, setCurrent] = React.useState(base);
-  const disabled: string[] = [
-    "people",
-    "projects",
-    "contact",
-    "web",
-    "assets",
-    "writing",
-  ]; // any  tabs we want disabled we will put here.
+  const open = Boolean(menuRef);
+  // Define the pages for each group
+  const disabled: string[] = ["people", "projects", "web", "assets", "writing"]; // any  tabs we want disabled we will put here.
   let title: string;
   switch (base) {
     case "home":
@@ -101,8 +99,11 @@ export default function Navigation() {
   // Title animation
 
   React.useEffect(() => {
+    if (mode === "system") {
+      isDark ? setMode("dark") : setMode("light");
+    }
     setCurrent(base);
-  }, [base]);
+  }, [base, mode]);
 
   const variants = {
     start: { y: -100, opacity: 0 },
@@ -116,6 +117,7 @@ export default function Navigation() {
   const handleClose = () => {
     setMenuRef(null);
   };
+
   const handleMode = () => {
     mode === "light" ? setMode("dark") : setMode("light");
     setColor(mode.toString());
@@ -139,17 +141,6 @@ export default function Navigation() {
           zIndex: 1,
         }}
       >
-        {/* <Grid size={{ xs: 1 }} sx={{ display: { sm: "block", sx: "none" } }}> */}
-        {/* <FormGroup>
-            <FormLabel component="legend">Mode</FormLabel>
-            <FormControlLabel
-              value="bottom"
-              control={<Switch color="primary" />}
-              label="Bottom"
-              labelPlacement="bottom"
-            />
-          </FormGroup> */}
-        {/* </Grid> */}
         <Grid
           size={{ xs: 2, lg: 2 }}
           sx={{ float: "left", alignItems: "center" }}
@@ -158,7 +149,10 @@ export default function Navigation() {
             aria-label="change mode"
             color="secondary"
             onClick={handleMode}
-            sx={{ display: { xs: "none", md: "inline-block" }, px: 0 }}
+            sx={{
+              display: { xs: "none", md: "inline-block" },
+              px: 0,
+            }}
           >
             {mode === "dark" ?
               <DarkModeOutlinedIcon />
@@ -167,7 +161,10 @@ export default function Navigation() {
           <Button
             component={Link}
             to={"/"}
-            sx={{ scale: { xs: 0.5, sm: 0.75, md: 1, px: 0 } }}
+            sx={{
+              scale: { xs: 0.5, sm: 0.75, md: 1 },
+              px: { xs: 0, lg: 2 },
+            }}
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -256,7 +253,7 @@ export default function Navigation() {
             aria-label="change mode"
             color="secondary"
             onClick={handleMode}
-            sx={{ display: { md: "none", xs: "inline-block" }, px: 0 }}
+            sx={{ display: { md: "none", xs: "inline-block" }, px: 0, pr: 2 }}
           >
             {mode === "dark" ?
               <DarkModeOutlinedIcon />
@@ -280,10 +277,14 @@ export default function Navigation() {
                 sx={{ textTransform: "uppercase" }}
                 component={Link}
                 to={
-                  page === "home" || page === "portfolio" ? "/" + group : page
+                  pages === contact || page === "contact" ? "/" + page
+                  : page === "home" || page === "portfolio" ?
+                    "/" + group
+                  : page
                 }
                 key={"tab" + index}
                 id={"tab" + index}
+                aria-controls={page}
               >
                 {page}
               </MenuItem>
@@ -301,7 +302,10 @@ export default function Navigation() {
               <Tab
                 component={Link}
                 to={
-                  page === "home" || page === "portfolio" ? "/" + group : page
+                  pages === contact || page === "contact" ? "/" + page
+                  : page === "home" || page === "portfolio" ?
+                    "/" + group
+                  : page
                 }
                 label={page}
                 value={page}
