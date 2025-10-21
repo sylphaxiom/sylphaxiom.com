@@ -18,6 +18,7 @@ import type { Route } from "./+types/FormContact";
 import axios from "axios";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useTheme } from "@mui/material";
+import { useNavigate } from "react-router";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   // await new Promise((res) => setTimeout(res, 1000));
@@ -64,9 +65,16 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
       recipient = "webmaster@sylphaxiom.com";
       break;
     case "creator":
-      recipient = creator + "@sylphaxiom.com";
       subject =
         "You have a new direct message from the sylphaxiom.com web form"; // setting subject since it shouldn't be populated
+      if (formData.get("jacob")) {
+        recipient = "jacob@sylphaxiom.com";
+      } else if (formData.get("ty")) {
+        recipient = "ty@sylphaxiom.com";
+      } else {
+        recipient = "webmaster@sylphaxiom.com";
+        subject = "An error occurred: " + subject;
+      }
       break;
     case "intake":
       recipient = "intake@sylphaxiom.com";
@@ -138,8 +146,9 @@ export default function FormContact() {
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake"); // Controls the radio button on the form. Changing this changes multiple other elements
   const [creator, setCreator] = React.useState("jacob"); // Using state seems to work best here
   const theme = useTheme();
-  const [timer, setTimer] = React.useState(15);
-  let submitted: number | null = fetcher.data?.status || null;
+  const [timer, setTimer] = React.useState(10);
+  let navigate = useNavigate();
+  let respMsg = fetcher.data?.msg || "";
   let nameHelper = "";
   let isNameErr = false;
   let emailHelper = "";
@@ -150,7 +159,7 @@ export default function FormContact() {
   let isMsgErr = false;
   let txtColor = theme.palette.success.main;
 
-  if (submitted && submitted > 299) {
+  if (fetcher.data?.status && fetcher.data?.status >= 400) {
     // check for errors and assign fetcher value if present.
     nameHelper = fetcher.data?.msg.nameError;
     isNameErr = Boolean(fetcher.data?.msg.nameError);
@@ -196,206 +205,217 @@ export default function FormContact() {
   };
 
   React.useEffect(() => {
-    if (submitted && submitted === 200) {
-      console.log("form submitted");
-      if (timer > 0) {
+    console.log(
+      "state: %s\nstatus: %s\nmsg: %s",
+      fetcher.state,
+      fetcher.data?.status,
+      fetcher.data?.msg
+    );
+    if (fetcher.state === "idle") {
+      if (fetcher.data?.status === 200) {
+        respMsg = fetcher.data?.msg;
+        if (timer === 0) {
+          console.log("reset fetcher:");
+          fetcher.unstable_reset;
+          navigate(0);
+        }
         setTimeout(() => {
-          setTimer(timer - 1);
+          if (timer !== 0) setTimer(timer - 1);
         }, 1000);
-      } else if (timer === 0) {
-        fetcher.unstable_reset;
       }
     }
-  }, [submitted, timer]);
+  }, [timer, fetcher.state]);
 
   return (
     <fetcher.Form method="post" key={"contactForm"}>
-      <FormControl sx={{ m: 4, mb: 2 }} focused>
-        <FormLabel id="who_label" sx={{ mt: 2 }}>
-          Who do you want to contact?
-        </FormLabel>
-        <RadioGroup
-          row
-          aria-labelledby="who_label"
-          name="who_group"
-          sx={{ justifyContent: "space-around" }}
-          onChange={handleChange}
-          defaultValue={"intake"}
-        >
-          <FormControlLabel
-            value={"web"}
-            control={<Radio />}
-            label={"Webmaster"}
-          />
-          <FormControlLabel
-            value={"intake"}
-            control={<Radio />}
-            label={"Services Inquiry"}
-          />
-          <FormControlLabel
-            value={"creator"}
-            control={<Radio />}
-            label={"Creator"}
-          />
-        </RadioGroup>
-        <FormHelperText id="radioHelper_field" sx={{ textAlign: "center" }}>
-          {radioHelper}
-        </FormHelperText>
-        <Divider sx={{ m: 2 }} />
-        {who === "creator" && (
-          <>
-            <FormLabel component={"legend"}>Creators</FormLabel>
-            <FormGroup row sx={{ justifyContent: "space-around" }}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={Boolean(creator.match("jacob")) || false}
-                    value="jacob"
-                    onChange={handleChange}
-                    name="jacob"
-                  />
-                }
-                label="Jacob"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={Boolean(creator.match("ty")) || false}
-                    value="ty"
-                    onChange={handleChange}
-                    name="ty"
-                  />
-                }
-                label="Ty"
-              />
-            </FormGroup>
-            <Divider sx={{ m: 2 }} />
-          </>
-        )}
-        {who === "web" ?
-          <Grid
-            container
-            spacing={2}
-            sx={{ alignItems: "center", textAlign: "left" }}
+      {fetcher.data?.status === 200 ?
+        <>
+          <Typography sx={{ color: txtColor, fontSize: "1.5em", mb: 2, mt: 5 }}>
+            Thanks for your message!
+            <br />
+            {respMsg}
+          </Typography>
+          <Typography variant="caption">
+            Form will reset in <motionElem.span>{timer}</motionElem.span>{" "}
+            seconds...
+          </Typography>
+        </>
+      : <FormControl sx={{ m: 4, mb: 2 }} focused>
+          <FormLabel id="who_label" sx={{ mt: 2 }}>
+            Who do you want to contact?
+          </FormLabel>
+          <RadioGroup
+            row
+            aria-labelledby="who_label"
+            name="who_group"
+            sx={{ justifyContent: "space-around" }}
+            onChange={handleChange}
+            defaultValue={"intake"}
           >
-            <Grid size={3}>
-              <FormLabel id="subject_label">What's up?</FormLabel>
+            <FormControlLabel
+              value={"web"}
+              control={<Radio />}
+              label={"Webmaster"}
+            />
+            <FormControlLabel
+              value={"intake"}
+              control={<Radio />}
+              label={"Services Inquiry"}
+            />
+            <FormControlLabel
+              value={"creator"}
+              control={<Radio />}
+              label={"Creator"}
+            />
+          </RadioGroup>
+          <FormHelperText id="radioHelper_field" sx={{ textAlign: "center" }}>
+            {radioHelper}
+          </FormHelperText>
+          <Divider sx={{ m: 2 }} />
+          {who === "creator" && (
+            <>
+              <FormLabel component={"legend"}>Creators</FormLabel>
+              <FormGroup row sx={{ justifyContent: "space-around" }}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={Boolean(creator.match("jacob")) || false}
+                      value="jacob"
+                      onChange={handleChange}
+                      name="jacob"
+                    />
+                  }
+                  label="Jacob"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={Boolean(creator.match("ty")) || false}
+                      value="ty"
+                      onChange={handleChange}
+                      name="ty"
+                    />
+                  }
+                  label="Ty"
+                />
+              </FormGroup>
+              <Divider sx={{ m: 2 }} />
+            </>
+          )}
+          {who === "web" ?
+            <Grid
+              container
+              spacing={2}
+              sx={{ alignItems: "center", textAlign: "left" }}
+            >
+              <Grid size={3}>
+                <FormLabel id="subject_label">What's up?</FormLabel>
+              </Grid>
+              <Grid size={9}>
+                <TextField
+                  id="subject"
+                  name="subject"
+                  label="Subject"
+                  variant="standard"
+                  error={isSubjErr}
+                  sx={{ width: 1 }}
+                />
+                <FormHelperText
+                  id="subjHelper_field"
+                  error={isSubjErr}
+                  sx={{ mb: 2, textAlign: "center" }}
+                >
+                  {subjHelper}
+                </FormHelperText>
+              </Grid>
             </Grid>
-            <Grid size={9}>
+          : <FormLabel id="subject_label">
+              Leave your info here and{" "}
+              {who === "creator" ?
+                creator.replace(creator[0], creator[0].toUpperCase())
+              : "someone"}{" "}
+              will get back to you as soon as they can!
+            </FormLabel>
+          }
+          <Grid container spacing={2}>
+            <Grid size={6}>
               <TextField
-                id="subject"
-                name="subject"
-                label="Subject"
+                id="name"
+                label="Name"
+                name="name"
                 variant="standard"
-                error={isSubjErr}
+                error={isNameErr}
                 sx={{ width: 1 }}
               />
               <FormHelperText
-                id="subjHelper_field"
-                error={isSubjErr}
+                id="nameHelper_field"
+                sx={{ mb: 2, textAlign: "center" }}
+                error={isNameErr}
+              >
+                {nameHelper}
+              </FormHelperText>
+            </Grid>
+            <Grid size={6}>
+              <TextField
+                id="email"
+                name="email"
+                label="Email"
+                variant="standard"
+                error={isEmailErr}
+                sx={{ width: 1 }}
+              />
+              <FormHelperText
+                id="nameHelper_field"
+                error={fetcher.data?.msg.emailError}
                 sx={{ mb: 2, textAlign: "center" }}
               >
-                {subjHelper}
+                {emailHelper}
               </FormHelperText>
             </Grid>
           </Grid>
-        : <FormLabel id="subject_label">
-            Leave your info here and{" "}
-            {who === "creator" ?
-              creator.replace(creator[0], creator[0].toUpperCase())
-            : "someone"}{" "}
-            will get back to you as soon as they can!
-          </FormLabel>
-        }
-        <Grid container spacing={2}>
-          <Grid size={6}>
-            <TextField
-              id="name"
-              label="Name"
-              name="name"
-              variant="standard"
-              error={isNameErr}
-              sx={{ width: 1 }}
-            />
-            <FormHelperText
-              id="nameHelper_field"
-              sx={{ mb: 2, textAlign: "center" }}
-              error={isNameErr}
-            >
-              {nameHelper}
-            </FormHelperText>
-          </Grid>
-          <Grid size={6}>
-            <TextField
-              id="email"
-              name="email"
-              label="Email"
-              variant="standard"
-              error={isEmailErr}
-              sx={{ width: 1 }}
-            />
-            <FormHelperText
-              id="nameHelper_field"
-              error={fetcher.data?.msg.emailError}
-              sx={{ mb: 2, textAlign: "center" }}
-            >
-              {emailHelper}
-            </FormHelperText>
-          </Grid>
-        </Grid>
-        <TextField
-          id="message"
-          value={text}
-          onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
-            setText(event.target.value)
-          }
-          name="message"
-          aria-label="message"
-          variant="outlined"
-          multiline
-          rows={5}
-          slotProps={{
-            input: {
-              endAdornment: (
-                <InputAdornment
-                  position="end"
-                  sx={{
-                    ml: "auto",
-                    opacity: 0.8,
-                    alignSelf: "end",
-                  }}
-                >
-                  {text.length} character(s)
-                </InputAdornment>
-              ),
-            },
-          }}
-          error={fetcher.data?.msg.msgError}
-          sx={{}}
-          placeholder="Stuff... Things... Whatever..."
-        />
-        <FormHelperText
-          id="msgHelper_field"
-          error={isMsgErr}
-          sx={{ mb: 1, textAlign: "center" }}
-        >
-          {msgHelper}
-        </FormHelperText>
-        {submitted === 200 && (
-          <>
-            <Typography sx={{ color: txtColor, fontSize: "1.5em" }}>
-              Thanks for your message! {fetcher.data.msg}
-            </Typography>
-            <Typography variant="caption">
-              Form will reset in <motionElem.span>{timer}</motionElem.span>{" "}
-              seconds...
-            </Typography>
-          </>
-        )}
-        <Button variant="text" type="submit" sx={{ mt: 1 }}>
-          {fetcher.state !== "idle" ? "Sending..." : "Submit"}
-        </Button>
-      </FormControl>
+          <TextField
+            id="message"
+            value={text}
+            onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
+              setText(event.target.value)
+            }
+            name="message"
+            aria-label="message"
+            variant="outlined"
+            multiline
+            rows={5}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment
+                    position="end"
+                    sx={{
+                      ml: "auto",
+                      opacity: 0.8,
+                      alignSelf: "end",
+                    }}
+                  >
+                    {text.length} character(s)
+                  </InputAdornment>
+                ),
+              },
+            }}
+            error={fetcher.data?.msg.msgError}
+            sx={{}}
+            placeholder="Stuff... Things... Whatever..."
+          />
+          <FormHelperText
+            id="msgHelper_field"
+            error={isMsgErr}
+            sx={{ mb: 1, textAlign: "center" }}
+          >
+            {msgHelper}
+          </FormHelperText>
+          <Button variant="text" type="submit" sx={{ mt: 1 }}>
+            {fetcher.state !== "idle" ? "Sending..." : "Submit"}
+          </Button>
+        </FormControl>
+      }
     </fetcher.Form>
   );
 }
