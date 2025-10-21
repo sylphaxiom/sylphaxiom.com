@@ -174,7 +174,12 @@ export default function Portfolio() {
           <Divider
             flexItem
             orientation="vertical"
-            sx={{ height: 0.1, mx: 2, width: "5px" }}
+            sx={{
+              height: 0.1,
+              mx: 2,
+              width: "5px",
+              display: { xs: "none", xl: "inline-block" },
+            }}
           />
           <Grid size={{ xs: 12, xl: "auto" }}>
             <Typography variant="h5">
@@ -184,7 +189,12 @@ export default function Portfolio() {
           <Divider
             flexItem
             orientation="vertical"
-            sx={{ height: 0.1, mx: 2, width: "5px" }}
+            sx={{
+              height: 0.1,
+              mx: 2,
+              width: "5px",
+              display: { xs: "none", xl: "inline-block" },
+            }}
           />
           <Grid size={{ xs: 12, xl: "auto" }}>
             <Typography variant="h5">Author/Worldbuilder</Typography>
