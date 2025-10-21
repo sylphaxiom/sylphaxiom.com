@@ -149,7 +149,10 @@ export default function Navigation() {
             aria-label="change mode"
             color="secondary"
             onClick={handleMode}
-            sx={{ display: { xs: "none", md: "inline-block" }, px: 0 }}
+            sx={{
+              display: { xs: "none", md: "inline-block" },
+              px: 0,
+            }}
           >
             {mode === "dark" ?
               <DarkModeOutlinedIcon />
@@ -158,7 +161,10 @@ export default function Navigation() {
           <Button
             component={Link}
             to={"/"}
-            sx={{ scale: { xs: 0.5, sm: 0.75, md: 1, px: 0 } }}
+            sx={{
+              scale: { xs: 0.5, sm: 0.75, md: 1 },
+              px: { xs: 0, lg: 2 },
+            }}
           >
             <motion.div
               initial={{ scale: 0 }}
@@ -247,7 +253,7 @@ export default function Navigation() {
             aria-label="change mode"
             color="secondary"
             onClick={handleMode}
-            sx={{ display: { md: "none", xs: "inline-block" }, px: 0 }}
+            sx={{ display: { md: "none", xs: "inline-block" }, px: 0, pr: 2 }}
           >
             {mode === "dark" ?
               <DarkModeOutlinedIcon />

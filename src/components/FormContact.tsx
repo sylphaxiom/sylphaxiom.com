@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as motionElem from "motion/react-client";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -16,6 +17,7 @@ import { data, useFetcher } from "react-router";
 import type { Route } from "./+types/FormContact";
 import axios from "axios";
 import InputAdornment from "@mui/material/InputAdornment";
+import { useTheme } from "@mui/material";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   // await new Promise((res) => setTimeout(res, 1000));
@@ -135,6 +137,9 @@ export default function FormContact() {
   const [text, setText] = React.useState(""); // Used for textarea input to get the character counter.
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake"); // Controls the radio button on the form. Changing this changes multiple other elements
   const [creator, setCreator] = React.useState("jacob"); // Using state seems to work best here
+  const theme = useTheme();
+  const [timer, setTimer] = React.useState(15);
+  let submitted: number | null = fetcher.data?.status || null;
   let nameHelper = "";
   let isNameErr = false;
   let emailHelper = "";
@@ -143,8 +148,9 @@ export default function FormContact() {
   let isSubjErr = false;
   let msgHelper = "";
   let isMsgErr = false;
+  let txtColor = theme.palette.success.main;
 
-  if (fetcher.data?.status !== 200) {
+  if (submitted && submitted > 299) {
     // check for errors and assign fetcher value if present.
     nameHelper = fetcher.data?.msg.nameError;
     isNameErr = Boolean(fetcher.data?.msg.nameError);
@@ -154,11 +160,11 @@ export default function FormContact() {
     isSubjErr = Boolean(fetcher.data?.msg.subjError);
     msgHelper = fetcher.data?.msg.msgError;
     isMsgErr = Boolean(fetcher.data?.msg.MsgError);
+    txtColor = theme.palette.error.main;
   }
 
   let radioHelper =
     "Inquire about having a website, asset, or anything else you want created."; // simple variable replaces state (untested)
-  let submitted: number | null = fetcher.data?.status || null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value; // sets radio when user changes it.
@@ -188,6 +194,19 @@ export default function FormContact() {
         console.log("Contact.handleChange.switch.default.ERR");
     }
   };
+
+  React.useEffect(() => {
+    if (submitted && submitted === 200) {
+      console.log("form submitted");
+      if (timer > 0) {
+        setTimeout(() => {
+          setTimer(timer - 1);
+        }, 1000);
+      } else if (timer === 0) {
+        fetcher.unstable_reset;
+      }
+    }
+  }, [submitted, timer]);
 
   return (
     <fetcher.Form method="post" key={"contactForm"}>
@@ -362,15 +381,21 @@ export default function FormContact() {
         >
           {msgHelper}
         </FormHelperText>
+        {submitted === 200 && (
+          <>
+            <Typography sx={{ color: txtColor, fontSize: "1.5em" }}>
+              Thanks for your message! {fetcher.data.msg}
+            </Typography>
+            <Typography variant="caption">
+              Form will reset in <motionElem.span>{timer}</motionElem.span>{" "}
+              seconds...
+            </Typography>
+          </>
+        )}
+        <Button variant="text" type="submit" sx={{ mt: 1 }}>
+          {fetcher.state !== "idle" ? "Sending..." : "Submit"}
+        </Button>
       </FormControl>
-      {submitted === 200 && (
-        <Typography sx={{ color: "success", fontSize: "1.5em" }}>
-          Thanks for your message! {fetcher.data.msg}
-        </Typography>
-      )}
-      <Button variant="text" type="submit" sx={{ mt: 1 }}>
-        {fetcher.state !== "idle" ? "Sending..." : "Submit"}
-      </Button>
     </fetcher.Form>
   );
 }
