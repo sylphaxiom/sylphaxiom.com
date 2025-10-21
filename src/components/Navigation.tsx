@@ -29,7 +29,7 @@ export default function Navigation() {
   const isDark = useMediaQuery("(prefers-color-scheme: dark)");
   const [_color, setColor] = React.useState(
     // This is only here to re-trigger the rendering.
-    systemMode?.toString() || mode?.toString()
+    systemMode?.toString()
   );
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
   const matchCreative = useMatch("/creative/*");
