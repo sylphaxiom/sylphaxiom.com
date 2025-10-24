@@ -73,7 +73,7 @@ export default function Navigation() {
   const [current, setCurrent] = React.useState(base);
   const open = Boolean(menuRef);
   // Define the pages for each group
-  const disabled: string[] = ["people", "projects", "web", "assets", "writing"]; // any  tabs we want disabled we will put here.
+  const disabled: string[] = ["people", "projects", "assets", "writing"]; // any  tabs we want disabled we will put here.
   let title: string;
   switch (base) {
     case "home":
