@@ -1,7 +1,127 @@
+import * as React from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+type Skills =
+  | "bash"
+  | "boottrap"
+  | "css"
+  | "github"
+  | "html5"
+  | "js"
+  | "linux"
+  | "mui"
+  | "mysql"
+  | "php"
+  | "playwright"
+  | "powershell"
+  | "python"
+  | "react"
+  | "salesforce"
+  | "typescript"
+  | "windows";
+
+export function SkillTiles(
+  skills: Array<Skills>,
+  rows: number,
+  pattern?: string,
+  density?: number
+) {
+  const ImageMap = {
+    bash: "./Bash_light.svg",
+    boottrap: "./bootstrap.svg",
+    css: "./css_old.svg",
+    github: "./GitHub_light.svg",
+    html5: "./html5.svg",
+    js: "./JS.svg",
+    linux: "./linux.svg",
+    mui: "./materialui.svg",
+    mysql: "./mysql.svg",
+    php: "./PHP.svg",
+    playwright: "./playwright.svg",
+    powershell: "./powershell.svg",
+    python: "./Python.svg",
+    react: "./react.svg",
+    salesforce: "./salesforce.svg",
+    typescript: "./TypeScript.svg",
+    windows: "./windows.svg",
+  };
+  const setPattern = pattern || "random";
+  const setDensity = density || 4;
+  let inc = 0;
+  let tiles: Array<React.JSX.Element> = [];
+  const randTile = (): Array<Skills> => {
+    let curIndex = skills.length;
+    while (curIndex !== 0) {
+      const randIndex = Math.floor(Math.random() * curIndex);
+      curIndex -= 1;
+      const temp = skills[curIndex];
+      skills[curIndex] = skills[randIndex];
+      skills[randIndex] = temp;
+    }
+    return skills;
+  };
+  randTile();
+  skills.forEach((skill) => {
+    const imgSrc = ImageMap[skill];
+    tiles.push(
+      <Grid size={1} key={"grid_" + inc++} id={skill + "_" + inc++}>
+        <img
+          width={50}
+          height={50}
+          src={imgSrc}
+          key={skill + "_" + inc++}
+          id={skill + "_" + inc++}
+          className={
+            skill === "typescript" || skill === "github" || skill === "bash" ?
+              "svg"
+            : ""
+          }
+        />
+      </Grid>
+    );
+  });
+  const repBlank = (count: number) => {
+    let blanks: Array<React.JSX.Element> = [];
+    for (let i = 0; i < count; i++) {
+      blanks.push(
+        <Grid size={1} key={"grid_" + inc++} id={"grid_" + inc++}>
+          <img
+            width={50}
+            key={"blank_" + inc++}
+            id={"blank_" + inc++}
+            height={50}
+            style={{ opacity: 0 }}
+          />
+        </Grid>
+      );
+    }
+    return blanks;
+  };
+  let output: Array<React.JSX.Element> = [];
+  switch (setPattern) {
+    case "random":
+      for (let r = 0; r < rows; r++) {
+        output = output.concat(
+          repBlank(Math.floor(Math.random() * setDensity))
+        );
+        const t = r > tiles.length - 1 ? r % tiles.length : r;
+        output.push(tiles[t]);
+        if (r % setDensity !== 0) {
+          output = output.concat(repBlank(setDensity - (r % setDensity)));
+        }
+      }
+      break;
+    case "spiral":
+      for (let r = 0; r < rows; r++) {
+        const t = r > tiles.length - 1 ? r % tiles.length : r;
+        output.push(tiles[t]);
+        output = output.concat(repBlank(setDensity - (r % setDensity)));
+      }
+  }
+  return output;
+}
 
 export default function PortSkills() {
   return (
@@ -21,245 +141,30 @@ export default function PortSkills() {
           id="logoTiles"
           columns={4}
         >
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./PHP.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./Bash_light.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./JS.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./css_old.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./mysql.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./playwright.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./salesforce.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./GitHub_light.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./linux.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./TypeScript.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./html5.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./materialui.svg" className="" />
-          </Grid>
-        </Grid>
-        <Grid
-          container
-          sx={{
-            padding: 3,
-            marginTop: 3,
-            display: { xs: "none", xl: "flex" },
-          }}
-          rowSpacing={3}
-          id="logoTiles2"
-          columns={4}
-        >
-          <Grid size={1}>
-            <img width={50} height={50} src="./PHP.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./Bash_light.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./JS.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./css_old.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./TypeScript.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./mysql.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./playwright.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./salesforce.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./GitHub_light.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./linux.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./materialui.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./html5.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./JS.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./css_old.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img
-              width={50}
-              height={50}
-              src="./TypeScript.svg"
-              className="svg"
-            />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./mysql.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./mysql.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./playwright.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./linux.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} src="./materialui.svg" className="" />
-          </Grid>
-          <Grid size={1}>
-            <img width={50} height={50} style={{ opacity: 0 }} />
-          </Grid>
+          {SkillTiles(
+            [
+              "bash",
+              "boottrap",
+              "css",
+              "github",
+              "html5",
+              "js",
+              "linux",
+              "mui",
+              "mysql",
+              "php",
+              "playwright",
+              "powershell",
+              "python",
+              "react",
+              "salesforce",
+              "typescript",
+              "windows",
+            ],
+            16,
+            "spiral",
+            4
+          )}
         </Grid>
       </Grid>
       <Grid size={{ xs: 12, xl: 8 }} sx={{ textAlign: "left", marginTop: 1 }}>

@@ -46,6 +46,22 @@
   display: block;
 }
 
+@media (max-width: 600px) {
+  .loading {
+  font-size: 3em;
+}
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .loading {
+  font-size: 4em;
+}
+}
+@media (min-width: 900px) {
+  .loading {
+  font-size: 9em;
+}
+}
+
 /* #ballet {
   font-family: "Ballet", cursive;
   font-weight: 400;

@@ -8,7 +8,7 @@ import { useParams, Link } from "react-router";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
-export default function Loading() {
+export default function LoadingStatic() {
   const [scope, animate] = motions.useAnimate();
   const [bounce, setBounce] = React.useState(true);
   let title = "LOADING...";
@@ -54,13 +54,13 @@ export default function Loading() {
       <motions.AnimatePresence initial={false} mode="wait">
         <motion.div
           layout
+          className="loading"
           style={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
             overflow: "visible",
             fontFamily: "Courier New, monospace",
-            fontSize: "9em",
             fontWeight: 700,
           }}
           ref={scope}
