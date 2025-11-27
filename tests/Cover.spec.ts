@@ -27,7 +27,7 @@ test('cover image has attributes', async({page})=>{
 
    const coverImage = page.locator('img[alt="curious guy in a browser"]');
    await expect(coverImage).toBeVisible();
-   await expect(coverImage).toHaveAttribute('src', '/sylphaxiom_web_512x.svg');
+   await expect(coverImage).toHaveAttribute('src', '/resources/sylphaxiom_web_512x.svg');
    await expect(coverImage).toHaveAttribute('width', '100');
    await expect(coverImage).toHaveAttribute('height', '100');
 

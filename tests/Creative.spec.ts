@@ -79,7 +79,7 @@ test('img has attributes', async({page})=>{
 
     const img = await page.getByRole('img', { name: 'curious guy in a browser' });
     await expect(img).toBeVisible();
-    await expect(img).toHaveAttribute('src', '/sylphaxiom_web_512x.svg');
+    await expect(img).toHaveAttribute('src', '/resources/sylphaxiom_web_512x.svg');
     await expect(img).toHaveAttribute('width', '100');
     await expect(img).toHaveAttribute('height', '100');
    
