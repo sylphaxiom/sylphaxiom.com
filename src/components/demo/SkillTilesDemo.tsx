@@ -24,7 +24,7 @@ export default function SkillTilesDemo() {
   const [density, setDensity] = React.useState(4);
   const skills: Skills[] = [
     "bash",
-    "boottrap",
+    "bootstrap",
     "css",
     "github",
     "html5",

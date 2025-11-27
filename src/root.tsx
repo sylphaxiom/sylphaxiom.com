@@ -14,7 +14,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <link
           rel="icon"
           type="image/svg+xml"
-          href="./resources/sylphaxiom_web_512x.svg"
+          href="/resources/sylphaxiom_web_512x.svg"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
@@ -46,7 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           crossOrigin="anonymous"
         />
         <link
-          href="./resources/App.css"
+          href="/resources/App.css"
           rel="stylesheet"
           type="text/css"
           charSet="utf-8"

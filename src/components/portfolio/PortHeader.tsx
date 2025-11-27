@@ -13,7 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 export default function PortHeader() {
   const downloadCV = () => {
     FileSaver.saveAs(
-      "../resources/jacob_pell_resume.pdf",
+      "/resources/jacob_pell_resume.pdf",
       "jacob_pell_resume.pdf"
     );
   };
@@ -58,7 +58,7 @@ export default function PortHeader() {
           }}
         >
           <img
-            src="../resources/9-2025_headshot_1x1.png"
+            src="/resources/9-2025_headshot_1x1.png"
             alt="Dapper photo of Jacob Pell with his magnificent beard"
             width={300}
             height={300}
@@ -130,7 +130,7 @@ export default function PortHeader() {
                 <img
                   width={50}
                   height={50}
-                  src="../resources/LI-In-Bug.png"
+                  src="/resources/LI-In-Bug.png"
                   alt="LinkedIn logo linking to linkedin.com/in/sylphaxiom/"
                 />
               </IconButton>

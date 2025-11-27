@@ -25,7 +25,7 @@ export default function PortSkills() {
           {SkillTiles(
             [
               "bash",
-              "boottrap",
+              "bootstrap",
               "css",
               "github",
               "html5",
@@ -67,7 +67,7 @@ export default function PortSkills() {
             >
               <Box
                 component="img"
-                src="../resources/sylphaxiom_web_512x.svg"
+                src="/resources/sylphaxiom_web_512x.svg"
                 alt="curious guy in a browser"
                 className="svg"
                 sx={{
@@ -100,7 +100,7 @@ export default function PortSkills() {
             >
               <Box
                 component="img"
-                src="../resources/kothis.svg"
+                src="/resources/kothis.svg"
                 alt="Logo of Kothis, a D20 with designs on it."
                 className="svg"
                 sx={{
@@ -149,21 +149,21 @@ export default function PortSkills() {
                   width={75}
                   height={75}
                   style={{ marginRight: 15 }}
-                  src="../resources/map_draw_350x.svg"
+                  src="/resources/map_draw_350x.svg"
                   className="svg"
                 />
                 <img
                   width={75}
                   height={75}
                   style={{ marginLeft: 15 }}
-                  src="../resources/talas-hey-buddy.svg"
+                  src="/resources/talas-hey-buddy.svg"
                   className=""
                 />
                 <img
                   width={75}
                   height={75}
                   style={{ marginLeft: 15 }}
-                  src="../resources/cow_asset-20x15.svg"
+                  src="/resources/cow_asset-20x15.svg"
                   className="svg"
                 />
               </div> */}
@@ -196,20 +196,20 @@ export default function PortSkills() {
                   width={75}
                   height={75}
                   style={{ marginRight: 15, borderRadius: 5 }}
-                  src="../resources/Maze.jpg"
+                  src="/resources/Maze.jpg"
                 />
                 <img
                   width={75}
                   height={75}
                   style={{ marginLeft: 15 }}
-                  src="../resources/kothis.svg"
+                  src="/resources/kothis.svg"
                   className="svg"
                 />
                 <img
                   width={75}
                   height={75}
                   style={{ marginLeft: 15, borderRadius: 5 }}
-                  src="../resources/OneNote.png"
+                  src="/resources/OneNote.png"
                 />
               </div> */}
             </Grid>
@@ -243,21 +243,21 @@ export default function PortSkills() {
                   width={75}
                   height={75}
                   style={{ marginRight: 15 }}
-                  src="../resources/powershell.svg"
+                  src="/resources/powershell.svg"
                   className=""
                 />
                 <img
                   width={75}
                   height={75}
                   style={{ marginLeft: 15 }}
-                  src="../resources/react.svg"
+                  src="/resources/react.svg"
                   className=""
                 />
                 <img
                   width={75}
                   height={75}
                   style={{ marginLeft: 15 }}
-                  src="../resources/Python.svg"
+                  src="/resources/Python.svg"
                   className=""
                 /> */}
               </Grid>

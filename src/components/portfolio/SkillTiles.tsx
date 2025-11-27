@@ -16,7 +16,7 @@ import Grid from "@mui/material/Grid";
 
 export type Skills =
   | "bash"
-  | "boottrap"
+  | "bootstrap"
   | "css"
   | "github"
   | "html5"
@@ -40,23 +40,23 @@ export function SkillTiles(
   density?: number
 ) {
   const ImageMap = {
-    bash: "../resources/Bash_light.svg",
-    boottrap: "../resources/bootstrap.svg",
-    css: "../resources/css_old.svg",
-    github: "../resources/GitHub_light.svg",
-    html5: "../resources/html5.svg",
-    js: "../resources/JS.svg",
-    linux: "../resources/linux.svg",
-    mui: "../resources/materialui.svg",
-    mysql: "resources/mysql.svg",
-    php: "../resources/PHP.svg",
-    playwright: "../resources/playwright.svg",
-    powershell: "../resources/powershell.svg",
-    python: "../resources/Python.svg",
-    react: "../resources/react.svg",
-    salesforce: "../resources/salesforce.svg",
-    typescript: "../resources/TypeScript.svg",
-    windows: "../resources/windows.svg",
+    bash: "/resources/Bash_light.svg",
+    bootstrap: "/resources/bootstrap.svg",
+    css: "/resources/css_old.svg",
+    github: "/resources/GitHub_light.svg",
+    html5: "/resources/html5.svg",
+    js: "/resources/JS.svg",
+    linux: "/resources/linux.svg",
+    mui: "/resources/materialui.svg",
+    mysql: "/resources/mysql.svg",
+    php: "/resources/PHP.svg",
+    playwright: "/resources/playwright.svg",
+    powershell: "/resources/powershell.svg",
+    python: "/resources/Python.svg",
+    react: "/resources/react.svg",
+    salesforce: "/resources/salesforce.svg",
+    typescript: "/resources/TypeScript.svg",
+    windows: "/resources/windows.svg",
   };
   const setPattern = pattern || "random";
   const setDensity = density || 4;
