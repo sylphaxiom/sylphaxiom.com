@@ -42,13 +42,17 @@ export default function PortSkills() {
               "typescript",
               "windows",
             ],
-            16,
+            20,
             "spiral",
             5
           )}
         </Grid>
       </Grid>
-      <Grid size={{ xs: 12, xl: 8 }} sx={{ textAlign: "left", marginTop: 1 }}>
+      <Grid
+        size={{ xs: 12, xl: 8 }}
+        sx={{ textAlign: "left", marginTop: 1 }}
+        id="skills_right_cont"
+      >
         <Grid
           container
           sx={{ padding: 3 }}
@@ -56,6 +60,115 @@ export default function PortSkills() {
           id="infoTiles"
           columns={6}
         >
+          <Grid
+            size={6}
+            container
+            sx={{
+              width: 0.8,
+              mx: "auto",
+              minHeight: 250,
+              textAlign: "center",
+            }}
+          >
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography variant="h5" sx={{ py: 2 }}>
+                Web Development
+              </Typography>
+              <Grid direction={"row"} style={{ alignContent: "center" }}></Grid>
+            </Grid>
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography sx={{ py: 1 }}>
+                Technology stacks have changed, but passion for code sure
+                hasn't. I have been trying to keep up with modern frameworks and
+                have expanded my skillset to include React, TypeScript, and
+                Playwright for testing. I still love PHP for backend work, but I
+                am always eager to learn a new library or framework as needed.
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid
+            size={6}
+            container
+            sx={{
+              width: 0.8,
+              mx: "auto",
+              minHeight: 250,
+              textAlign: "center",
+            }}
+          >
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography variant="h5" sx={{ py: 2 }}>
+                Scripting
+              </Typography>
+              <Grid direction={"row"} style={{ alignContent: "center" }}></Grid>
+            </Grid>
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography sx={{ py: 1 }}>
+                My experience in IT infrastructure merged with my love of coding
+                and gave birth to set of scripting skills that have come in
+                handy over the years. Powershell, Python, Bash, whatever the
+                language, I'll write it. Deployments, API interactions, simple
+                repetitive task scripting, whatever the need, I'll script it.
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid
+            size={6}
+            container
+            sx={{
+              width: 0.8,
+              mx: "auto",
+              minHeight: 250,
+              textAlign: "center",
+            }}
+          >
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography variant="h5" sx={{ py: 2 }}>
+                Asset Creation
+              </Typography>
+            </Grid>
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography sx={{ py: 2 }}>
+                Necessity is the mother of invention. When you need something,
+                you might as well make it! This is how we discover new-found
+                skills like SVG creation and other forms of digital art. My work
+                with Blender and 3D has been a thrilling adventure so far!
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid
+            size={6}
+            container
+            sx={{
+              width: 0.8,
+              mx: "auto",
+              minHeight: 250,
+              textAlign: "center",
+            }}
+          >
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography variant="h5" sx={{ py: 2 }}>
+                Writing
+              </Typography>
+            </Grid>
+            <Grid size={{ xs: 6, md: 3 }}>
+              <Typography sx={{ py: 1 }}>
+                Writing is my oldest passion. Since my teen years, my writing
+                has branched out beyond mere fiction. I have been building an
+                entire world from the ground up! This world is called Kothis and
+                it is the setting for a few TTRPG campaigns with the goal of
+                becoming a fully published setting (possibly with some side
+                novels)
+              </Typography>
+            </Grid>
+          </Grid>
+          <Divider orientation="horizontal" sx={{ width: 0.75, mx: "auto" }} />
+          <Grid size={6}>
+            <Typography variant="h4" sx={{ m: 3, textAlign: "center" }}>
+              Active Web Projects
+            </Typography>
+          </Grid>
+          <Divider orientation="horizontal" sx={{ width: 0.75, mx: "auto" }} />
           <Grid size={6}>
             <Grid
               sx={{
@@ -120,155 +233,6 @@ export default function PortSkills() {
                 which do the work between my DB and the React frontend. This
                 site will grow to be the main hub for my worldbuilding and TTRPG
                 games.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Divider orientation="horizontal" sx={{ width: 0.75, mx: "auto" }} />
-          <Grid size={6}>
-            <Typography variant="h4" sx={{ m: 3, textAlign: "center" }}>
-              Other Skills
-            </Typography>
-          </Grid>
-          <Divider orientation="horizontal" sx={{ width: 0.75, mx: "auto" }} />
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Asset/Logo Creation
-              </Typography>
-              {/* <div style={{ alignContent: "center" }}>
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginRight: 15 }}
-                  src="/resources/map_draw_350x.svg"
-                  className="svg"
-                />
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginLeft: 15 }}
-                  src="/resources/talas-hey-buddy.svg"
-                  className=""
-                />
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginLeft: 15 }}
-                  src="/resources/cow_asset-20x15.svg"
-                  className="svg"
-                />
-              </div> */}
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 2 }}>
-                Necessity is the mother of invention. When you need something,
-                you might as well make it! This is how we discover new-found
-                skills like SVG creation and other forms of digital art. My work
-                with Blender and 3D has been a thrilling adventure so far!
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Worldbuilding/Storytelling
-              </Typography>
-              {/* <div style={{ alignContent: "center" }}>
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginRight: 15, borderRadius: 5 }}
-                  src="/resources/Maze.jpg"
-                />
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginLeft: 15 }}
-                  src="/resources/kothis.svg"
-                  className="svg"
-                />
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginLeft: 15, borderRadius: 5 }}
-                  src="/resources/OneNote.png"
-                />
-              </div> */}
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 1 }}>
-                Writing is my oldest passion. Since my teen years, my writing
-                has branched out beyond mere fiction. I have been building an
-                entire world from the ground up! This world is called Kothis and
-                it is the setting for a few D&D campaigns with the goal of
-                becoming fully published setting (possibly with some side
-                novels)
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Web Development/Scripting
-              </Typography>
-              <Grid direction={"row"} style={{ alignContent: "center" }}>
-                {/* <img
-                  width={75}
-                  height={75}
-                  style={{ marginRight: 15 }}
-                  src="/resources/powershell.svg"
-                  className=""
-                />
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginLeft: 15 }}
-                  src="/resources/react.svg"
-                  className=""
-                />
-                <img
-                  width={75}
-                  height={75}
-                  style={{ marginLeft: 15 }}
-                  src="/resources/Python.svg"
-                  className=""
-                /> */}
-              </Grid>
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 1 }}>
-                Technology stacks have changed, but passion for code sure
-                hasn't. I have been trying to keep up with modern frameworks and
-                have expanded my skillset to include React, TypeScript, and
-                Playwright for testing. I still love PHP for backend work, but I
-                am always eager to learn a new library or framework as needed.
               </Typography>
             </Grid>
           </Grid>

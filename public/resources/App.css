@@ -76,6 +76,6 @@
   display: none;
 } */
 
-.dark img.svg, svg {
+.dark img.svg, .dark .svg > svg {
   filter: hue-rotate(180deg) invert() contrast(90%)
 }

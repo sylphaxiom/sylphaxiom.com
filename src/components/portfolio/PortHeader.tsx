@@ -102,8 +102,9 @@ export default function PortHeader() {
                 aria-label="github.com/sylphaxiom"
                 id="ghLink"
                 sx={{ mx: 2, width: 75, height: 75 }}
+                className="svg"
               >
-                <GitHubIcon sx={{ width: 50, height: 50 }} />
+                <GitHubIcon sx={{ width: 50, height: 50, color: "black" }} />
               </IconButton>
             </Tooltip>
           </Grid>
@@ -114,6 +115,7 @@ export default function PortHeader() {
                 aria-label="download_resume"
                 id="resLink"
                 sx={{ mx: 2, width: 75, height: 75 }}
+                className="svg"
               >
                 <CVIcon sx={{ width: 50, height: 50 }} />
               </IconButton>
