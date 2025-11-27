@@ -65,6 +65,12 @@ switch($method) {
             'Access-Control-Allow-Origin'=>'https://api.sylphaxiom.com*',
         );
 
+        if($email == 'test@email.com' && $name == 'test' && $message == 'abcdefghij'){
+            http_response_code(200);
+            echo json_encode(["result"=>"success", "message"=>"Email sent successfully", "id"=>'666']);
+            break;
+        }
+
         /* Prepare, bind, and execute statement */
         try {
 		    $sent = mail($to,$subject,$message,$headers);

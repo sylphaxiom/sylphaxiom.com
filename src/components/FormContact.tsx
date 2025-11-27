@@ -144,6 +144,9 @@ export default function FormContact() {
   const [text, setText] = React.useState(""); // Used for textarea input to get the character counter.
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake"); // Controls the radio button on the form. Changing this changes multiple other elements
   const [creator, setCreator] = React.useState("jacob"); // Using state seems to work best here
+  const [radioHelper, setRadioHelper] = React.useState(
+    "Inquire about having a website, asset, or anything else you want created."
+  ); // Does not persist without state.
   const theme = useTheme();
   const [timer, setTimer] = React.useState(10);
   let navigate = useNavigate();
@@ -171,25 +174,25 @@ export default function FormContact() {
     txtColor = theme.palette.error.main;
   }
 
-  let radioHelper =
-    "Inquire about having a website, asset, or anything else you want created."; // simple variable replaces state (untested)
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget.value; // sets radio when user changes it.
     switch (target) {
       case "web":
-        radioHelper =
-          "Contact the Webmaster with any issues or inquiries relating to this website";
+        setRadioHelper(
+          "Contact the Webmaster with any issues or inquiries relating to this website"
+        );
         setWho(target);
         break;
       case "intake":
-        radioHelper =
-          "Inquire about having a website, asset, or anything else you want created.";
+        setRadioHelper(
+          "Inquire about having a website, asset, or anything else you want created."
+        );
         setWho(target);
         break;
       case "creator":
-        radioHelper =
-          "Reach out to a creator directly... for whatever reason, I guess.";
+        setRadioHelper(
+          "Reach out to a creator directly... for whatever reason, I guess."
+        );
         setWho(target);
         break;
       case "jacob":

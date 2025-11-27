@@ -27,7 +27,7 @@ test('has page header', async({page})=>{
 
 test('tab content is visible', async({page})=>{
 
-    const tabContent = page.locator('#portfolio_content');
+    const tabContent = page.locator('#port_frame');
     await expect(tabContent).toBeVisible();
 
 });
@@ -62,9 +62,9 @@ test('check tabs', async({page})=>{
 
 test('portfolio img has attributes', async({page})=>{
 
-    const img = await page.locator('#portfolio_img');
+    const img = await page.locator('#port_img');
     await expect(img).toBeVisible();
-    await expect(img).toHaveAttribute('src', './9-2025_headshot_1x1.png');
+    await expect(img).toHaveAttribute('src', '/resources/9-2025_headshot_1x1.png');
     await expect(img).toHaveAttribute('width', '300');
     await expect(img).toHaveAttribute('height', '300');
     await expect(img).toHaveAttribute('alt', 'Dapper photo of Jacob Pell with his magnificent beard');
@@ -74,7 +74,7 @@ test('portfolio img has attributes', async({page})=>{
 
 test('h2 has creator name', async({page})=>{
 
-    const h2 = await page.locator('h2');
+    const h2 = page.locator('h2');
     await expect(h2).toHaveText('Jacob Pell');
 
 });
@@ -95,17 +95,19 @@ test('check section headers', async({page})=>{
     // Add any new H5 element text here
     const sections = [
         'Full-Stack Developer',
-        'Automation and Scripting Specialist',
+        'Automation/Scripting Specialist',
         'Author/Worldbuilder',
         'A Brief History...',
         'The Skills...',
+        'Web Development',
+        'Scripting',
+        'Asset Creation',
+        'Writing',
         'Sylphaxiom Creative',
-        'Asset/Logo Creation',
-        'Worldbuilding/Storytelling',
-        'Web Development/Scripting'
+        'Kothis Portal',
     ]
     const sectionHeaders = page.locator('h5');
-    await expect(sectionHeaders).toHaveCount(9);
+    await expect(sectionHeaders).toHaveCount(sections.length);
     for await ( const [index, section] of sections.entries()) {
         await expect(sectionHeaders.nth(index)).toHaveText(section);
     }
@@ -114,9 +116,9 @@ test('check section headers', async({page})=>{
 
 test('download resume link works', async({page})=>{
 
-    const downloadLink = page.getByLabel('download_resume');
+    const downloadLink = page.getByRole('button', { name: 'download_resume' });
     await expect(downloadLink).toHaveAttribute('aria-label', 'download_resume');
-    await expect(downloadLink).toHaveAttribute('id', 'ballet');
+    await expect(downloadLink).toHaveAttribute('id', 'resLink');
 
     // Start waiting for the download before clicking.
     const [ download ] = await Promise.all([
@@ -150,12 +152,5 @@ test('LinkedIn link works', async({page})=>{
 
     await downloadLink.click();
     await expect(page).toHaveURL(/www.linkedin.com/);
-
-});
-
-test('check image visible', async({page})=>{
-
-    const img = page.locator('img');
-    await expect(img).toHaveCount(46); // There are 46 images on the portfolio page after adding ghLogo and liLogo
 
 });

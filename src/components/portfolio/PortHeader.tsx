@@ -12,7 +12,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function PortHeader() {
   const downloadCV = () => {
-    FileSaver.saveAs("./jacob_pell_resume.pdf", "jacob_pell_resume.pdf");
+    FileSaver.saveAs(
+      "/resources/jacob_pell_resume.pdf",
+      "jacob_pell_resume.pdf"
+    );
   };
 
   const deskSx = {
@@ -55,7 +58,7 @@ export default function PortHeader() {
           }}
         >
           <img
-            src="./9-2025_headshot_1x1.png"
+            src="/resources/9-2025_headshot_1x1.png"
             alt="Dapper photo of Jacob Pell with his magnificent beard"
             width={300}
             height={300}
@@ -99,8 +102,9 @@ export default function PortHeader() {
                 aria-label="github.com/sylphaxiom"
                 id="ghLink"
                 sx={{ mx: 2, width: 75, height: 75 }}
+                className="svg"
               >
-                <GitHubIcon sx={{ width: 50, height: 50 }} />
+                <GitHubIcon sx={{ width: 50, height: 50, color: "black" }} />
               </IconButton>
             </Tooltip>
           </Grid>
@@ -111,6 +115,7 @@ export default function PortHeader() {
                 aria-label="download_resume"
                 id="resLink"
                 sx={{ mx: 2, width: 75, height: 75 }}
+                className="svg"
               >
                 <CVIcon sx={{ width: 50, height: 50 }} />
               </IconButton>
@@ -127,7 +132,7 @@ export default function PortHeader() {
                 <img
                   width={50}
                   height={50}
-                  src="./LI-In-Bug.png"
+                  src="/resources/LI-In-Bug.png"
                   alt="LinkedIn logo linking to linkedin.com/in/sylphaxiom/"
                 />
               </IconButton>

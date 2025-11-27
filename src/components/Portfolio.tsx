@@ -70,7 +70,7 @@ export default function Portfolio() {
               bottom: scrollClimber,
             }}
             ref={dudeRef}
-            src="./climber.svg"
+            src="/resources/climber.svg"
           />
           <motion.div
             id="rope-2"
@@ -98,7 +98,7 @@ export default function Portfolio() {
               width: 60,
               height: 500,
             }}
-            src="./rope-bottom.svg"
+            src="/resources/rope-bottom.svg"
           />
         </Box>
       </motions.AnimatePresence>

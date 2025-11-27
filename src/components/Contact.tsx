@@ -18,7 +18,7 @@ export default function Contact() {
         offset={1}
       >
         <img
-          src="/talas-hey-buddy.svg"
+          src="/resources/talas-hey-buddy.svg"
           width={"100%"}
           height={"auto"}
           alt="Curly haired dude standing in the doorway saying hey buddy"
