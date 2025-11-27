@@ -191,7 +191,7 @@ export default function Navigation() {
                 className={group}
               >
                 <img
-                  src={"/sylphaxiom_web_512x.svg"}
+                  src={"../resources/sylphaxiom_web_512x.svg"}
                   alt="curious guy in a browser"
                   width={100}
                   className="svg"

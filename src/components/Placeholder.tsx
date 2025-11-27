@@ -34,7 +34,7 @@ export default function Placeholder() {
                 height={350}
                 width={350}
                 alt="quill drawing a map"
-                src="./map_draw_350x.svg"
+                src="../resources/map_draw_350x.svg"
                 className="svg"
                 sx={{ maxHeight: 350, maxWidth: 350 }}
               />
@@ -77,7 +77,7 @@ export default function Placeholder() {
         <Grid size={6} sx={{ maxHeight: 167 }}>
           <Card raised sx={{ height: 1, boxShadow: shadow }}>
             <CardMedia
-              src="./purple_splash.jpg"
+              src="../resources/purple_splash.jpg"
               title="purple color swatch because color is cool"
               component="img"
               sx={{ width: 1, height: 1 }}
@@ -87,7 +87,7 @@ export default function Placeholder() {
         <Grid size={6} sx={{ maxHeight: 167 }}>
           <Card raised sx={{ height: 1, boxShadow: shadow }}>
             <CardMedia
-              src="./Maze.jpg"
+              src="../resources/Maze.jpg"
               title="map of a dungeon"
               component="img"
               sx={{ width: 1, height: 1 }}
@@ -97,7 +97,7 @@ export default function Placeholder() {
         <Grid size={6} sx={{ maxHeight: 167 }}>
           <Card raised sx={{ height: 1, boxShadow: shadow }}>
             <CardMedia
-              src="./Vitalivus_Liquet.jpg"
+              src="../resources/Vitalivus_Liquet.jpg"
               title="a vial of magical liquid"
               component="img"
               sx={{ width: 1, height: 1 }}
@@ -107,7 +107,7 @@ export default function Placeholder() {
         <Grid size={6} sx={{ maxHeight: 167 }}>
           <Card raised sx={{ height: 1, boxShadow: shadow }}>
             <CardMedia
-              src="./blue_purple_splash.jpg"
+              src="../resources/blue_purple_splash.jpg"
               title="blue-ish purple color swatch because color is cool"
               component="img"
               sx={{ width: 1, height: 1 }}
@@ -121,7 +121,7 @@ export default function Placeholder() {
             <CardMedia
               component="img"
               alt="stick-figure construction workers building a web page"
-              src="./construction.svg"
+              src="../resources/construction.svg"
               className="svg"
               sx={{ height: 350, width: 350, float: "left" }}
             />
@@ -162,7 +162,7 @@ export default function Placeholder() {
           </Grid>
           <Grid size={4} wrap="nowrap">
             <CardMedia
-              src="./headshot.jpg"
+              src="../resources/headshot.jpg"
               component="img"
               sx={{
                 height: 150,

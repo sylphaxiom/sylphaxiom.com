@@ -29,7 +29,7 @@ export default function PortAbout() {
             width={40}
             height={30}
             alt="a flying saucer"
-            src="./saucer_asset-20x15.svg"
+            src="../resources/saucer_asset-20x15.svg"
             className=""
           />
           <motion.img
@@ -38,14 +38,14 @@ export default function PortAbout() {
             width={40}
             height={30}
             alt="a rays"
-            src={"./rays" + rays + "_asset-20x15.svg"}
+            src={"../resources/rays" + rays + "_asset-20x15.svg"}
             className="svg"
           />
           <img
             width={40}
             height={30}
             alt="a cow"
-            src="./cow_asset-20x15.svg"
+            src="../resources/cow_asset-20x15.svg"
             className="svg"
           />
         </Grid>

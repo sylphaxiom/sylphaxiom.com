@@ -13,7 +13,7 @@ export default function Home() {
       <CardMedia
         component={"img"}
         title="stick-figure construction workers working on a web page"
-        src="/construction.svg"
+        src="../resources/construction.svg"
         className="svg"
         sx={{ maxWidth: 500, height: "auto", mx: "auto" }}
       />

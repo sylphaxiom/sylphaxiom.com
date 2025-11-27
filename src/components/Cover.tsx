@@ -80,7 +80,7 @@ export default function Cover() {
               rotateY,
             }}
             initial={coverOn}
-            src={"/sylphaxiom_web_512x.svg"}
+            src={"../resources/sylphaxiom_web_512x.svg"}
             className="svg"
             key="logo"
             alt="curious guy in a browser"
