@@ -44,6 +44,7 @@ export default function Navigation() {
     return null;
   }
   const isDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const isMobile = useMediaQuery("(max-width: 600px)");
   const [_color, setColor] = React.useState(
     // This is only here to re-trigger the rendering.
     systemMode?.toString()
@@ -77,40 +78,76 @@ export default function Navigation() {
   let title: string;
   switch (base) {
     case "home":
-      title = "Sylphaxiom Creative";
+      if (isMobile) {
+        title = "Creative";
+      } else {
+        title = "Sylphaxiom Creative";
+      }
       break;
 
     case "people":
-      title = "Our Creative Team";
+      if (isMobile) {
+        title = "Team";
+      } else {
+        title = "Our Creative Team";
+      }
       break;
 
     case "projects":
-      title = "Our Projects";
+      if (isMobile) {
+        title = "Projects";
+      } else {
+        title = "Our Projects";
+      }
       break;
 
     case "contact":
-      title = "Let's Create!";
+      if (isMobile) {
+        title = "Contact";
+      } else {
+        title = "Let's Create!";
+      }
       break;
 
     case "portfolio":
-      title = "Creator Portfolio";
+      if (isMobile) {
+        title = "Portfolio";
+      } else {
+        title = "Creator Portfolio";
+      }
       break;
 
     case "web":
-      title = "Web Development";
+      if (isMobile) {
+        title = "Web";
+      } else {
+        title = "Web Development";
+      }
       break;
 
     case "assets":
-      title = "Digital Art and Assets";
+      if (isMobile) {
+        title = "Assets";
+      } else {
+        title = "Digital Art and Assets";
+      }
       break;
 
     case "writing":
-      title = "Writing and Storytelling";
+      if (isMobile) {
+        title = "Writing";
+      } else {
+        title = "Writing and Storytelling";
+      }
       break;
 
     default:
       !base && base === "/";
-      title = "Sylphaxiom Creative";
+      if (isMobile) {
+        title = "Creative";
+      } else {
+        title = "Sylphaxiom Creative";
+      }
   }
 
   // Title animation
@@ -210,7 +247,7 @@ export default function Navigation() {
               sx={{
                 fontSize: { xs: "2.5rem", lg: "4rem" },
                 fontWeight: { xs: 400, lg: 300 },
-                display: { xs: "none", sm: "block" },
+                display: { xs: "block", sm: "block" },
               }}
             >
               <motions.AnimatePresence mode="wait">
