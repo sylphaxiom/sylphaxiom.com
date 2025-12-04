@@ -1,4 +1,7 @@
 <?php
+error_reporting(-1);
+ini_set('display_errors', 'On');
+set_error_handler("var_dump");
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Max-Age:3600');
 header('Access-Control-Allow-Headers:Content-type,Rain');
@@ -57,7 +60,7 @@ switch($method) {
         $message = $input['message'];
 		$to = $input['recipient'];
         $headers = array(
-            'From' => $name.' <'.$email.'>',
+            'From' => $name.' <no-reply@sylphaxiom.com>',
             'Reply-To' => $email,
             'X-Mailer' => 'PHP/'.phpversion(),
             'Content-type' => 'text/plain',
@@ -94,7 +97,7 @@ switch($method) {
                 "\nHeaders: ".var_dump($headers).
                 "\nDB submission ID: ".$retID;
             $eHeaders = array(
-                'From' => $name.' <'.$email.'>',
+                'From' => $name.' <no-reply@sylphaxiom.com>',
                 'Reply-To' => $email,
                 'X-Mailer' => 'PHP/'.phpversion(),
                 'Content-type' => 'text/plain',
