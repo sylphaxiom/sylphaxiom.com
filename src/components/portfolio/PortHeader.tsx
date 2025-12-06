@@ -141,6 +141,7 @@ export default function PortHeader() {
         </Grid>
         <Grid
           size={12}
+          className="svg"
           sx={{
             mt: "20px",
             scale: { md: 1.5, lg: 1.5, xl: 1 },

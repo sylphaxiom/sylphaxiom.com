@@ -178,7 +178,7 @@ export default function Navigation() {
   };
 
   return (
-    <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0, pt: "15vh" }}>
+    <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0, pt: "125px" }}>
       <HideOnScroll>
         <Grid
           container
