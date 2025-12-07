@@ -28,6 +28,7 @@ export default [
         ])
     ]),    
     ...prefix("demo", [
-        route("tiles", "./components/demo/SkillTilesDemo.tsx")
+        route("tiles", "./components/demo/SkillTilesDemo.tsx"),
+        route("map", "./components/demo/InteractiveKothis.tsx")
     ]),
 ] satisfies RouteConfig

@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import { SkillTiles, type Skills } from "../portfolio/SkillTiles";
 import Box from "@mui/material/Box";
 import {
-  Button,
+  // Button,
   FormControl,
   FormControlLabel,
   FormHelperText,
@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import React from "react";
 import NumberSpinner from "../elements/NumberSpinner";
 import type { NumberFieldRootChangeEventDetails } from "@base-ui-components/react/number-field";
-import { Link } from "react-router";
+// import { Link } from "react-router";
 
 export default function SkillTilesDemo() {
   const theme = useTheme();
@@ -79,12 +79,6 @@ export default function SkillTilesDemo() {
         </Grid>
       </Grid>
       <Grid size={{ xs: 12, md: 6, xl: 3 }} sx={{ px: 1, textAlign: "center" }}>
-        <Typography
-          variant="h3"
-          sx={{ position: "sticky", top: "10px", height: "70px" }}
-        >
-          Tiles Demo
-        </Typography>
         <Box
           sx={{
             border: "solid 2px " + theme.palette.primary.main,
@@ -92,6 +86,7 @@ export default function SkillTilesDemo() {
             justifySelf: "center",
             position: "sticky",
             top: "80px",
+            mt: 1,
           }}
         >
           <FormControl focused={false}>
@@ -146,14 +141,14 @@ export default function SkillTilesDemo() {
             play with the form elements above to see the effects they have on
             the tiles.
           </Typography>
-          <Button
-            variant="contained"
-            component={Link}
-            to={"/portfolio"}
-            sx={{ mb: 2 }}
-          >
-            Back to Portfolio
-          </Button>
+          {/* <Button
+              variant="contained"
+              component={Link}
+              to={"/portfolio"}
+              sx={{ mb: 2 }}
+            >
+              Back to Portfolio
+            </Button> */}
         </Box>
       </Grid>
     </Grid>
