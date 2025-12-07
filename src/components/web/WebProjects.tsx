@@ -39,7 +39,7 @@ export default function WebProjects() {
         "Register/sign-in to your account with Google, Discord, or GitHub as well as your username and password",
         "Mobile responsive design",
         "Light/Dark mode switcher",
-        "Minor animations, for my own amusement",
+        "Additional functionality still in development.",
       ],
     },
   ];

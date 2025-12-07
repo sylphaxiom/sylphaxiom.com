@@ -8,38 +8,24 @@ export default function WebProjects() {
       title: "Skill Tiles",
       url: "http://localhost:5173/demo/tiles",
       content:
-        "Sylphaxiom Creative is my personal site, and someday my business site. Presently I have spent my focus more on the Portfolio aspect of this site, but the intention is for it to be a full web application with 2 sides: The Portfolio side and the Creative side. The Creative side of this website would be a point of entry for anyone looking to hire someone for an artistic service which is what Sylphaxiom Creative would do. The Portfolio side will be a place for those creatives to host their own portfolios for anyone looking to hire them for their services.",
-      tech: [
-        "MUI Components",
-        "REST API backend (PHP)",
-        "MySQL database",
-        "Playwright for testing",
-      ],
+        "Originally intended to be a decoration on the portfolio page (it still is), I realized that it could be expanded further. Perhaps you'd like to use a series of icons? or cats? Whatever it is, you can replace the icons easily enough. You can adjust the number of rows which would be your length. Density is how much space there could potentially be between images. Currently there is only 2 patterns in place, random and spiral, but there could be many more. This is based on a simple grid that is 4 units wide, each unit is a 50px square containing eihter a space or an image.",
       features: [
-        "Multi-purpose web form which sends email directly and securely",
-        "Mobile responsive design",
-        "Light/Dark mode switcher",
-        "Minor animations, for my own amusement",
+        "Random and Spiral pattern options",
+        "Adjustable height using number of rows",
+        "Easily replaceable image options",
+        "Adjustable density with the Random Pattern",
       ],
     },
     {
       title: "Interactive Map",
       url: "http://localhost:5173/demo/map",
       content:
-        'The Kothis Portal is a web application I built for my TTRPG group and the world we play in. My intention is for this application to be a "one-stop-shop" for everything to do with my campaigns and worldbuilding. I also have friends and partners who have worlds of their own which I would love to see join mine on here. While early in its implementation, I will eventually bring functinality such as creating custom items, classes, or rules, a character creator, scheduling and messaging capabilities, and more that I just haven\'t thought of yet!',
-      tech: [
-        "MUI Components",
-        "REST API backend (PHP)",
-        "MySQL database",
-        "Playwright for testing",
-        "Auth0 authentication",
-        "ReactQuery for REST calls",
-      ],
+        "This map was created for the Kothis Portal application as a fun way to navigate the world pages. The construction took some SVG work, which I mostly did in Inkscape, and then polished off in my code editor. The composition is simply an image which is the background for an series of SVG shapes. These shape can be drawn in any way you'd like and can each have links or be used like any other button. Perfect for mapping sections of an image. If you don't want the lines to show, you can always keep the links and set the underlying shape as hidden.",
       features: [
-        "Multi-purpose web form which sends email directly and securely",
-        "Mobile responsive design",
-        "Light/Dark mode switcher",
-        "Minor animations, for my own amusement",
+        "Color coded regions",
+        "Active links",
+        "Tooltips",
+        "Useful concept with many applications",
       ],
     },
   ];
