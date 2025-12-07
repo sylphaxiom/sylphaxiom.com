@@ -53,14 +53,18 @@ export default function WebProjects() {
       }}
     >
       <Grid size={{ xs: 12 }}>
-        <Typography sx={{ justifySelf: "center" }} variant="h3" component="h2">
+        <Typography
+          sx={{ justifySelf: "center", m: 2 }}
+          variant="h3"
+          component="h2"
+        >
           Web Projects
         </Typography>
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <Typography
           variant="body1"
-          sx={{ textIndent: "30px", m: 2, textAlign: "justify" }}
+          sx={{ textIndent: { xs: 0, xl: "30px" }, m: 2, textAlign: "justify" }}
         >
           The web is a very big place where you can find anything (admit it or
           not, we all know about Rule 34)! Since you can find anything, you can
@@ -71,7 +75,7 @@ export default function WebProjects() {
       <Grid size={{ xs: 12, sm: 6 }}>
         <Typography
           variant="body1"
-          sx={{ textIndent: "30px", m: 2, textAlign: "justify" }}
+          sx={{ textIndent: { xs: 0, xl: "30px" }, m: 2, textAlign: "justify" }}
         >
           I'm currently still building up my clientelle and my portfolio, so
           this page might seem a bit sparce. These are a few examples of the web

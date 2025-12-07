@@ -14,7 +14,11 @@ export default function WebAsset({ title, url, content, features }: WebProps) {
   };
   return (
     <React.Fragment>
-      <Grid container size={{ xs: 6 }} sx={{ justifyContent: "center" }}>
+      <Grid
+        container
+        size={{ xs: 12, xl: 6 }}
+        sx={{ justifyContent: "center" }}
+      >
         <Grid size={12}>
           <Typography
             variant="h4"
@@ -24,10 +28,17 @@ export default function WebAsset({ title, url, content, features }: WebProps) {
             {title}
           </Typography>
         </Grid>
-        <Typography variant="body1" sx={{ textIndent: "30px", my: 2 }}>
+        <Typography
+          variant="body1"
+          sx={{
+            textIndent: { xs: 0, xl: "30px" },
+            m: 2,
+            width: { xs: 1, sm: 0.45, xl: 1 },
+          }}
+        >
           {content}
         </Typography>
-        <Grid size={{ xs: 12, sm: 6 }}>
+        <Grid size={{ xs: 12, sm: 6 }} sx={{ mb: 3 }}>
           <Typography variant="h5" sx={{ mt: 2 }}>
             Features:
           </Typography>
@@ -38,13 +49,19 @@ export default function WebAsset({ title, url, content, features }: WebProps) {
           </List>
         </Grid>
       </Grid>
-      <Grid size={6}>
-        <iframe src={url} ref={frameRef} width="100%" height="93%" />
+      <Grid size={{ xs: 12, xl: 6 }}>
+        <iframe
+          src={url}
+          ref={frameRef}
+          width="100%"
+          height="80%"
+          style={{ marginLeft: "3%", minHeight: "500px" }}
+        />
         <Button
           title="Reset"
           onClick={handleRefresh}
           variant="contained"
-          sx={{ width: 1 }}
+          sx={{ width: 0.5, ml: "28%" }}
         >
           Reset Demo
         </Button>

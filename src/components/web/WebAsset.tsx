@@ -66,7 +66,10 @@ export default function WebAsset({
           />
         </Link>
       </LinkTooltip>
-      <Typography variant="body1" sx={{ textIndent: "30px", my: 2 }}>
+      <Typography
+        variant="body1"
+        sx={{ textIndent: { xs: 0, xl: "30px" }, my: 2 }}
+      >
         {content}
       </Typography>
       <Grid size={{ xs: 12, sm: 6 }}>
@@ -79,15 +82,17 @@ export default function WebAsset({
           })}
         </List>
       </Grid>
-      <Grid size={{ xs: 12, sm: 6 }}>
+      <Grid size={{ xs: 12, sm: 6 }} sx={{ mb: 3 }}>
         <Typography variant="h5" sx={{ mt: 2 }}>
           Features:
         </Typography>
-        <List dense>
-          {features.map((feature) => {
-            return <ListItem key={feature}>{feature}</ListItem>;
-          })}
-        </List>
+        <Grid size={12}>
+          <List dense>
+            {features.map((feature) => {
+              return <ListItem key={feature}>{feature}</ListItem>;
+            })}
+          </List>
+        </Grid>
       </Grid>
     </Grid>
   );

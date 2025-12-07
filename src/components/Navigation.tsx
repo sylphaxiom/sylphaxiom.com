@@ -377,7 +377,7 @@ export default function Navigation() {
           </Grid>
         </Grid>
       </HideOnScroll>
-      <Container maxWidth="md" sx={{ my: 5, minWidth: 1 }}>
+      <Container maxWidth="md" sx={{ my: { xs: 2, xl: 5 }, minWidth: 1 }}>
         <Outlet />
       </Container>
     </Box>

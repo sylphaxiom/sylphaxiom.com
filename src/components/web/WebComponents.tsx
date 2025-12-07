@@ -53,14 +53,18 @@ export default function WebProjects() {
       }}
     >
       <Grid size={{ xs: 12 }}>
-        <Typography sx={{ justifySelf: "center" }} variant="h3" component="h2">
+        <Typography
+          sx={{ justifySelf: "center", ml: 2 }}
+          variant="h3"
+          component="h2"
+        >
           Web Components
         </Typography>
       </Grid>
       <Grid size={{ xs: 12, sm: 6 }}>
         <Typography
           variant="body1"
-          sx={{ textIndent: "30px", m: 2, textAlign: "justify" }}
+          sx={{ textIndent: { xs: 0, xl: "30px" }, m: 2, textAlign: "justify" }}
         >
           As I've been working on my projects and websites, I've discovered that
           there is a lot of modularity involved (after all, that is the react
@@ -73,13 +77,13 @@ export default function WebProjects() {
       <Grid size={{ xs: 12, sm: 6 }}>
         <Typography
           variant="body1"
-          sx={{ textIndent: "30px", m: 2, textAlign: "justify" }}
+          sx={{ textIndent: { xs: 0, xl: "30px" }, m: 2, textAlign: "justify" }}
         >
-          They aren't necessarily complicated and they likely need some
-          refactoring and optimizing, but I improve things as I see flaws and
-          opportunities. Mostly, these are just fun little tid-bits that I
-          thought were worth including in my portfolio. I could proabably do a
-          lot more than this, but this is what my head has come up with so far!
+          They aren't necessarily complex and they likely need some refactoring
+          and optimizing, but I improve things as I see flaws and opportunities.
+          Mostly, these are just fun little tid-bits that I thought were worth
+          including in my portfolio. I could proabably do a lot more than this,
+          but this is what my head has come up with so far!
         </Typography>
       </Grid>
       {assets.map((asset) => {
