@@ -8,7 +8,7 @@ declare module "react-router"{
 export default [
     // Cover and default route
     index("./components/Cover.tsx", {id:"Cover"}),
-    route("*?", "./components/Loading.tsx", {id:"catchall"}),
+    route("*?", "./components/Error.tsx", {id:"catchall"}),
     // Creative side paths
     route("creative", "./components/Navigation.tsx", {id:"createNav"}, [
         index("./components/Home.tsx"),

@@ -36,7 +36,7 @@ export default function WebProjects() {
         "ReactQuery for REST calls",
       ],
       features: [
-        "Multi-purpose web form which sends email directly and securely",
+        "Register/sign-in to your account with Google, Discord, or GitHub as well as your username and password",
         "Mobile responsive design",
         "Light/Dark mode switcher",
         "Minor animations, for my own amusement",
