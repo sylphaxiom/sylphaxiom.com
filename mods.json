@@ -1,0 +1,14 @@
+[
+    {
+        "filename":"components\\web\\WebComponents.tsx",
+        "search":"http://localhost:5173",
+        "update":"https://sylphaxiom.com",
+        "PROD":true
+    },
+    {
+        "filename":"components\\web\\WebComponents.tsx",
+        "search":"http://localhost:5173",
+        "update":"https://test.sylphaxiom.com",
+        "DEV":true
+    }
+]
