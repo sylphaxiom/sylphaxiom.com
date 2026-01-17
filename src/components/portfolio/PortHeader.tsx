@@ -14,7 +14,7 @@ export default function PortHeader() {
   const downloadCV = () => {
     FileSaver.saveAs(
       "/resources/jacob_pell_resume.pdf",
-      "jacob_pell_resume.pdf"
+      "jacob_pell_resume.pdf",
     );
   };
 
@@ -149,7 +149,13 @@ export default function PortHeader() {
             zIndex: 0,
           }}
         >
-          <svg width="100%" height="30px">
+          <svg
+            width="100%"
+            height="30px"
+            viewBox="0 0 600 15"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <polygon width="15px" points="0,5 0,15 600,15 500,5" />
           </svg>
         </Grid>

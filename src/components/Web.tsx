@@ -76,13 +76,15 @@ export default function Web() {
             aria-controls={page}
             key={"tab-" + page}
             id={page}
-            sx={{ height: "13.5vh" }}
+            sx={{ height: "50px" }}
           />
         ))}
       </Tabs>
       {value === "Projects" ?
         <WebProjects />
-      : <WebComponents />}
+      : value === "Components" ?
+        <WebComponents />
+      : null}
     </Container>
   );
 }

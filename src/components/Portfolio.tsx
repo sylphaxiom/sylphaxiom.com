@@ -19,17 +19,17 @@ export default function Portfolio() {
   const scrollClimber = motions.useTransform(
     scrollYProgress,
     [0, 1],
-    [point2, 500]
+    [point2, 500],
   );
   const topClimber = motions.useTransform(
     scrollYProgress,
     [0, 1],
-    [point, 635]
+    [point, 635],
   );
   const bottomClimber = motions.useTransform(
     scrollYProgress,
     [0, 1],
-    [vh - point2, 419]
+    [vh - point2, 419],
   );
 
   return (
@@ -44,7 +44,7 @@ export default function Portfolio() {
             top: 0,
             width: "60px",
           }}
-          sx={{ display: { xs: "none", lg: "block" } }}
+          sx={{ display: { xs: "none", md: "block" } }}
         >
           <motion.div
             id="rope-1"
