@@ -14,7 +14,7 @@ export default function PortHeader() {
   const downloadCV = () => {
     FileSaver.saveAs(
       "/resources/jacob_pell_resume.pdf",
-      "jacob_pell_resume.pdf"
+      "jacob_pell_resume.pdf",
     );
   };
 
@@ -83,19 +83,19 @@ export default function PortHeader() {
           container
           sx={{ justifyContent: "start", alignItems: "flex-end" }}
         >
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 8, lg: 6 }}>
             <Typography
               variant="h2"
               id="port_name"
               sx={{
-                justifySelf: { md: "center", xl: "left" },
+                justifySelf: "center",
                 mt: 5,
               }}
             >
               Jacob Pell
             </Typography>
           </Grid>
-          <Grid size={{ xs: 4, md: 1 }}>
+          <Grid size={{ xs: 4, md: 1 }} sx={{ mx: { xs: "none", md: 1 } }}>
             <Tooltip title="github.com/sylphaxiom">
               <IconButton
                 href="https://github.com/sylphaxiom"
@@ -108,7 +108,7 @@ export default function PortHeader() {
               </IconButton>
             </Tooltip>
           </Grid>
-          <Grid size={{ xs: 4, md: 1 }}>
+          <Grid size={{ xs: 4, md: 1 }} sx={{ mx: { xs: "none", md: 1 } }}>
             <Tooltip title="Download PDF Resume">
               <IconButton
                 onClick={downloadCV}
@@ -121,7 +121,7 @@ export default function PortHeader() {
               </IconButton>
             </Tooltip>
           </Grid>
-          <Grid size={{ xs: 4, md: 1 }}>
+          <Grid size={{ xs: 4, md: 1 }} sx={{ mx: { xs: "none", md: 1 } }}>
             <Tooltip title="linkedin.com/in/sylphaxiom">
               <IconButton
                 href="https://www.linkedin.com/in/sylphaxiom/"
@@ -144,17 +144,25 @@ export default function PortHeader() {
           className="svg"
           sx={{
             mt: "20px",
-            scale: { md: 1.5, lg: 1.5, xl: 1 },
-            ml: { xs: 0, md: "25%", xl: 0 },
+            width: "100%",
+            mx: "auto",
             zIndex: 0,
           }}
         >
-          <svg width="100%" height="30px">
+          <svg
+            width="100%"
+            height="30px"
+            viewBox="0 0 600 15"
+            preserveAspectRatio="xMidYMid meet"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <polygon width="15px" points="0,5 0,15 600,15 500,5" />
           </svg>
         </Grid>
         <Grid size={{ xs: 12, xl: "auto" }}>
-          <Typography variant="h5">Full-Stack Developer</Typography>
+          <Typography className="secondary" variant="h5">
+            Full-Stack Developer
+          </Typography>
         </Grid>
         <Divider
           flexItem
@@ -162,7 +170,9 @@ export default function PortHeader() {
           sx={bps.lg ? deskSx : mobSx}
         />
         <Grid size={{ xs: 12, xl: "auto" }}>
-          <Typography variant="h5">Automation/Scripting Specialist</Typography>
+          <Typography className="secondary" variant="h5">
+            Automation/Scripting Specialist
+          </Typography>
         </Grid>
         <Divider
           flexItem
@@ -170,7 +180,9 @@ export default function PortHeader() {
           sx={bps.lg ? deskSx : mobSx}
         />
         <Grid size={{ xs: 12, xl: "auto" }}>
-          <Typography variant="h5">Author/Worldbuilder</Typography>
+          <Typography className="secondary" variant="h5">
+            Author/Worldbuilder
+          </Typography>
         </Grid>
       </Grid>
     </Grid>

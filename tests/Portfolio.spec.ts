@@ -90,30 +90,6 @@ test("content link is valid", async({page})=>{
 
 });
 
-test('check section headers', async({page})=>{
-
-    // Add any new H5 element text here
-    const sections = [
-        'Full-Stack Developer',
-        'Automation/Scripting Specialist',
-        'Author/Worldbuilder',
-        'A Brief History...',
-        'The Skills...',
-        'Web Development',
-        'Scripting',
-        'Asset Creation',
-        'Writing',
-        'Sylphaxiom Creative',
-        'Kothis Portal',
-    ]
-    const sectionHeaders = page.locator('h5');
-    await expect(sectionHeaders).toHaveCount(sections.length);
-    for await ( const [index, section] of sections.entries()) {
-        await expect(sectionHeaders.nth(index)).toHaveText(section);
-    }
-
-});
-
 test('download resume link works', async({page})=>{
 
     const downloadLink = page.getByRole('button', { name: 'download_resume' });

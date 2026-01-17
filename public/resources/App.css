@@ -1,3 +1,10 @@
+.primary {
+  color: var(--mui-palette-primary-main);
+}
+.secondary {
+  color: var(--mui-palette-secondary-main);
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -62,20 +69,10 @@
 }
 }
 
-/* #ballet {
-  font-family: "Ballet", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 4em;
-}
-
-#ballet:hover #downImg{
-  display: block;
-}
-#downImg{
-  display: none;
-} */
-
 .dark img.svg, .dark .svg > svg {
   filter: hue-rotate(180deg) invert() contrast(90%)
+}
+
+body {
+  overflow-x:hidden;
 }

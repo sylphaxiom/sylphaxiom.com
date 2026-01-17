@@ -10,6 +10,11 @@ import PortSkills from "./portfolio/PortSkills";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
+  const springScrollYProgress = motions.useSpring(scrollYProgress, {
+    stiffness: 200,
+    damping: 25,
+    restDelta: 0.001,
+  });
   const dudeRef = React.useRef(null); // holds the dude
 
   const vh = window.innerHeight;
@@ -17,23 +22,30 @@ export default function Portfolio() {
   let point2 = point - 135; // Y @ bottom of Dude rel: bottom
 
   const scrollClimber = motions.useTransform(
-    scrollYProgress,
+    springScrollYProgress,
     [0, 1],
-    [point2, 500]
+    [point2, 10],
   );
   const topClimber = motions.useTransform(
-    scrollYProgress,
+    springScrollYProgress,
     [0, 1],
-    [point, 635]
+    [point, 145],
   );
   const bottomClimber = motions.useTransform(
-    scrollYProgress,
+    springScrollYProgress,
     [0, 1],
-    [vh - point2, 419]
+    [vh - point2, 419],
   );
 
   return (
-    <Box sx={{ textAlign: "center" }} id="port_frame">
+    <Box
+      sx={{
+        textAlign: "center",
+        mx: "auto",
+        maxWidth: { xs: "100%", sm: "80%" },
+      }}
+      id="port_frame"
+    >
       <motions.AnimatePresence mode="wait">
         <Box
           id="climber"
@@ -44,7 +56,8 @@ export default function Portfolio() {
             top: 0,
             width: "60px",
           }}
-          sx={{ display: { xs: "none", lg: "block" } }}
+          sx={{ display: { xs: "none", sm: "block" } }}
+          // sx={{ display: "block" }}
         >
           <motion.div
             id="rope-1"
@@ -80,7 +93,7 @@ export default function Portfolio() {
               position: "fixed",
               top: bottomClimber,
               left: 34, //const
-              bottom: 500, //const
+              bottom: 10, //const
               width: 2, //const
               originY: point2, //const
               backgroundColor: theme.vars?.palette.text.primary, //const
@@ -96,9 +109,9 @@ export default function Portfolio() {
               left: 0,
               bottom: 0,
               width: 60,
-              height: 500,
+              height: 10,
             }}
-            src="/resources/rope-bottom.svg"
+            src="/resources/rope-base.svg"
           />
         </Box>
       </motions.AnimatePresence>

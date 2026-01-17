@@ -28,6 +28,9 @@ export const dark: ThemeOptions = {
     h2: {
       fontWeight: 500,
     },
+    h5: {
+      fontSize: "1.75rem",
+    },
     fontWeightLight: 400,
     fontWeightRegular: 500,
     fontWeightMedium: 600,
@@ -59,6 +62,9 @@ export const light: ThemeOptions = {
     },
     h2: {
       fontWeight: 500,
+    },
+    h5: {
+      fontSize: "1.75rem",
     },
     fontWeightLight: 400,
     fontWeightRegular: 500,
