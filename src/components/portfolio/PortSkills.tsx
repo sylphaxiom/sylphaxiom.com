@@ -1,15 +1,17 @@
 import { SkillTiles } from "./SkillTiles";
 import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
+import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 
 export default function PortSkills() {
+  const theme = useTheme();
   return (
     <Grid container>
       <Grid size={{ xs: 12, xl: 3 }} id="skills_left_cont">
-        <Typography variant="h5" marginTop={5}>
-          The Skills...
+        <Typography className="primary" variant="h4" marginTop={5}>
+          Projects and More...
         </Typography>
         <Grid
           container
@@ -44,13 +46,13 @@ export default function PortSkills() {
             ],
             20,
             "spiral",
-            5
+            5,
           )}
         </Grid>
       </Grid>
       <Grid
-        size={{ xs: 12, xl: 8 }}
-        sx={{ textAlign: "left", marginTop: 1 }}
+        size={{ xs: 12, md: 8 }}
+        sx={{ textAlign: "left", marginTop: 1, mx: "auto" }}
         id="skills_right_cont"
       >
         <Grid
@@ -60,145 +62,34 @@ export default function PortSkills() {
           id="infoTiles"
           columns={6}
         >
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Web Development
-              </Typography>
-              <Grid direction={"row"} style={{ alignContent: "center" }}></Grid>
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 1 }}>
-                Technology stacks have changed, but passion for code sure
-                hasn't. I have been trying to keep up with modern frameworks and
-                have expanded my skillset to include React, TypeScript, and
-                Playwright for testing. I still love PHP for backend work, but I
-                am always eager to learn a new library or framework as needed.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Scripting
-              </Typography>
-              <Grid direction={"row"} style={{ alignContent: "center" }}></Grid>
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 1 }}>
-                My experience in IT infrastructure merged with my love of coding
-                and gave birth to set of scripting skills that have come in
-                handy over the years. Powershell, Python, Bash, whatever the
-                language, I'll write it. Deployments, API interactions, simple
-                repetitive task scripting, whatever the need, I'll script it.
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Asset Creation
-              </Typography>
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 2 }}>
-                Necessity is the mother of invention. When you need something,
-                you might as well make it! This is how we discover new-found
-                skills like SVG creation and other forms of digital art. My work
-                with Blender and 3D has been a thrilling adventure so far!
-              </Typography>
-            </Grid>
-          </Grid>
-          <Grid
-            size={6}
-            container
-            sx={{
-              width: 0.8,
-              mx: "auto",
-              minHeight: 250,
-              textAlign: "center",
-            }}
-          >
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography variant="h5" sx={{ py: 2 }}>
-                Writing
-              </Typography>
-            </Grid>
-            <Grid size={{ xs: 6, md: 3 }}>
-              <Typography sx={{ py: 1 }}>
-                Writing is my oldest passion. Since my teen years, my writing
-                has branched out beyond mere fiction. I have been building an
-                entire world from the ground up! This world is called Kothis and
-                it is the setting for a few TTRPG campaigns with the goal of
-                becoming a fully published setting (possibly with some side
-                novels)
-              </Typography>
-            </Grid>
-          </Grid>
-          <Divider orientation="horizontal" sx={{ width: 0.75, mx: "auto" }} />
-          <Grid size={6}>
-            <Typography variant="h4" sx={{ m: 3, textAlign: "center" }}>
-              Active Web Projects
-            </Typography>
-          </Grid>
-          <Divider orientation="horizontal" sx={{ width: 0.75, mx: "auto" }} />
           <Grid size={6}>
             <Grid
               sx={{
                 maxWidth: 750,
-                height: 250,
                 textAlign: "center",
                 mx: "auto",
               }}
             >
+              <Typography className="secondary" variant="h5" sx={{ pt: 1 }}>
+                Sylphaxiom Creative
+              </Typography>
               <Box
                 component="img"
                 src="/resources/sylphaxiom_web_512x.svg"
                 alt="curious guy in a browser"
                 className="svg"
                 sx={{
-                  width: "200px",
-                  height: "200px",
-                  float: "left",
-                  display: { xs: "none", md: "flex" },
+                  width: "100px",
+                  height: "100px",
                   marginRight: 8,
+                  mx: "auto",
                 }}
               />
-              <Typography variant="h5" sx={{ pt: 1 }}>
-                Sylphaxiom Creative
-              </Typography>
               <Typography sx={{ py: 2 }}>
-                This is my current, primary project. It's a web application
-                built with MUI and React for the frontend. There is currently no
-                backend functionality required. More will be added as I continue
-                to work on this long-running project.
+                This site is what you're looking at here. Started as a place to
+                build my brand and business from. Now it is in the process of
+                becoming my portfolio, showcase, and testing environment. I
+                fully expect this site to change several more times!
               </Typography>
             </Grid>
           </Grid>
@@ -206,33 +97,89 @@ export default function PortSkills() {
             <Grid
               sx={{
                 maxWidth: 750,
-                height: 250,
                 textAlign: "center",
                 mx: "auto",
               }}
             >
+              <Typography className="secondary" variant="h5" sx={{ pt: 1 }}>
+                Kothis Portal
+              </Typography>
               <Box
                 component="img"
                 src="/resources/kothis.svg"
                 alt="Logo of Kothis, a D20 with designs on it."
                 className="svg"
                 sx={{
-                  width: "200px",
-                  height: "200px",
-                  float: "left",
-                  display: { xs: "none", md: "flex" },
+                  width: "100px",
+                  height: "100px",
                   marginRight: 8,
+                  mx: "auto",
                 }}
               />
-              <Typography variant="h5" sx={{ pt: 1 }}>
-                Kothis Portal
-              </Typography>
               <Typography sx={{ py: 2 }}>
-                This has been my obsession lately. It uses Auth0 for
-                authentication, the backend is built as a set of RESTful APIs
-                which do the work between my DB and the React frontend. This
-                site will grow to be the main hub for my worldbuilding and TTRPG
-                games.
+                This site is where I am building a central location for my
+                worldbuilding and TTRPG games. I want this to be a full
+                application for character creation, campaign organization,
+                homebre creation, game scheduling, and much more! The site is
+                young right now but growing more and more by the day!
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid size={6}>
+            <Grid
+              sx={{
+                maxWidth: 750,
+                textAlign: "center",
+                mx: "auto",
+              }}
+            >
+              <Typography className="secondary" variant="h5" sx={{ pt: 1 }}>
+                Component Demos
+              </Typography>
+              <Box
+                component="img"
+                src="/resources/construction.svg"
+                alt="Construction workers building a website."
+                className="svg"
+                sx={{
+                  width: "100px",
+                  height: "100px",
+                  marginRight: 8,
+                  mx: "auto",
+                }}
+              />
+              <Typography sx={{ py: 2 }}>
+                You can find more demos and little projects I'm working on by
+                clicking through the other pages in this portfolio. I will try
+                to update this site with my work as I produce it. If you have
+                requests or questions, reach out from my{" "}
+                <Link
+                  id="SotN_ad"
+                  color={theme.palette.secondary.main}
+                  href="https://www.linkedin.com/in/sylphaxiom/"
+                  underline="none"
+                >
+                  LinkedIn
+                </Link>
+                ,{" "}
+                <Link
+                  id="SotN_ad"
+                  color={theme.palette.secondary.main}
+                  href="https://github.com/sylphaxiom"
+                  underline="none"
+                >
+                  GitHub
+                </Link>
+                , or{" "}
+                <Link
+                  id="SotN_ad"
+                  color={theme.palette.secondary.main}
+                  href="https://sylphaxiom.com/contact"
+                  underline="none"
+                >
+                  Contact Page
+                </Link>
+                !
               </Typography>
             </Grid>
           </Grid>
