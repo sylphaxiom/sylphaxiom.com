@@ -45,6 +45,12 @@
   color: lightgrey;
 }
 
+.coverBtn {
+  width: 160px;
+  height: 80px;
+}
+
+
 .rounded {
   border-radius: 100%;
 }

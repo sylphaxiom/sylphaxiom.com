@@ -7,20 +7,21 @@ declare module "react-router"{
 
 export default [
     // Cover and default route
+    // keep but simplify and use as home page. 
+    // Links to Portfolio, Construction, Ramblings, Contact 
     index("./components/Cover.tsx", {id:"Cover"}),
     route("*?", "./components/Error.tsx", {id:"catchall"}),
-    // Creative side paths
-    route("creative", "./components/Navigation.tsx", {id:"createNav"}, [
-        index("./components/Home.tsx"),
-        route("people", "./components/People.tsx"),
-        route("projects", "./components/Projects.tsx"),
-    ]),
-    // Portfolio side paths
     route ("portfolio", "./components/Navigation.tsx", {id:"portNav"}, [
         index("./components/Portfolio.tsx"),
         route("web", "./components/Web.tsx"),
         route("assets", "./components/Assets.tsx"),
         route("writing", "./components/Writing.tsx"),
+    ]),
+    route("construction", "./components/Navigation.tsx", {id:"construction"}, [
+        index("./components/Construction.tsx"),
+    ]),
+    route("ramblings", "./components/Navigation.tsx", {id:"ramblings"}, [
+        index("./components/Ramblings.tsx"),
     ]),
     route("contact", "./components/Navigation.tsx", {id:"contact"}, [
         layout("./components/Contact.tsx",[
