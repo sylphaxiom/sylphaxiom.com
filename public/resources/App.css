@@ -79,6 +79,28 @@
   filter: hue-rotate(180deg) invert() contrast(90%)
 }
 
+.svg-secondary {
+  filter: brightness(0) 
+          saturate(100%) 
+          invert(21%) 
+          sepia(48%) 
+          saturate(3320%) 
+          hue-rotate(224deg) 
+          brightness(94%) 
+          contrast(90%);
+}
+
+.svg-primary {
+  filter: brightness(0) 
+          saturate(100%) 
+          invert(81%) 
+          sepia(40%) 
+          saturate(6707%) 
+          hue-rotate(226deg) 
+          brightness(91%) 
+          contrast(92%);
+}
+
 body {
   overflow-x:hidden;
 }

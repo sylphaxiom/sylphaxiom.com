@@ -45,11 +45,15 @@ export default function Cover() {
         mx: "auto",
         my: 0,
         p: 2,
-        pt: { lg: "45vh", xs: "10vh" },
+        pt: { xs: "10vh" },
         textAlign: "center",
       }}
     >
-      <Grid size={{ xs: 6 }} offset={{ xs: 0 }}>
+      <Grid
+        size={{ xs: 6, sm: 4 }}
+        sx={{ float: { xs: "none", sm: "left" } }}
+        offset={{ xs: 0 }}
+      >
         <Button
           variant="contained"
           id="portfolio"
@@ -66,7 +70,11 @@ export default function Cover() {
           Portfolio
         </Button>
       </Grid>
-      <Grid size={{ xs: 6 }} offset={{ xs: 0 }}>
+      <Grid
+        size={{ xs: 6, sm: 4 }}
+        sx={{ float: { xs: "none", sm: "left" } }}
+        offset={{ xs: 0 }}
+      >
         <Button
           variant="contained"
           id="contact"
@@ -83,7 +91,7 @@ export default function Cover() {
           Contact
         </Button>
       </Grid>
-      <Grid size={{ xs: 12 }} offset={{ xs: 0 }}>
+      <Grid size={{ xs: 12, sm: 8 }} offset={{ xs: 0, sm: 4 }}>
         <motions.AnimatePresence mode="wait">
           <motion.img
             layout

@@ -9,7 +9,7 @@ export default [
     // Cover and default route
     // keep but simplify and use as home page. 
     // Links to Portfolio, Construction, Ramblings, Contact 
-    index("./components/Cover.tsx", {id:"Cover"}),
+    index("./components/Home.tsx", {id:"Cover"}),
     route("*?", "./components/Error.tsx", {id:"catchall"}),
     route ("portfolio", "./components/Navigation.tsx", {id:"portNav"}, [
         index("./components/Portfolio.tsx"),
@@ -17,13 +17,13 @@ export default [
         route("assets", "./components/Assets.tsx"),
         route("writing", "./components/Writing.tsx"),
     ]),
-    route("construction", "./components/Navigation.tsx", {id:"construction"}, [
-        index("./components/Construction.tsx"),
+    route("showroom", "./components/Navigation.tsx", {id:"showroom"}, [
+        index("./components/Showroom.tsx"),
     ]),
-    route("ramblings", "./components/Navigation.tsx", {id:"ramblings"}, [
-        index("./components/Ramblings.tsx"),
+    route("weirdness", "./components/Navigation.tsx", {id:"weirdness"}, [
+        index("./components/Weirdness.tsx"),
     ]),
-    route("contact", "./components/Navigation.tsx", {id:"contact"}, [
+    route("guestbook", "./components/Navigation.tsx", {id:"guestbook"}, [
         layout("./components/Contact.tsx",[
             index("./components/FormContact.tsx", {id:"formContact"}),
         ])
