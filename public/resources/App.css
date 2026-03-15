@@ -104,3 +104,34 @@
 body {
   overflow-x:hidden;
 }
+
+#stary_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+} 
+
+#star1 {
+  filter: brightness(2)
+          blur(4px)
+}
+
+/* #main_home {
+  background-image:url('/resources/stars.svg');
+  background-size: cover;
+  background-repeat: repeat-y;
+}
+
+#lg_star_0 {
+  filter:brightness(0) 
+         saturate(100%) 
+         invert(99%) 
+         sepia(23%) 
+         saturate(7161%) 
+         hue-rotate(322deg) 
+         brightness(124%) 
+         contrast(86%);
+} */

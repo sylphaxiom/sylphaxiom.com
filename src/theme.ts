@@ -14,8 +14,8 @@ export const dark: ThemeOptions = {
     },
     divider: '#512da8',
     background: {
-      default: '#051a05',
-      paper: '#051a05',
+      default: '#05060f',
+      paper: '#05060f',
     },
   },
   typography: {

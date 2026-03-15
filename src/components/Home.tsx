@@ -1,9 +1,10 @@
 // import * as React from "react";
 import * as motion from "motion/react-client";
 import { Box, Grid, Typography } from "@mui/material";
-import { stagger } from "motion";
 import { Link } from "react-router";
 import { useTheme } from "@mui/material/styles";
+import { stagger } from "motion";
+import TwinkleStars from "./elements/TwinkleStars";
 
 export default function Home() {
   const theme = useTheme();
@@ -14,9 +15,14 @@ export default function Home() {
     animate: { y: 0, opacity: 1 },
     slide: { x: -100, opacity: 0 },
     stop: { x: 0, opacity: 1 },
+    back: { x: 100, opacity: 0 },
+    end: { x: 0, opacity: 1 },
+    up: { y: 100, opacity: 0 },
+    over: { y: 0, opacity: 1 },
   };
   return (
     <Box id="main_home">
+      <TwinkleStars />
       <Grid container>
         <Grid size={{ xs: 12, sm: 12, lg: 12 }}>
           <Grid size={{ xs: 12 }} sx={{ pl: 3, pt: 2 }}>
@@ -168,8 +174,8 @@ export default function Home() {
                   transition={{
                     delayChildren: stagger(0.06, { startDelay: 1 }),
                   }}
-                  initial="start"
-                  animate="animate"
+                  initial="back"
+                  animate="end"
                   variants={variants}
                 >
                   {"Guestbook".split("").map((char: string, index: number) => {
@@ -231,8 +237,8 @@ export default function Home() {
                   transition={{
                     delayChildren: stagger(0.06, { startDelay: 1.5 }),
                   }}
-                  initial="slide"
-                  animate="stop"
+                  initial="up"
+                  animate="over"
                   variants={variants}
                 >
                   {"Weirdness".split("").map((char: string, index: number) => {
