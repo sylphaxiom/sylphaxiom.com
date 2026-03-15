@@ -25,6 +25,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 interface Props {
   children?: React.ReactElement<unknown>;
 }
+
 function HideOnScroll(props: Props) {
   const { children } = props;
   const trigger = useScrollTrigger({
@@ -47,7 +48,7 @@ export default function Navigation() {
   const isMobile = useMediaQuery("(max-width: 600px)");
   const [_color, setColor] = React.useState(
     // This is only here to re-trigger the rendering.
-    systemMode?.toString()
+    systemMode?.toString(),
   );
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
   const matchCreative = useMatch("/creative/*");

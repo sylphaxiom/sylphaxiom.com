@@ -4,7 +4,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { Link } from "react-router";
 import { useTheme } from "@mui/material/styles";
 import { stagger } from "motion";
-import TwinkleStars from "./elements/TwinkleStars";
+import ModeSwitch from "./elements/ModeSwitch";
 
 export default function Home() {
   const theme = useTheme();
@@ -22,9 +22,9 @@ export default function Home() {
   };
   return (
     <Box id="main_home">
-      <TwinkleStars />
+      <ModeSwitch />
       <Grid container>
-        <Grid size={{ xs: 12, sm: 12, lg: 12 }}>
+        <Grid size={{ xs: 12, sm: 3 }}>
           <Grid size={{ xs: 12 }} sx={{ pl: 3, pt: 2 }}>
             <Link
               to="portfolio"
@@ -84,6 +84,7 @@ export default function Home() {
             />
           </Grid>
         </Grid>
+        <Grid size={6} />
         <Grid
           size={{ xs: 12, sm: 5, md: 4, lg: 3 }}
           offset={{ sm: 2, md: 2, lg: 2 }}
@@ -216,7 +217,7 @@ export default function Home() {
             />
           </Grid>
         </Grid>
-        <Grid size={{ xs: 12, sm: 5, lg: 2 }} offset={{ sm: 7, lg: 10 }}>
+        <Grid size={{ xs: 12, sm: 4, lg: 2 }} offset={{ sm: 8, lg: 10 }}>
           <Grid size={{ xs: 12 }} sx={{ pr: 3, pt: 2 }}>
             <Link
               to="weirdness"
