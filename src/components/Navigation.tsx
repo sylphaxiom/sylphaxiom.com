@@ -10,18 +10,14 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { stagger } from "motion";
 import { Link, Outlet } from "react-router";
-import { useMatch } from "react-router";
 import MenuIcon from "@mui/icons-material/Menu";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import theme from "../theme";
-import { useColorScheme } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Slide from "@mui/material/Slide";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
+import type { Route } from "./+types/Navigation";
+import ModeSwitch from "./elements/ModeSwitch";
 interface Props {
   children?: React.ReactElement<unknown>;
 }
@@ -39,126 +35,25 @@ function HideOnScroll(props: Props) {
   );
 }
 
-export default function Navigation() {
-  const { mode, setMode, systemMode } = useColorScheme();
-  if (!mode) {
-    return null;
-  }
-  const isDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const isMobile = useMediaQuery("(max-width: 600px)");
-  const [_color, setColor] = React.useState(
-    // This is only here to re-trigger the rendering.
-    systemMode?.toString(),
-  );
+export default function Navigation(props: Route.ComponentProps) {
+  // const isMobile = useMediaQuery("(max-width: 600px)");
   const [menuRef, setMenuRef] = React.useState<null | HTMLElement>(null);
-  const matchCreative = useMatch("/creative/*");
-  const matchPortfolio = useMatch("/portfolio/*");
-  let pages: string[];
-  let base: string;
-  let group: string;
-  const creative = ["home", "people", "projects", "contact"];
-  const portfolio = ["portfolio", "web", "assets", "writing", "contact"];
-  const contact = ["creative", "portfolio", "contact"];
-  if (matchCreative) {
-    pages = creative;
-    group = "creative";
-    base = matchCreative.pathname.split("/")[2] || "home";
-  } else if (matchPortfolio) {
-    pages = portfolio;
-    group = "portfolio";
-    base = matchPortfolio.pathname.split("/")[2] || "portfolio";
-  } else {
-    pages = contact;
-    group = "contact";
-    base = "contact";
-  }
+  const pages = ["portfolio", "showroom", "guestbook", "weirdness"];
+  const base = props.matches[2]?.id;
   const [current, setCurrent] = React.useState(base);
+  const title = String(base).charAt(0).toUpperCase() + String(base).slice(1);
+  console.log("base:", base, "matches:", props.matches);
   const open = Boolean(menuRef);
+
   // Define the pages for each group
-  const disabled: string[] = ["people", "projects", "assets", "writing"]; // any  tabs we want disabled we will put here.
-  let title: string;
-  switch (base) {
-    case "home":
-      if (isMobile) {
-        title = "Creative";
-      } else {
-        title = "Sylphaxiom Creative";
-      }
-      break;
-
-    case "people":
-      if (isMobile) {
-        title = "Team";
-      } else {
-        title = "Our Creative Team";
-      }
-      break;
-
-    case "projects":
-      if (isMobile) {
-        title = "Projects";
-      } else {
-        title = "Our Projects";
-      }
-      break;
-
-    case "contact":
-      if (isMobile) {
-        title = "Contact";
-      } else {
-        title = "Let's Create!";
-      }
-      break;
-
-    case "portfolio":
-      if (isMobile) {
-        title = "Portfolio";
-      } else {
-        title = "Creator Portfolio";
-      }
-      break;
-
-    case "web":
-      if (isMobile) {
-        title = "Web";
-      } else {
-        title = "Web Development";
-      }
-      break;
-
-    case "assets":
-      if (isMobile) {
-        title = "Assets";
-      } else {
-        title = "Digital Art and Assets";
-      }
-      break;
-
-    case "writing":
-      if (isMobile) {
-        title = "Writing";
-      } else {
-        title = "Writing and Storytelling";
-      }
-      break;
-
-    default:
-      !base && base === "/";
-      if (isMobile) {
-        title = "Creative";
-      } else {
-        title = "Sylphaxiom Creative";
-      }
-  }
+  const disabled: string[] = ["showroom", "weirdness"]; // any  tabs we want disabled we will put here.
 
   // Title animation
 
   React.useEffect(() => {
-    if (mode === "system") {
-      isDark ? setMode("dark") : setMode("light");
-    }
     setCurrent(base);
-  }, [base, mode]);
+  }, [base]);
+  // }, [mode]);
 
   const variants = {
     start: { y: -100, opacity: 0 },
@@ -173,11 +68,6 @@ export default function Navigation() {
     setMenuRef(null);
   };
 
-  const handleMode = () => {
-    mode === "light" ? setMode("dark") : setMode("light");
-    setColor(mode.toString());
-  };
-
   return (
     <Box id="everything" sx={{ minWidth: 1, mx: "auto", p: 0, pt: "125px" }}>
       <HideOnScroll>
@@ -185,35 +75,18 @@ export default function Navigation() {
           container
           id="navHead"
           sx={{
-            justifyContent: "space-between",
             alignItems: "center",
             textAlign: "center",
             height: 125,
             width: "100%",
-            px: { xs: 2, md: 10, lg: 0 },
+            px: { xs: 1, md: 10, lg: 0 },
             position: "fixed",
             top: 0,
             backgroundColor: theme.vars?.palette.background.default,
             zIndex: 1,
           }}
         >
-          <Grid
-            size={{ xs: 2, lg: 2 }}
-            sx={{ float: "left", alignItems: "center" }}
-          >
-            <IconButton
-              aria-label="change mode"
-              color="secondary"
-              onClick={handleMode}
-              sx={{
-                display: { xs: "none", md: "inline-block" },
-                px: 0,
-              }}
-            >
-              {mode === "dark" ?
-                <DarkModeOutlinedIcon />
-              : <LightModeOutlinedIcon />}
-            </IconButton>
+          <Grid size={2} sx={{ float: "left", alignItems: "center" }}>
             <Button
               component={Link}
               to={"/"}
@@ -226,7 +99,7 @@ export default function Navigation() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1, rotate: 1080 }}
                 transition={{ duration: 0.8 }}
-                className={group}
+                // className={group}
               >
                 <img
                   src={"/resources/sylphaxiom_web_512x.svg"}
@@ -305,16 +178,6 @@ export default function Navigation() {
             >
               <MenuIcon fontSize="large" sx={{ transform: "scale(2)" }} />
             </Button>
-            <IconButton
-              aria-label="change mode"
-              color="secondary"
-              onClick={handleMode}
-              sx={{ display: { md: "none", xs: "inline-block" }, px: 0, pr: 2 }}
-            >
-              {mode === "dark" ?
-                <DarkModeOutlinedIcon />
-              : <LightModeOutlinedIcon />}
-            </IconButton>
             <Menu
               id="nav_menu"
               anchorEl={menuRef}
@@ -332,12 +195,7 @@ export default function Navigation() {
                   selected={page === base}
                   sx={{ textTransform: "uppercase" }}
                   component={Link}
-                  to={
-                    pages === contact || page === "contact" ? "/" + page
-                    : page === "home" || page === "portfolio" ?
-                      "/" + group
-                    : page
-                  }
+                  to={page}
                   key={"tab" + index}
                   id={"tab" + index}
                   aria-controls={page}
@@ -357,12 +215,7 @@ export default function Navigation() {
               {pages.map((page, index) => (
                 <Tab
                   component={Link}
-                  to={
-                    pages === contact || page === "contact" ? "/" + page
-                    : page === "home" || page === "portfolio" ?
-                      "/" + group
-                    : page
-                  }
+                  to={page}
                   label={page}
                   value={page}
                   sx={{
@@ -375,6 +228,7 @@ export default function Navigation() {
                 />
               ))}
             </Tabs>
+            <ModeSwitch />
           </Grid>
         </Grid>
       </HideOnScroll>

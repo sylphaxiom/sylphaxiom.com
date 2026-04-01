@@ -107,7 +107,7 @@ export default function Home() {
                   }}
                   key="showroom_title"
                   transition={{
-                    delayChildren: stagger(0.06, { startDelay: 0.5 }),
+                    delayChildren: stagger(0.06, { startDelay: 0.3 }),
                   }}
                   initial="slide"
                   animate="stop"
@@ -142,7 +142,7 @@ export default function Home() {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
-                delay: 0.5,
+                delay: 0.3,
                 type: "spring",
                 bounce: 0.5,
                 duration: 0.5,
@@ -173,7 +173,7 @@ export default function Home() {
                   }}
                   key="guestbook_title"
                   transition={{
-                    delayChildren: stagger(0.06, { startDelay: 1 }),
+                    delayChildren: stagger(0.06, { startDelay: 0.6 }),
                   }}
                   initial="back"
                   animate="end"
@@ -208,7 +208,7 @@ export default function Home() {
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                delay: 1,
+                delay: 0.6,
                 type: "spring",
                 bounce: 0.5,
                 duration: 0.5,
@@ -236,7 +236,7 @@ export default function Home() {
                   }}
                   key="weirdness_title"
                   transition={{
-                    delayChildren: stagger(0.06, { startDelay: 1.5 }),
+                    delayChildren: stagger(0.06, { startDelay: 0.9 }),
                   }}
                   initial="up"
                   animate="over"
@@ -271,7 +271,7 @@ export default function Home() {
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{
-                delay: 1.5,
+                delay: 0.9,
                 type: "spring",
                 bounce: 0.5,
                 duration: 0.5,

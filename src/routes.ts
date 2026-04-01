@@ -11,25 +11,14 @@ export default [
     // Links to Portfolio, Construction, Ramblings, Contact 
     index("./components/Home.tsx", {id:"Cover"}),
     route("*?", "./components/Error.tsx", {id:"catchall"}),
-    route ("portfolio", "./components/Navigation.tsx", {id:"portNav"}, [
-        index("./components/Portfolio.tsx"),
-        route("web", "./components/Web.tsx"),
-        route("assets", "./components/Assets.tsx"),
-        route("writing", "./components/Writing.tsx"),
-    ]),
-    route("showroom", "./components/Navigation.tsx", {id:"showroom"}, [
-        index("./components/Showroom.tsx"),
-    ]),
-    route("weirdness", "./components/Navigation.tsx", {id:"weirdness"}, [
-        index("./components/Weirdness.tsx"),
-    ]),
-    route("guestbook", "./components/Navigation.tsx", {id:"guestbook"}, [
-        layout("./components/Contact.tsx",[
-            index("./components/FormContact.tsx", {id:"formContact"}),
-        ])
-    ]),    
-    ...prefix("demo", [
-        route("tiles", "./components/demo/SkillTilesDemo.tsx"),
-        route("map", "./components/demo/InteractiveKothis.tsx")
+    layout("./components/Navigation.tsx", [
+        route("portfolio", "./components/Portfolio.tsx", {id:"portfolio"}),
+        route("showroom", "./components/Showroom.tsx", {id:"showroom"}),
+        route("weirdness", "./components/Weirdness.tsx", {id:"weirdness"}),
+        route("guestbook", "./components/Contact.tsx", {id:"guestbook"}, [
+            layout("./components/Contact.tsx",[
+                index("./components/FormContact.tsx", {id:"formContact"}),
+            ])
+        ]),
     ]),
 ] satisfies RouteConfig
