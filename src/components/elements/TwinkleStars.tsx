@@ -1,4 +1,5 @@
 import * as motion from "motion/react-client";
+import * as React from "react";
 
 function randStar(iter: number) {
   const tiny = " -1.5,5 -5,1.5 5,1.5 1.5,5 1.5,-5 5,-1.5 -5,-1.5 z";
@@ -34,14 +35,19 @@ function randStar(iter: number) {
 }
 
 export default function TwinkleStars() {
-  const totalStars = Math.floor(200 + Math.random() * 400);
-  let iter = 0;
-  let stars = [];
-  while (iter < totalStars) {
-    stars.push(randStar(iter));
-    iter++;
-  }
-  console.log("Number of stars is " + totalStars);
+  const [stars, setStars] = React.useState<React.ReactNode[]>([]);
+
+  React.useEffect(() => {
+    const totalStars = Math.floor(200 + Math.random() * 400);
+    let iter = 0;
+    let stars = [];
+    while (iter < totalStars) {
+      stars.push(randStar(iter));
+      iter++;
+    }
+    console.log("Number of stars is " + totalStars);
+    setStars(stars);
+  }, []);
   return (
     <svg
       id="stary_bg"
