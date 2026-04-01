@@ -50,8 +50,8 @@ export const light: ThemeOptions = {
     divider: '#512da8',
     mode: 'light',
     background: {
-      default: '#e8f5e9',
-      paper: '#e8f5e9',
+      default: '#f2f7fc',
+      paper: '#f2f7fc',
     },
   },
   typography: {
