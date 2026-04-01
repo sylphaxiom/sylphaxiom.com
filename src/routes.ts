@@ -1,4 +1,4 @@
-import {type RouteConfig, route, layout, index, prefix,} from "@react-router/dev/routes"
+import {type RouteConfig, route, layout, index} from "@react-router/dev/routes"
 import "react-router"
 declare module "react-router"{
     interface AppLoadContext {
