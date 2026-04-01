@@ -18,6 +18,7 @@ import Slide from "@mui/material/Slide";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import type { Route } from "./+types/Navigation";
 import ModeSwitch from "./elements/ModeSwitch";
+import Construction from "./elements/Construction";
 interface Props {
   children?: React.ReactElement<unknown>;
 }
@@ -233,7 +234,9 @@ export default function Navigation(props: Route.ComponentProps) {
         </Grid>
       </HideOnScroll>
       <Container maxWidth="md" sx={{ my: { xs: 2, xl: 5 }, minWidth: 1 }}>
-        <Outlet />
+        {base && disabled.includes(base) ?
+          <Construction />
+        : <Outlet />}
       </Container>
     </Box>
   );
