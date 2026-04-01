@@ -11,10 +11,10 @@ export default function Cover() {
     time,
     [0, 4000], // time in milliseconds
     [0, 360], // rotation in degrees
-    { clamp: false }
+    { clamp: false },
   );
 
-  const coverOn = { scale: 5 };
+  const coverOn = { scale: 1 };
   const coverOff = {
     rotateZ: 1080,
     rotateY: 0,
@@ -41,36 +41,57 @@ export default function Cover() {
       container
       spacing={2}
       sx={{
-        minWidth: 1,
+        // minWidth: 1,
         mx: "auto",
         my: 0,
-        p: 0,
-        pt: { lg: "45vh", xs: "10vh" },
+        p: 2,
+        pt: { xs: "10vh" },
         textAlign: "center",
       }}
     >
-      <Grid size={{ lg: 2, xs: 12 }} offset={{ xl: 1, lg: 1, md: 0 }}>
+      <Grid
+        size={{ xs: 6, sm: 4 }}
+        sx={{ float: { xs: "none", sm: "left" } }}
+        offset={{ xs: 0 }}
+      >
         <Button
           variant="contained"
-          id="home"
-          value="home"
+          id="portfolio"
+          value="portfolio"
           size="large"
           color="primary"
           className="coverBtn"
           onClick={(e) => {
-            handleTransition(e, "/creative");
+            handleTransition(e, "/portfolio");
           }}
         >
-          Sylphaxiom
+          Sylphaxiom's
           <br />
-          Creative
+          Portfolio
         </Button>
       </Grid>
       <Grid
-        size={4}
-        offset={{ lg: 1, xs: 4 }}
-        sx={{ minHeight: "500px", pt: { lg: 0, xs: "25vh" } }}
+        size={{ xs: 6, sm: 4 }}
+        sx={{ float: { xs: "none", sm: "left" } }}
+        offset={{ xs: 0 }}
       >
+        <Button
+          variant="contained"
+          id="contact"
+          value="contact"
+          size="large"
+          color="primary"
+          className="coverBtn"
+          onClick={(e) => {
+            handleTransition(e, "/contact");
+          }}
+        >
+          Sylphaxiom's
+          <br />
+          Contact
+        </Button>
+      </Grid>
+      <Grid size={{ xs: 12, sm: 8 }} offset={{ xs: 0, sm: 4 }}>
         <motions.AnimatePresence mode="wait">
           <motion.img
             layout
@@ -84,24 +105,43 @@ export default function Cover() {
             className="svg"
             key="logo"
             alt="curious guy in a browser"
-            width={100}
-            height={100}
+            width={350}
+            height={350}
           />
         </motions.AnimatePresence>
       </Grid>
-      <Grid size={{ lg: 2, xs: 12 }} offset={{ xl: 1, lg: 1, md: 0 }}>
+      <Grid size={{ xs: 6 }} offset={{ xs: 0 }}>
         <Button
           variant="contained"
-          id="portfolio"
-          value="portfolio"
+          id="construction"
+          value="construction"
+          size="large"
+          color="secondary"
           className="coverBtn"
           onClick={(e) => {
-            handleTransition(e, "/portfolio");
+            handleTransition(e, "/construction");
           }}
         >
-          Creator
+          Construction
           <br />
-          Portfolio
+          Zone
+        </Button>
+      </Grid>
+      <Grid size={{ xs: 6 }} offset={{ xs: 0 }}>
+        <Button
+          variant="contained"
+          id="ramblings"
+          value="ramblings"
+          size="large"
+          color="secondary"
+          className="coverBtn"
+          onClick={(e) => {
+            handleTransition(e, "/ramblings");
+          }}
+        >
+          A Madman's
+          <br />
+          Ramblings
         </Button>
       </Grid>
     </Grid>
