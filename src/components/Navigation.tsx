@@ -47,7 +47,7 @@ export default function Navigation(props: Route.ComponentProps) {
   const open = Boolean(menuRef);
 
   // Define the pages for each group
-  const disabled: string[] = ["showroom", "weirdness"]; // any  tabs we want disabled we will put here.
+  const disabled: string[] = ["weirdness"]; // any  tabs we want disabled we will put here.
 
   // Title animation
 

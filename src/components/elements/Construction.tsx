@@ -75,7 +75,7 @@ export default function Construction() {
       >
         Send me a{" "}
         <Link
-          to="contact"
+          to="guestbook"
           style={{
             textDecoration: "none",
             color: theme.palette.primary.main,

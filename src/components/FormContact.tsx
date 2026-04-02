@@ -50,7 +50,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   const validator = email
     .toLowerCase()
     .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
   if (Boolean(validator)) {
     delete errs.emailError;
@@ -145,7 +145,7 @@ export default function FormContact() {
   const [who, setWho] = React.useState(fetcher.data?.who_group || "intake"); // Controls the radio button on the form. Changing this changes multiple other elements
   const [creator, setCreator] = React.useState("jacob"); // Using state seems to work best here
   const [radioHelper, setRadioHelper] = React.useState(
-    "Inquire about having a website, asset, or anything else you want created."
+    "Inquire about having a website, asset, or anything else you want created.",
   ); // Does not persist without state.
   const theme = useTheme();
   const [timer, setTimer] = React.useState(10);
@@ -179,19 +179,19 @@ export default function FormContact() {
     switch (target) {
       case "web":
         setRadioHelper(
-          "Contact the Webmaster with any issues or inquiries relating to this website"
+          "Contact the Webmaster with any issues or inquiries relating to this website",
         );
         setWho(target);
         break;
       case "intake":
         setRadioHelper(
-          "Inquire about having a website, asset, or anything else you want created."
+          "Inquire about having a website, asset, or anything else you want created.",
         );
         setWho(target);
         break;
       case "creator":
         setRadioHelper(
-          "Reach out to a creator directly... for whatever reason, I guess."
+          "Reach out to a creator directly... for whatever reason, I guess.",
         );
         setWho(target);
         break;
@@ -211,14 +211,14 @@ export default function FormContact() {
       "state: %s\nstatus: %s\nmsg: %s",
       fetcher.state,
       fetcher.data?.status,
-      fetcher.data?.msg
+      fetcher.data?.msg,
     );
     if (fetcher.state === "idle") {
       if (fetcher.data?.status === 200) {
         respMsg = fetcher.data?.msg;
         if (timer === 0) {
           console.log("reset fetcher:");
-          fetcher.unstable_reset;
+          fetcher.reset;
           navigate(0);
         }
         setTimeout(() => {
