@@ -16,7 +16,7 @@ export default function Construction() {
     const bouncy = animate(
       "span",
       { y: [-35, -105, -35] },
-      { delay: stagger(0.2) },
+      { delay: stagger(0.2), duration: 0.6, ease: ["easeIn", "easeOut"] },
     );
     setTimeout(() => {
       bouncy.then;

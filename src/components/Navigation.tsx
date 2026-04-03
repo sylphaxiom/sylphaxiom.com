@@ -223,6 +223,7 @@ export default function Navigation(props: Route.ComponentProps) {
                     display: { xs: "none", xl: "flex" },
                   }}
                   disabled={disabled.includes(page) || false}
+                  aria-disabled={disabled.includes(page) || false}
                   aria-controls={page}
                   key={"tab" + index}
                   id={"tab" + index}
