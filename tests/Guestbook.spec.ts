@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
     // Navigate to the cover page before each test
-    await page.goto('/contact');
+    await page.goto('/guestbook');
 });
 
 test.afterEach(async ({ page }) => {
