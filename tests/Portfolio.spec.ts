@@ -57,6 +57,45 @@ test('check tabs', async({page})=>{
     }
 });
 
+test('check mobile menu', async({page})=>{
+
+    // Switch from tabs to menu on xs breakpoint
+    await page.setViewportSize({ width: 500, height: 800 });
+
+    const menuButton = page.locator('#nav_drawer');
+    const menu = page.locator('#nav_menu');
+    await expect(menuButton).toBeVisible();
+    await expect(menu).not.toBeVisible();
+
+    await menuButton.click();
+
+    await expect(menu).toBeVisible();
+
+    const portLink = page.getByRole('menuitem', { name: 'portfolio' });
+    const showLink = page.getByRole('menuitem', { name: 'showroom' });
+    const guestLink = page.getByRole('menuitem', { name: 'guestbook' });
+    const weirdLink = page.getByRole('menuitem', { name: 'weirdness' });
+
+    const btns = [portLink, showLink, guestLink, weirdLink];
+    
+    for (const btn of btns) {
+        await expect(btn).toBeVisible();
+        const controls = await btn.getAttribute('aria-controls');
+        console.log("Testing button: " + controls);
+
+        if (!(await btn.isDisabled())) {
+            await btn.click();
+            await expect(page).toHaveURL('/' + controls);
+            if (controls === 'portfolio') {
+                await expect(btn).toHaveAttribute('tabindex', '0');
+            } else {
+                await expect(btn).toHaveAttribute('tabindex', '-1');
+                await page.goBack();
+            }
+        }
+    }
+});
+
 test('portfolio img has attributes', async({page})=>{
 
     const img = await page.locator('#port_img');
