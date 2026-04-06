@@ -58,37 +58,6 @@ test('nav buttons are clickable', async({page})=>{
         }
     }
 
-    // await expect(portBtn).toBeVisible();
-    // await expect(showBtn).toBeVisible();
-    // await expect(guestBtn).toBeVisible();
-    // await expect(weirdBtn).toBeVisible();
-
-    // if (!(await weirdBtn.isDisabled())) {
-    //     await portBtn.click();
-    //     await expect(page).toHaveURL(/portfolio/);
-
-    //     await page.goBack();
-    // }
-
-    // if (!(await weirdBtn.isDisabled())) {
-    //     await showBtn.click();
-    //     await expect(page).toHaveURL(/showroom/);
-
-    //     await page.goBack();
-    // }
-
-    // if (!(await guestBtn.isDisabled())) {
-    //     await guestBtn.click();
-    //     await expect(page).toHaveURL(/guestbook/);
-
-    //     await page.goBack();
-    // }
-
-    // if (!(await weirdBtn.isDisabled())) {
-    //     await weirdBtn.click();
-    //     await expect(page).toHaveURL(/weirdness/);
-    // }
-
 });
 
 
