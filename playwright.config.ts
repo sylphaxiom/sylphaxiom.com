@@ -30,6 +30,10 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    /* Use light mode for all tests by default. */
+    colorScheme: 'light',
+
   },
   expect: {
     timeout: 10_000,
@@ -39,17 +43,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'],  },
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1920, height: 1080 },  },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'], viewport: { width: 1920, height: 1080 } },
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'], viewport: { width: 1920, height: 1080 } },
     },
 
     /* Test against mobile viewports. */
@@ -76,7 +80,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npm run dev',
-    port: 5173,
+    url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
   },
 });

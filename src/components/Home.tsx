@@ -24,52 +24,48 @@ export default function Home() {
     <Box id="main_home">
       <ModeSwitch />
       <Grid container>
-        <Grid size={{ xs: 12, sm: 3 }}>
-          <Grid size={{ xs: 12 }} sx={{ pl: 3, pt: 2 }}>
-            <Link
-              to="portfolio"
-              style={{
-                textDecoration: "none",
-                color: theme.palette.primary.main,
-              }}
-            >
-              <Typography variant="h2" component="h1">
-                <motion.div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "left",
-                    overflow: "visible",
-                  }}
-                  key="portfolio_title"
-                  transition={{ delayChildren: stagger(0.06) }}
-                  initial="start"
-                  animate="animate"
-                  variants={variants}
-                >
-                  {"Portfolio".split("").map((char: string, index: number) => {
-                    if (char === " ") {
-                      char = "\u00A0";
-                    }
-                    return (
-                      <motion.span
-                        key={char + index}
-                        variants={variants}
-                        transition={{
-                          type: "spring",
-                          bounce: 0.5,
-                          duration: 0.5,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </motion.div>
-              </Typography>
-            </Link>
-          </Grid>
-          <Grid size={{ xs: 12 }} sx={{ pl: 3 }}>
+        <Grid size={{ xs: 12, sm: 3 }} sx={{ ml: 2 }}>
+          <Link
+            to="portfolio"
+            style={{
+              textDecoration: "none",
+              color: theme.palette.primary.main,
+            }}
+          >
+            <Typography variant="h2" component="h1">
+              <motion.div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "left",
+                  overflow: "visible",
+                }}
+                key="portfolio_title"
+                transition={{ delayChildren: stagger(0.06) }}
+                initial="start"
+                animate="animate"
+                variants={variants}
+              >
+                {"Portfolio".split("").map((char: string, index: number) => {
+                  if (char === " ") {
+                    char = "\u00A0";
+                  }
+                  return (
+                    <motion.span
+                      key={char + index}
+                      variants={variants}
+                      transition={{
+                        type: "spring",
+                        bounce: 0.5,
+                        duration: 0.5,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                })}
+              </motion.div>
+            </Typography>
             <motion.img
               src="/resources/filligree.svg"
               className="svg-primary"
@@ -82,60 +78,56 @@ export default function Home() {
               }}
               style={{ maxHeight: 100 }}
             />
-          </Grid>
+          </Link>
         </Grid>
         <Grid size={6} />
         <Grid
           size={{ xs: 12, sm: 5, md: 4, lg: 3 }}
           offset={{ sm: 2, md: 2, lg: 2 }}
         >
-          <Grid size={{ xs: 12 }} sx={{ pr: 3, pt: 2 }}>
-            <Link
-              to="showroom"
-              style={{
-                textDecoration: "none",
-                color: theme.palette.secondary.main,
-              }}
-            >
-              <Typography variant="h2" component="h1" sx={{ ml: 3, mt: 2 }}>
-                <motion.div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "right",
-                    overflow: "visible",
-                  }}
-                  key="showroom_title"
-                  transition={{
-                    delayChildren: stagger(0.06, { startDelay: 0.3 }),
-                  }}
-                  initial="slide"
-                  animate="stop"
-                  variants={variants}
-                >
-                  {"Showroom".split("").map((char: string, index: number) => {
-                    if (char === " ") {
-                      char = "\u00A0";
-                    }
-                    return (
-                      <motion.span
-                        key={char + index}
-                        variants={variants}
-                        transition={{
-                          type: "spring",
-                          bounce: 0.5,
-                          duration: 0.5,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </motion.div>
-              </Typography>
-            </Link>
-          </Grid>
-          <Grid size={{ xs: 12 }} sx={{ pr: 3 }}>
+          <Link
+            to="showroom"
+            style={{
+              textDecoration: "none",
+              color: theme.palette.secondary.main,
+            }}
+          >
+            <Typography variant="h2" component="h1" sx={{ ml: 3, mt: 2 }}>
+              <motion.div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "right",
+                  overflow: "visible",
+                }}
+                key="showroom_title"
+                transition={{
+                  delayChildren: stagger(0.06, { startDelay: 0.3 }),
+                }}
+                initial="slide"
+                animate="stop"
+                variants={variants}
+              >
+                {"Showroom".split("").map((char: string, index: number) => {
+                  if (char === " ") {
+                    char = "\u00A0";
+                  }
+                  return (
+                    <motion.span
+                      key={char + index}
+                      variants={variants}
+                      transition={{
+                        type: "spring",
+                        bounce: 0.5,
+                        duration: 0.5,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                })}
+              </motion.div>
+            </Typography>
             <motion.img
               src="/resources/filligree.svg"
               className="svg-secondary"
@@ -152,56 +144,52 @@ export default function Home() {
                 float: "right",
               }}
             />
-          </Grid>
+          </Link>
         </Grid>
-        <Grid size={{ xs: 12, sm: 5, lg: 8 }} offset={{ sm: 4, md: 5, lg: 6 }}>
-          <Grid size={{ xs: 2 }} sx={{ pl: 3, pt: 2 }}>
-            <Link
-              to="guestbook"
-              style={{
-                textDecoration: "none",
-                color: theme.palette.primary.main,
-              }}
-            >
-              <Typography variant="h2" component="h1">
-                <motion.div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "left",
-                    overflow: "visible",
-                  }}
-                  key="guestbook_title"
-                  transition={{
-                    delayChildren: stagger(0.06, { startDelay: 0.6 }),
-                  }}
-                  initial="back"
-                  animate="end"
-                  variants={variants}
-                >
-                  {"Guestbook".split("").map((char: string, index: number) => {
-                    if (char === " ") {
-                      char = "\u00A0";
-                    }
-                    return (
-                      <motion.span
-                        key={char + index}
-                        variants={variants}
-                        transition={{
-                          type: "spring",
-                          bounce: 0.5,
-                          duration: 0.5,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </motion.div>
-              </Typography>
-            </Link>
-          </Grid>
-          <Grid size={{ xs: 2 }} sx={{ pl: 3 }}>
+        <Grid size={{ xs: 12, sm: 5, lg: 8 }} offset={{ sm: 6, md: 6, lg: 6 }}>
+          <Link
+            to="guestbook"
+            style={{
+              textDecoration: "none",
+              color: theme.palette.primary.main,
+            }}
+          >
+            <Typography variant="h2" component="h1">
+              <motion.div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "left",
+                  overflow: "visible",
+                }}
+                key="guestbook_title"
+                transition={{
+                  delayChildren: stagger(0.06, { startDelay: 0.6 }),
+                }}
+                initial="back"
+                animate="end"
+                variants={variants}
+              >
+                {"Guestbook".split("").map((char: string, index: number) => {
+                  if (char === " ") {
+                    char = "\u00A0";
+                  }
+                  return (
+                    <motion.span
+                      key={char + index}
+                      variants={variants}
+                      transition={{
+                        type: "spring",
+                        bounce: 0.5,
+                        duration: 0.5,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                })}
+              </motion.div>
+            </Typography>
             <motion.img
               src="/resources/filligree.svg"
               className="svg-primary"
@@ -215,56 +203,56 @@ export default function Home() {
               }}
               style={{ maxHeight: 100 }}
             />
-          </Grid>
+          </Link>
         </Grid>
-        <Grid size={{ xs: 12, sm: 4, lg: 2 }} offset={{ sm: 8, lg: 10 }}>
-          <Grid size={{ xs: 12 }} sx={{ pr: 3, pt: 2 }}>
-            <Link
-              to="weirdness"
-              style={{
-                textDecoration: "none",
-                color: theme.palette.secondary.main,
-              }}
-            >
-              <Typography variant="h2" component="h1" sx={{ ml: 3, mt: 2 }}>
-                <motion.div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "right",
-                    overflow: "visible",
-                  }}
-                  key="weirdness_title"
-                  transition={{
-                    delayChildren: stagger(0.06, { startDelay: 0.9 }),
-                  }}
-                  initial="up"
-                  animate="over"
-                  variants={variants}
-                >
-                  {"Weirdness".split("").map((char: string, index: number) => {
-                    if (char === " ") {
-                      char = "\u00A0";
-                    }
-                    return (
-                      <motion.span
-                        key={char + index}
-                        variants={variants}
-                        transition={{
-                          type: "spring",
-                          bounce: 0.5,
-                          duration: 0.5,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </motion.div>
-              </Typography>
-            </Link>
-          </Grid>
-          <Grid size={{ xs: 12 }} sx={{ pr: 3 }}>
+        <Grid
+          size={{ xs: 12, sm: 4, lg: 2 }}
+          offset={{ sm: 8, lg: 10 }}
+          sx={{ mr: 2 }}
+        >
+          <Link
+            to="weirdness"
+            style={{
+              textDecoration: "none",
+              color: theme.palette.secondary.main,
+            }}
+          >
+            <Typography variant="h2" component="h1" sx={{ ml: 3, mt: 2 }}>
+              <motion.div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "right",
+                  overflow: "visible",
+                }}
+                key="weirdness_title"
+                transition={{
+                  delayChildren: stagger(0.06, { startDelay: 0.9 }),
+                }}
+                initial="up"
+                animate="over"
+                variants={variants}
+              >
+                {"Weirdness".split("").map((char: string, index: number) => {
+                  if (char === " ") {
+                    char = "\u00A0";
+                  }
+                  return (
+                    <motion.span
+                      key={char + index}
+                      variants={variants}
+                      transition={{
+                        type: "spring",
+                        bounce: 0.5,
+                        duration: 0.5,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  );
+                })}
+              </motion.div>
+            </Typography>
             <motion.img
               src="/resources/filligree.svg"
               className="svg-secondary"
@@ -281,7 +269,7 @@ export default function Home() {
                 float: "right",
               }}
             />
-          </Grid>
+          </Link>
         </Grid>
       </Grid>
     </Box>

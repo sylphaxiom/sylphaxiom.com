@@ -21,7 +21,7 @@ test('has title', async ({ page }) => {
 test('has page header', async({page})=>{
 
     const header = page.locator('h1');
-    await expect(header).toHaveText('Creator Portfolio');
+    await expect(header).toHaveText('Portfolio');
 
 });
 
@@ -34,28 +34,64 @@ test('tab content is visible', async({page})=>{
 
 test('check tabs', async({page})=>{
 
-    const links = ['portfolio', 'web', 'assets', 'writing', 'contact'];
-    const menu = page.locator('#nav_drawer');
-    const tabs = page.getByRole('tablist', { name: 'nav tabs' });
-    const item = menu || tabs
-    const type = (item === menu) ? 'menuitem' : 'tab'
+    const portTab = page.getByRole('tab', { name: 'portfolio' });
+    const showTab = page.getByRole('tab', { name: 'showroom' });
+    const guestTab = page.getByRole('tab', { name: 'guestbook' });
+    const weirdTab = page.getByRole('tab', { name: 'weirdness' });
 
-    await item.isVisible()
+    const btns = [portTab, showTab, guestTab, weirdTab];
+    
+    for (const btn of btns) {
+        await expect(btn).toBeVisible();
+        const controls = await btn.getAttribute('aria-controls');
+        console.log("Testing button: " + controls);
 
-    if (item === menu){
-        await menu.click();
+        if (!(await btn.isDisabled())) {
+            await btn.click();
+            await expect(page).toHaveURL('/' + controls);
+            await expect(btn).toHaveAttribute('aria-selected', 'true');
+            if (!(controls === 'portfolio')) {
+                await page.goBack();
+            }
+        }
     }
+});
 
-    await expect(item).toHaveCount(1)
+test('check mobile menu', async({page})=>{
 
-    const enabled = ['portfolio','contact']
+    // Switch from tabs to menu on xs breakpoint
+    await page.setViewportSize({ width: 500, height: 800 });
 
-    for await (const link of links) {
-        await expect(page.getByRole(type, { name: link })).toBeVisible();
-        if (link in enabled) {
-            await expect(page.getByRole(type, { name: link })).toHaveAttribute('class', /Mui-selected/);
-        } else {
-            await expect(page.getByRole(type, { name: link })).toHaveAttribute('aria-controls', link);
+    const menuButton = page.locator('#nav_drawer');
+    const menu = page.locator('#nav_menu');
+    await expect(menuButton).toBeVisible();
+    await expect(menu).not.toBeVisible();
+
+    await menuButton.click();
+
+    await expect(menu).toBeVisible();
+
+    const portLink = page.getByRole('menuitem', { name: 'portfolio' });
+    const showLink = page.getByRole('menuitem', { name: 'showroom' });
+    const guestLink = page.getByRole('menuitem', { name: 'guestbook' });
+    const weirdLink = page.getByRole('menuitem', { name: 'weirdness' });
+
+    const btns = [portLink, showLink, guestLink, weirdLink];
+    
+    for (const btn of btns) {
+        await expect(btn).toBeVisible();
+        const controls = await btn.getAttribute('aria-controls');
+        console.log("Testing button: " + controls);
+
+        if (!(await btn.isDisabled())) {
+            await btn.click();
+            await expect(page).toHaveURL('/' + controls);
+            if (controls === 'portfolio') {
+                await expect(btn).toHaveAttribute('tabindex', '0');
+            } else {
+                await expect(btn).toHaveAttribute('tabindex', '-1');
+                await page.goBack();
+            }
         }
     }
 });
@@ -72,10 +108,13 @@ test('portfolio img has attributes', async({page})=>{
 
 });
 
-test('h2 has creator name', async({page})=>{
+test('has climber', async({page})=>{
 
-    const h2 = page.locator('h2');
-    await expect(h2).toHaveText('Jacob Pell');
+    const climber = page.locator('#climber');
+    const rope = page.getByRole('img', { name: 'Just a dude rapelling down' })
+
+    await expect(climber).toBeVisible();
+    await expect(rope).toBeVisible();
 
 });
 
