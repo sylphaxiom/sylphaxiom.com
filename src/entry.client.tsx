@@ -6,9 +6,9 @@ ReactDom.hydrateRoot(
   document,
   <React.StrictMode>
     <HydratedRouter
-      unstable_onError={(error, errorInfo) => {
+      onError={(error, errorInfo) => {
         console.error(error, errorInfo);
       }}
     />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
