@@ -13,6 +13,7 @@ import { Link } from "react-router";
 interface WebProps {
   title: string;
   image: string;
+  url: string;
   content: string;
   tech: string[];
   features: string[];
@@ -21,6 +22,7 @@ interface WebProps {
 export default function WebAsset({
   title,
   image,
+  url,
   content,
   tech,
   features,
@@ -51,7 +53,7 @@ export default function WebAsset({
         placement="bottom"
         followCursor
       >
-        <Link to="https://kothis.sylphaxiom.com">
+        <Link to={url}>
           <Box
             component="img"
             src={image}

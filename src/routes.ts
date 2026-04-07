@@ -13,9 +13,9 @@ export default [
     route("*?", "./components/Error.tsx", {id:"catchall"}),
     layout("./components/Navigation.tsx", [
         route("portfolio", "./components/Portfolio.tsx", {id:"portfolio"}),
-        route("showroom", "./components/Web.tsx", {id:"showroom"}),
+        route("showroom", "./components/Showroom.tsx", {id:"showroom"}),
         route("weirdness", "./components/Weirdness.tsx", {id:"weirdness"}),
-        route("guestbook", "./components/Contact.tsx", {id:"guestbook"}, [
+        route("guestbook", "./components/Guestbook.tsx", {id:"guestbook"}, [
             index("./components/FormContact.tsx", {id:"formContact"}),
         ]),    
         ...prefix("demo", [

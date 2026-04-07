@@ -28,13 +28,15 @@ test('mode switch works', async({page})=>{
     const modeSwitch = page.getByRole('button', { name: 'change mode' });
     
     await expect(modeSwitch).toBeVisible();
-    expect(page.locator('html')).toHaveClass('light')
+    await expect(page.locator('html')).toHaveClass('light')
 
     await modeSwitch.click();
-    expect(page.locator('html')).toHaveClass('dark');
+    await expect(page.locator('html')).toHaveClass('dark');
     
     await modeSwitch.click();
-    expect(page.locator('html')).toHaveClass('light');
+    //await page.reload();
+    setTimeout(()=>{},5000)
+    await expect(page.locator('html')).toHaveClass('light');
 
 });
 
@@ -57,37 +59,6 @@ test('nav buttons are clickable', async({page})=>{
             await page.goBack();
         }
     }
-
-    // await expect(portBtn).toBeVisible();
-    // await expect(showBtn).toBeVisible();
-    // await expect(guestBtn).toBeVisible();
-    // await expect(weirdBtn).toBeVisible();
-
-    // if (!(await weirdBtn.isDisabled())) {
-    //     await portBtn.click();
-    //     await expect(page).toHaveURL(/portfolio/);
-
-    //     await page.goBack();
-    // }
-
-    // if (!(await weirdBtn.isDisabled())) {
-    //     await showBtn.click();
-    //     await expect(page).toHaveURL(/showroom/);
-
-    //     await page.goBack();
-    // }
-
-    // if (!(await guestBtn.isDisabled())) {
-    //     await guestBtn.click();
-    //     await expect(page).toHaveURL(/guestbook/);
-
-    //     await page.goBack();
-    // }
-
-    // if (!(await weirdBtn.isDisabled())) {
-    //     await weirdBtn.click();
-    //     await expect(page).toHaveURL(/weirdness/);
-    // }
 
 });
 

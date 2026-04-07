@@ -6,7 +6,7 @@ import { Outlet } from "react-router";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material";
 
-export default function Contact() {
+export default function Guestbook() {
   const theme = useTheme();
   const mediaBP = useMediaQuery(theme.breakpoints.up("xl"));
 
