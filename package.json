@@ -12,7 +12,7 @@
     "demo": "tsc -b && vite build --base=/test/",
     "build": "tsc -b && react-router build",
     "api": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --API",
-    "prod": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --SKIP --PROD",
+    "prod": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --PROD",
     "test": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --SKIP --DEV",
     "lint": "eslint .",
     "preview": "vite preview",
