@@ -34,6 +34,9 @@ test('tab content is visible', async({page})=>{
 
 test('check tabs', async({page})=>{
 
+    // Make sure it is the right viewport
+    await page.setViewportSize({ width: 1920, height: 1080 });
+
     const portTab = page.getByRole('tab', { name: 'portfolio' });
     const showTab = page.getByRole('tab', { name: 'showroom' });
     const guestTab = page.getByRole('tab', { name: 'guestbook' });

@@ -7,6 +7,7 @@ export default function WebProjects() {
     {
       title: "Sylphaxiom Creative",
       image: "/resources/sylphaxiom_web_512x.svg",
+      url: "https://sylphaxiom.com",
       content:
         "Sylphaxiom Creative is my personal site, and someday my business site. Presently I have spent my focus more on the Portfolio aspect of this site, but the intention is for it to be a full web application with 2 sides: The Portfolio side and the Creative side. The Creative side of this website would be a point of entry for anyone looking to hire someone for an artistic service which is what Sylphaxiom Creative would do. The Portfolio side will be a place for those creatives to host their own portfolios for anyone looking to hire them for their services.",
       tech: [
@@ -25,6 +26,7 @@ export default function WebProjects() {
     {
       title: "Kothis Portal",
       image: "/resources/kothis.svg",
+      url: "https://kothis.sylphaxiom.com",
       content:
         'The Kothis Portal is a web application I built for my TTRPG group and the world we play in. My intention is for this application to be a "one-stop-shop" for everything to do with my campaigns and worldbuilding. I also have friends and partners who have worlds of their own which I would love to see join mine on here. While early in its implementation, I will eventually bring functinality such as creating custom items, classes, or rules, a character creator, scheduling and messaging capabilities, and more that I just haven\'t thought of yet!',
       tech: [
@@ -94,6 +96,7 @@ export default function WebProjects() {
             <WebAsset
               title={asset.title}
               image={asset.image}
+              url={asset.url}
               content={asset.content}
               tech={asset.tech}
               features={asset.features}

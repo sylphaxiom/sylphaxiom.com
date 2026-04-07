@@ -42,33 +42,61 @@ test('img has attributes', async({page})=>{
 
 });
 
-test('check tabs', async({page})=>{
+test('check projects tab', async({page})=>{
     const projTab = page.getByRole('tab', { name: 'Projects' });
-    const compTab = page.getByRole('tab', { name: 'Components' });
-    await expect(compTab).toBeVisible();
     await expect(projTab).toBeVisible();
 
+    await projTab.click();
+
     const projHead = page.getByRole('heading', {name:'Web Projects'})
-    const projTitle_sylphaxiom = page.getByRole('heading', { name: 'Sylphaxiom Creative' })
-    const projLink_sylphaxiom = page.getByRole('link', { name: 'Click me to visit the site' }).first()
-    const projTitle_kothis = page.getByRole('heading', { name: 'Kothis Portal' })
-    const projLink_kothis = page.getByRole('link', { name: 'Click me to visit the site' }).nth(1)
     await expect(projTab).toHaveAttribute('aria-selected', 'true');
     await expect(projHead).toBeVisible();
 
     // sylphaxiom.com project
+    const projTitle_sylphaxiom = page.getByRole('heading', { name: 'Sylphaxiom Creative' })
+    const projLink_sylphaxiom = page.getByRole('link', { name: 'Click me to visit the site' }).first()
     await expect(projTitle_sylphaxiom).toBeVisible();
     await expect(projLink_sylphaxiom).toBeVisible();
-    await projTitle_sylphaxiom.click();
+    await projLink_sylphaxiom.click();
     await expect(page).toHaveURL('https://sylphaxiom.com');
     await page.goBack();
     await expect(page).toHaveURL('/showroom');
 
     // kothis.sylphaxiom.com project
-    await projTitle_kothis.click();
+    const projTitle_kothis = page.getByRole('heading', { name: 'Kothis Portal' })
+    const projLink_kothis = page.getByRole('link', { name: 'Click me to visit the site' }).nth(1)
+    await expect(projTitle_kothis).toBeVisible();
+    await expect(projLink_kothis).toBeVisible();
+    await projLink_kothis.click();
     await expect(page).toHaveURL('https://kothis.sylphaxiom.com');
     await page.goBack();
-    await expect(projLink_kothis).toBeVisible();
-    await expect(projTitle_kothis).toBeVisible();
+});
+
+test('check components tab', async({page})=>{
+    const compTab = page.getByRole('tab', { name: 'Components' });
+    await expect(compTab).toBeVisible();
+
+    await compTab.click();
+    const compHead = page.getByRole('heading', {name:'Web Components'})
+    await expect(compTab).toHaveAttribute('aria-selected', 'true');
+    await expect(compHead).toBeVisible();
+
+    // skill tiles component
+    const compTitle_skill = page.getByRole('heading', { name: 'Skill Tiles' })
+    const compFrame_skill = page.locator('iframe').first()
+    const frameTitle_skill = compFrame_skill.contentFrame().getByText('Tiles', {exact:true}) //.getByText('Tiles', { exact: true })
+
+    await expect(compTitle_skill).toBeVisible();
+    await expect(compFrame_skill).toBeVisible();
+    await expect(frameTitle_skill).toBeVisible();
+
+    // interactive map component
+    const compTitle_map = page.getByRole('heading', { name: 'Interactive Map' })
+    const compFrame_map = page.locator('iframe').nth(1)
+    const frameTitle_map = compFrame_map.contentFrame().getByText('Kothis', {exact:true}) //.getB
+
+    await expect(compTitle_map).toBeVisible();
+    await expect(compFrame_map).toBeVisible();
+    await expect(frameTitle_map).toBeVisible();
 
 });

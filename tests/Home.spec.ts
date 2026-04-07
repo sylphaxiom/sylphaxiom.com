@@ -28,13 +28,15 @@ test('mode switch works', async({page})=>{
     const modeSwitch = page.getByRole('button', { name: 'change mode' });
     
     await expect(modeSwitch).toBeVisible();
-    expect(page.locator('html')).toHaveClass('light')
+    await expect(page.locator('html')).toHaveClass('light')
 
     await modeSwitch.click();
-    expect(page.locator('html')).toHaveClass('dark');
+    await expect(page.locator('html')).toHaveClass('dark');
     
     await modeSwitch.click();
-    expect(page.locator('html')).toHaveClass('light');
+    //await page.reload();
+    setTimeout(()=>{},5000)
+    await expect(page.locator('html')).toHaveClass('light');
 
 });
 
