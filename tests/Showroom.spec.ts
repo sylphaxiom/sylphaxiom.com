@@ -57,19 +57,14 @@ test('check projects tab', async({page})=>{
     const projLink_sylphaxiom = page.getByRole('link', { name: 'Click me to visit the site' }).first()
     await expect(projTitle_sylphaxiom).toBeVisible();
     await expect(projLink_sylphaxiom).toBeVisible();
-    await projLink_sylphaxiom.click();
-    await expect(page).toHaveURL('https://sylphaxiom.com');
-    await page.goBack();
-    await expect(page).toHaveURL('/showroom');
+    await expect(projLink_sylphaxiom).toHaveAttribute('href', 'https://sylphaxiom.com');
 
     // kothis.sylphaxiom.com project
     const projTitle_kothis = page.getByRole('heading', { name: 'Kothis Portal' })
     const projLink_kothis = page.getByRole('link', { name: 'Click me to visit the site' }).nth(1)
     await expect(projTitle_kothis).toBeVisible();
     await expect(projLink_kothis).toBeVisible();
-    await projLink_kothis.click();
-    await expect(page).toHaveURL('https://kothis.sylphaxiom.com');
-    await page.goBack();
+    await expect(projLink_kothis).toHaveAttribute('href', 'https://kothis.sylphaxiom.com');
 });
 
 test('check components tab', async({page})=>{

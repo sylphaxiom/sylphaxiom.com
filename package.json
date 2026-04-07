@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite && react-router dev",
+    "dev": "react-router dev --host 127.0.0.1",
     "kill": "npx kill-port 5173",
     "clean": "tsc -b --clean",
     "tsbuild": "tsc -b",
@@ -45,6 +45,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
+    "axe-core": "^4.11.2",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
