@@ -42,6 +42,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <title>Sylphaxiom Creations</title>
       </head>
+      {/* <!-- Google tag (gtag.js) --> */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-P9T2XV7RLQ"
+      ></script>
+      <script>
+        {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P9T2XV7RLQ');
+`}
+      </script>
       <body>
         <TwinkleStars />
         <InitColorSchemeScript attribute="class" />
