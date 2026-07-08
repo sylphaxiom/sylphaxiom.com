@@ -37,7 +37,7 @@ export function SkillTiles(
   skills: Array<Skills>,
   rows: number,
   pattern?: string,
-  density?: number
+  density?: number,
 ) {
   const ImageMap = {
     bash: "/resources/Bash_light.svg",
@@ -61,7 +61,7 @@ export function SkillTiles(
   const setPattern = pattern || "random";
   const setDensity = density || 4;
   let inc = 0;
-  let tiles: Array<React.JSX.Element> = [];
+  const tiles: Array<React.JSX.Element> = [];
   const randTile = (): Array<Skills> => {
     let curIndex = skills.length;
     while (curIndex !== 0) {
@@ -74,7 +74,7 @@ export function SkillTiles(
     return skills;
   };
   const repBlank = (count: number) => {
-    let blanks: Array<React.JSX.Element> = [];
+    const blanks: Array<React.JSX.Element> = [];
     for (let i = 0; i < count; i++) {
       blanks.push(
         <Grid size={1} key={"grid_" + inc++} id={"grid_" + inc++}>
@@ -85,7 +85,7 @@ export function SkillTiles(
             height={50}
             style={{ opacity: 0 }}
           />
-        </Grid>
+        </Grid>,
       );
     }
     return blanks;
@@ -115,7 +115,7 @@ export function SkillTiles(
             : ""
           }
         />
-      </Grid>
+      </Grid>,
     );
   });
   if (repeat) {
@@ -138,7 +138,7 @@ export function SkillTiles(
               : ""
             }
           />
-        </Grid>
+        </Grid>,
       );
     }
   }
@@ -146,7 +146,7 @@ export function SkillTiles(
     case "random":
       for (let r = 0; r < rows; r++) {
         output = output.concat(
-          repBlank(Math.floor(Math.random() * setDensity))
+          repBlank(Math.floor(Math.random() * setDensity)),
         );
         const t = r > tiles.length - 1 ? r % tiles.length : r;
         output.push(tiles[t]);

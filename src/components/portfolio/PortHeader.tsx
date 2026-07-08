@@ -31,7 +31,7 @@ export default function PortHeader() {
     display: "inline-block",
   };
 
-  let bps = {
+  const bps = {
     sm: useMediaQuery("(min-width: 600px)"),
     md: useMediaQuery("(min-width: 900px)"),
     lg: useMediaQuery("(min-width: 1200px)"),
