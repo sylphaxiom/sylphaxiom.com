@@ -104,6 +104,7 @@ export default function PortAbout() {
               <ListItemText>
                 LinkedIn:{" "}
                 <Link
+                  id="aboutLiLink"
                   href="https://linkedin.com/in/sylphaxiom"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -119,6 +120,7 @@ export default function PortAbout() {
               <ListItemText>
                 GitHub:{" "}
                 <Link
+                  id="aboutGhLink"
                   href="https://github.com/sylphaxiom"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -134,6 +136,7 @@ export default function PortAbout() {
               <ListItemText>
                 Email:{" "}
                 <Link
+                  id="aboutEmailLink"
                   href="mailto:pelljacoba@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"

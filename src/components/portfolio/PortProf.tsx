@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
-export default function PortAbout() {
+export default function PortProf() {
   const [rays, setRays] = React.useState(0);
 
   React.useEffect(() => {
@@ -65,6 +65,7 @@ export default function PortAbout() {
             Portfolio highlights below. For professional inquiries, contact me
             via{" "}
             <Link
+              id="profLiLink"
               href="https://www.linkedin.com/in/sylphaxiom"
               target="_blank"
               rel="noopener noreferrer"
@@ -73,6 +74,7 @@ export default function PortAbout() {
             </Link>{" "}
             or{" "}
             <Link
+              id="profGhLink"
               href="https://github.com/sylphaxiom"
               target="_blank"
               rel="noopener noreferrer"
@@ -195,6 +197,7 @@ export default function PortAbout() {
           <Typography>
             <strong className="secondary">GitHub:</strong>{" "}
             <Link
+              id="snowApiLink"
               href="https://github.com/sylphaxiom/SNOW_API"
               target="_blank"
               rel="noopener noreferrer"
@@ -313,6 +316,7 @@ export default function PortAbout() {
           <Typography>
             <strong className="secondary">GitHub:</strong>{" "}
             <Link
+              id="yggLink"
               href="https://github.com/sylphaxiom/yegamersguild.com"
               target="_blank"
               rel="noopener noreferrer"

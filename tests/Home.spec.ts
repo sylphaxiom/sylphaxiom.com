@@ -34,8 +34,6 @@ test('mode switch works', async({page})=>{
     await expect(page.locator('html')).toHaveClass('dark');
     
     await modeSwitch.click();
-    //await page.reload();
-    setTimeout(()=>{},5000)
     await expect(page.locator('html')).toHaveClass('light');
 
 });

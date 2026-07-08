@@ -154,7 +154,7 @@ export default function PortSkills() {
                 to update this site with my work as I produce it. If you have
                 requests or questions, reach out from my{" "}
                 <Link
-                  id="SotN_ad"
+                  id="skillsLiLink"
                   color={theme.palette.secondary.main}
                   href="https://www.linkedin.com/in/sylphaxiom/"
                   underline="none"
@@ -163,7 +163,7 @@ export default function PortSkills() {
                 </Link>
                 ,{" "}
                 <Link
-                  id="SotN_ad"
+                  id="skillsGhLink"
                   color={theme.palette.secondary.main}
                   href="https://github.com/sylphaxiom"
                   underline="none"
@@ -172,7 +172,7 @@ export default function PortSkills() {
                 </Link>
                 , or{" "}
                 <Link
-                  id="SotN_ad"
+                  id="skillsContactLink"
                   color={theme.palette.secondary.main}
                   href="https://sylphaxiom.com/contact"
                   underline="none"

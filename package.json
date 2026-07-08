@@ -14,6 +14,7 @@
     "api": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --API",
     "prod": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --SKIP --PROD",
     "test": "py C:\\users\\image\\code_projects\\py_scripts\\Deployment\\DevDeploy.py sylphaxiom.com --SKIP --DEV",
+    "test:e2e": "playwright test",
     "lint": "eslint .",
     "preview": "vite preview",
     "typecheck": "react-router typegen && tsc"
