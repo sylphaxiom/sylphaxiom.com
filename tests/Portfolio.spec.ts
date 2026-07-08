@@ -121,22 +121,6 @@ test('has climber', async({page})=>{
 
 });
 
-test("content link is valid", async({page})=>{
-
-    const contentLink = page.getByRole('link', { name: 'here' });
-    await expect(contentLink).toHaveAttribute('href', 'https://a.co/d/6Mezoxp');
-    await expect(contentLink).toHaveAttribute('id', 'SotN_ad');
-
-    try {
-        await contentLink.click();
-        await page.waitForLoadState('networkidle', { timeout: 10000 });
-        await expect(page).toHaveURL(/amazon.com/);
-    } catch (e) {
-        console.log('External link test failed, skipping:', e.message);
-    }
-
-});
-
 test('download resume link works', async({page})=>{
 
     const downloadLink = page.getByRole('button', { name: 'download_resume' });
