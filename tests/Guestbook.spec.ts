@@ -142,7 +142,16 @@ test('check message error states', async({page})=>{
 
 })
 
-test('check valid send (API only)', async({page})=>{
+test('check valid send (mocked API)', async({page})=>{
+    // Intercept the real API call so this test doesn't send a live email on every run.
+    await page.route('https://api.sylphaxiom.com/email.php', async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify({ message: 'Email sent successfully!' }),
+        });
+    });
+
     const nameField = page.getByRole('textbox', { name: 'Name' })
     const emailField = page.getByRole('textbox', { name: 'Email' })
     const messageField = page.getByRole('textbox', { name: 'Stuff...' })

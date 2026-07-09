@@ -44,7 +44,7 @@ export default function PortSkills() {
               "typescript",
               "windows",
             ],
-            20,
+            12,
             "spiral",
             5,
           )}
@@ -154,7 +154,7 @@ export default function PortSkills() {
                 to update this site with my work as I produce it. If you have
                 requests or questions, reach out from my{" "}
                 <Link
-                  id="SotN_ad"
+                  id="skillsLiLink"
                   color={theme.palette.secondary.main}
                   href="https://www.linkedin.com/in/sylphaxiom/"
                   underline="none"
@@ -163,7 +163,7 @@ export default function PortSkills() {
                 </Link>
                 ,{" "}
                 <Link
-                  id="SotN_ad"
+                  id="skillsGhLink"
                   color={theme.palette.secondary.main}
                   href="https://github.com/sylphaxiom"
                   underline="none"
@@ -172,7 +172,7 @@ export default function PortSkills() {
                 </Link>
                 , or{" "}
                 <Link
-                  id="SotN_ad"
+                  id="skillsContactLink"
                   color={theme.palette.secondary.main}
                   href="https://sylphaxiom.com/contact"
                   underline="none"
@@ -180,6 +180,38 @@ export default function PortSkills() {
                   Contact Page
                 </Link>
                 !
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid size={6}>
+            <Grid
+              sx={{
+                maxWidth: 750,
+                textAlign: "center",
+                mx: "auto",
+              }}
+            >
+              <Typography className="secondary" variant="h5" sx={{ pt: 1 }}>
+                Ye Gamer's Guild Website
+              </Typography>
+              <Box
+                component="img"
+                src="/resources/gamersguild.png"
+                alt="Logo of Ye Gamer's Guild"
+                sx={{
+                  width: "100px",
+                  height: "100px",
+                  marginRight: 8,
+                  mx: "auto",
+                }}
+              />
+              <Typography sx={{ py: 2 }}>
+                This site is for a local game shop in my area. It is a simple
+                SPA style site with a custom calendar and event system. The
+                client wanted to be able to update the site himself, so I build
+                a CMS for this site. The client can administer the site from
+                anywhere, with a public facing login for administration. The
+                site is responsive and built using a custom PHP backend.
               </Typography>
             </Grid>
           </Grid>

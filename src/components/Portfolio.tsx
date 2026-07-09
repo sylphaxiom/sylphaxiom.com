@@ -7,6 +7,7 @@ import theme from "../theme";
 import PortHeader from "./portfolio/PortHeader";
 import PortAbout from "./portfolio/PortAbout";
 import PortSkills from "./portfolio/PortSkills";
+import PortProf from "./portfolio/PortProf";
 
 export default function Portfolio() {
   const { scrollYProgress } = motions.useScroll();
@@ -18,8 +19,8 @@ export default function Portfolio() {
   const dudeRef = React.useRef(null); // holds the dude
 
   const vh = window.innerHeight;
-  let point = vh; // Y @ top of dude rel: bottom
-  let point2 = point - 135; // Y @ bottom of Dude rel: bottom
+  const point = vh; // Y @ top of dude rel: bottom
+  const point2 = point - 135; // Y @ bottom of Dude rel: bottom
 
   const scrollClimber = motions.useTransform(
     springScrollYProgress,
@@ -116,6 +117,8 @@ export default function Portfolio() {
         </Box>
       </motions.AnimatePresence>
       <PortHeader />
+      <Divider sx={{ my: 5 }} />
+      <PortProf />
       <Divider sx={{ my: 5 }} />
       <PortAbout />
       <Divider sx={{ my: 3 }} />

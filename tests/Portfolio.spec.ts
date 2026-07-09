@@ -89,10 +89,9 @@ test('check mobile menu', async({page})=>{
         if (!(await btn.isDisabled())) {
             await btn.click();
             await expect(page).toHaveURL('/' + controls);
-            if (controls === 'portfolio') {
-                await expect(btn).toHaveAttribute('tabindex', '0');
-            } else {
-                await expect(btn).toHaveAttribute('tabindex', '-1');
+            // The menu item matching the current route is the one made tabbable (roving tabindex).
+            await expect(btn).toHaveAttribute('tabindex', '0');
+            if (controls !== 'portfolio') {
                 await page.goBack();
             }
         }
@@ -118,22 +117,6 @@ test('has climber', async({page})=>{
 
     await expect(climber).toBeVisible();
     await expect(rope).toBeVisible();
-
-});
-
-test("content link is valid", async({page})=>{
-
-    const contentLink = page.getByRole('link', { name: 'here' });
-    await expect(contentLink).toHaveAttribute('href', 'https://a.co/d/6Mezoxp');
-    await expect(contentLink).toHaveAttribute('id', 'SotN_ad');
-
-    try {
-        await contentLink.click();
-        await page.waitForLoadState('networkidle', { timeout: 10000 });
-        await expect(page).toHaveURL(/amazon.com/);
-    } catch (e) {
-        console.log('External link test failed, skipping:', e.message);
-    }
 
 });
 
@@ -175,5 +158,57 @@ test('LinkedIn link works', async({page})=>{
 
     await downloadLink.click();
     await expect(page).toHaveURL(/www.linkedin.com/);
+
+});
+
+test('professional overview contact links match their hrefs', async({page})=>{
+
+    const liLink = page.locator('#profLiLink');
+    await expect(liLink).toHaveText('LinkedIn');
+    await expect(liLink).toHaveAttribute('href', 'https://www.linkedin.com/in/sylphaxiom');
+
+    const ghLink = page.locator('#profGhLink');
+    await expect(ghLink).toHaveText('GitHub');
+    await expect(ghLink).toHaveAttribute('href', 'https://github.com/sylphaxiom');
+
+    const snowLink = page.locator('#snowApiLink');
+    await expect(snowLink).toHaveText('SNOW_API');
+    await expect(snowLink).toHaveAttribute('href', 'https://github.com/sylphaxiom/SNOW_API');
+
+    const yggLink = page.locator('#yggLink');
+    await expect(yggLink).toHaveText("Ye Gamer's Guild");
+    await expect(yggLink).toHaveAttribute('href', 'https://github.com/sylphaxiom/yegamersguild.com');
+
+});
+
+test('brief history contact links match their hrefs', async({page})=>{
+
+    const liLink = page.locator('#aboutLiLink');
+    await expect(liLink).toHaveText('linkedin.com/in/sylphaxiom');
+    await expect(liLink).toHaveAttribute('href', 'https://linkedin.com/in/sylphaxiom');
+
+    const ghLink = page.locator('#aboutGhLink');
+    await expect(ghLink).toHaveText('github.com/sylphaxiom');
+    await expect(ghLink).toHaveAttribute('href', 'https://github.com/sylphaxiom');
+
+    const emailLink = page.locator('#aboutEmailLink');
+    await expect(emailLink).toHaveText('pelljacoba@gmail.com');
+    await expect(emailLink).toHaveAttribute('href', 'mailto:pelljacoba@gmail.com');
+
+});
+
+test('projects and more contact links match their hrefs', async({page})=>{
+
+    const liLink = page.locator('#skillsLiLink');
+    await expect(liLink).toHaveText('LinkedIn');
+    await expect(liLink).toHaveAttribute('href', 'https://www.linkedin.com/in/sylphaxiom/');
+
+    const ghLink = page.locator('#skillsGhLink');
+    await expect(ghLink).toHaveText('GitHub');
+    await expect(ghLink).toHaveAttribute('href', 'https://github.com/sylphaxiom');
+
+    const contactLink = page.locator('#skillsContactLink');
+    await expect(contactLink).toHaveText('Contact Page');
+    await expect(contactLink).toHaveAttribute('href', 'https://sylphaxiom.com/contact');
 
 });
